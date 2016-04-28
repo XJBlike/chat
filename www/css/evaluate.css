@@ -1,0 +1,96 @@
+.evaluate-doctor{
+    height: 78%;
+}
+
+.evaluate-head{
+    border-top: 1px #ddd solid;
+}
+
+.evaluate-head>div{
+    width: 32%;
+    display: inline-block;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    height: 5em;
+    text-align: center;
+}
+
+.evaluate-head>div>div{
+    padding-top: 1em;
+}
+
+.evaluation-item{}
+
+.evaluation-name-block{
+    border-bottom: solid 1px #c0c0c0;
+}
+
+.evaluation-comment{
+    word-wrap: break-word;
+    word-break: normal;
+    white-space: normal;
+    text-align: justify;
+    margin: 6px 0;
+    height: 60px;
+}
+
+.evaluation-noComment{
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    margin: 6px 0;
+}
+
+.evaluation-more{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.survey-item-desc{
+    border-bottom: 1px solid #ccc;
+}
+
+.survey-item-star-block{
+    text-align: right;
+    margin-top: 5px;
+}
+
+.survey-item-star{
+    font-size: 180%;
+    cursor: pointer;
+}
+
+.result-item-star{
+    font-size: 180%;
+    cursor: default;
+}
+
+.satisfaction-block{
+    padding: 6px 12px;
+}
+
+.satisfaction-comment{
+    width:100%;
+    border: 1px solid #ccc;
+}
+
+.satisfaction-comment>textarea{
+    resize: none;
+    width: 100%;
+}
+
+.satisfaction-date{
+    width:100%;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+}
+
+.satisfaction-append-block{
+    padding: 0 12px;
+}

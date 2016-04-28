@@ -1,0 +1,26 @@
+.record-card{
+  margin: 0px!important;
+  font-size:$font-size-base ;
+  padding: 0px!important;
+  img{
+    margin-top: $item-padding;
+    width: 60px;
+    height: 60px;
+  }
+}
+.record-title{
+  background-color: $mainBackgroundGray;
+  padding: 0px;
+}
+.record-main{
+  padding-left: $item-padding;
+  padding-right: $item-padding;
+}
+.record-text-big{
+  font-size: $font-size-large;
+  white-space: nowrap;
+}
+.record-text-normal{
+  font-size: $font-size-small;
+  white-space: nowrap;
+}

@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+// Color
+// -------------------------------
+$commonWhite: #fff !default;
+$commonBlack: #000 !default;
+$commonGrey: #f6f6f6 !default;
+$commonDarkGrey: #696969 !default;
+$commonGreen: #44b24d !default;
+$commonRed: #ff3030 !default;
+$commonOrange: #ff8a18 !default;
+$commonGreenComplement: complement($commonGreen) !default;
+$commonGreenAdjust: adjust_hue($commonGreen, 90deg) !default;
+
+// Base
+// -------------------------------
+$commonIconPath: '../images/';
+$commonIconSize : 960px, 138px;
+$commonDisValue: 16px;
+
+$commonFontFamily: "Hiragino Sans GB", "Microsoft Yahei", Helvetica, Arial, sans-serif !default;
+$commonFontSizeSmall: 12px !default;
+$commonFontSizeNormal: 14px !default;
+$commonFontSizeLarge: 16px !default;
+$commonFontColor: #444 !default;
+$commonFontGreyColor: #8e8e93 !default;
+$commonLineHeightNormal: 1.428571429 !default; // 20/14
+
+$commonBackgroundColor: #fff !default;
+
+$commonRadiusBase: 4px !default;
+$commonRadiusLarge: 6px !default;
+$commonRadiusSmall: 3px !default;
+
+$commonZIndexLevel_1: 1 !default;
+$commonZIndexLevel_2: 2 !default;
+$commonZIndexLevel_3: 3 !default;
+
+// Button
+// ------------------------------
+
+$commonBtnHeight: 40px !default;
+$commonBtnFontSize: 14px !default;
+$commonBtnColor: $commonWhite !default;
+$commonBtnBgColor: $commonGreen !default;
+$commonBtnRadius: $commonRadiusBase !default;

@@ -1,0 +1,215 @@
+$diseaseDescLineClamp: 3;
+$diseaseDescLineHeight: 1.5rem;
+$diseaseDetailNameFontSize: 1.3rem;
+$diseaseDetailPaneDis: 1rem;
+$diseaseDetailPaneDisSmall: .8rem;
+$diseaseHospitalTitlePaneDis: 1.1rem;
+$diseaseHospitalTitleFontSize: 1.3rem;
+$diseaseDetailCommonFontSize: 1.2rem;
+$disease-detail-deptFontSize: 1.0rem;
+$diseaseHospitalMoreBtnFontSize: 1.1rem;
+$diseaseHospitalTitleLineHeight: 3.3rem;
+$diseaseHospitalItemLineHeight: 3.6rem;
+$diseaseDescFromTextDis: 1rem 4.5rem;
+$diseaseDetailBorderWidth: .1rem;
+$diseaseDescTitleNumDis: .5rem;
+
+$diseaseViewBg: #eee;
+$diseaseNameColor: #212121;
+$diseaseDetailDeptBg: $qy-theme-color;
+$diseaseDescBtnColor: $qy-theme-color;
+$diseaseDescItemNameColor: $qy-theme-color;
+$diseaseHospitalTitleColor: #fd9d06;
+$diseaseHospitalMoreBtnColor: #6e6e6e;
+$diseaseHospitalNameColor: #8e8e93;
+$diseaseHospitalDeptNameColor: #212121;
+$diseaseHospitalDeptLinkColor: #cdcdcd;
+$diseaseDescFromLinkColor: #729ECA;
+$diseasePaneBorder: $diseaseDetailBorderWidth solid #E7E7E7;
+
+%bg-white {
+  background-color: white;
+}
+
+%float-left {
+  float: left;
+}
+
+%float-right {
+  float: right;
+}
+
+.disease-detail-item {
+  margin-bottom: $diseaseDetailPaneDis;
+  padding: $diseaseDetailPaneDis;
+  @extend %bg-white;
+}
+.disease-detail-item-title {
+  margin-bottom: $diseaseDetailPaneDisSmall;
+  font-size: $diseaseDetailNameFontSize;
+  color: $diseaseDescItemNameColor;
+  span {}
+}
+
+.disease-detail-item-con {
+  font-size: $diseaseDetailCommonFontSize;
+  line-height: $diseaseDescLineHeight;
+}
+
+.disease-detail-from {
+  padding: $diseaseDescFromTextDis;
+  font-size: $diseaseDetailCommonFontSize;
+}
+
+.disease-detail-from-con {
+  a {
+    color: $diseaseDescFromLinkColor;
+  }
+}
+
+.disease-bg-gray {
+  background-color: $diseaseViewBg;
+}
+
+.disease-detail-pane {
+  display: block;
+  margin-bottom: $diseaseDetailPaneDis;
+  padding: 0 $diseaseDetailPaneDis;
+  @extend %bg-white;
+  border-bottom: $diseasePaneBorder;
+}
+
+.disease-detail-title {
+  padding: $diseaseHospitalTitlePaneDis 0;
+}
+
+.disease-detail-name {
+  font-size: $diseaseHospitalTitleFontSize;
+  color: $diseaseNameColor;
+}
+
+.disease-detail-dept {
+  border-radius: $diseaseDetailCommonFontSize;
+  padding: 0 $diseaseDetailCommonFontSize/2;
+  color: white;
+  background-color: $diseaseDetailDeptBg;
+  font-size: $disease-detail-deptFontSize;
+}
+
+.disease-detail-intro {
+  margin-bottom: $diseaseDetailPaneDis/2;
+  font-size: $diseaseDetailCommonFontSize;
+  line-height: $diseaseDescLineHeight;
+  &.disease-short-desc {
+    display: -webkit-box;
+    height: $diseaseDescLineHeight*$diseaseDescLineClamp;
+    -webkit-line-clamp: $diseaseDescLineClamp;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.disease-desc-btn {
+  display: block;
+  position: relative;
+  padding: 0 0 $diseaseDetailPaneDis;
+  font-size: $diseaseDetailCommonFontSize;
+  color: $diseaseDescBtnColor;
+  text-decoration: none;
+}
+
+.disease-hospital-list {}
+
+.disease-hospital-title {
+  padding: 0 $diseaseDetailPaneDis;
+  overflow: hidden;
+  line-height: $diseaseHospitalTitleLineHeight;
+  color: $diseaseHospitalTitleColor;
+  @extend %bg-white;
+  border: $diseasePaneBorder;
+}
+
+.disease-hospital-text {
+  @extend %float-left;
+  font-size: $diseaseHospitalTitleFontSize;
+}
+
+.disease-hospital-more {
+  @extend %float-right;
+  font-size: $diseaseDetailCommonFontSize;
+  text-decoration: none;
+}
+
+.disease-hospital-item {
+  margin-top: -$diseaseDetailBorderWidth;
+  margin-bottom: $diseaseDetailPaneDis;
+  padding: 0 $diseaseHospitalTitlePaneDis;
+  @extend %bg-white;
+  border-top: $diseasePaneBorder;
+  border-bottom: $diseasePaneBorder;
+}
+
+.disease-hospital-name {
+  display: block;
+  line-height: $diseaseHospitalItemLineHeight;
+  border-bottom: $diseasePaneBorder;
+  span {
+    color: $diseaseHospitalNameColor;
+    font-size: $diseaseDetailCommonFontSize;
+  }
+}
+
+.disease-hospital-dept-name {
+  display: block;
+  position: relative;
+  border-bottom: $diseasePaneBorder;
+  line-height: $diseaseHospitalItemLineHeight;
+  span {
+    color: $diseaseHospitalDeptNameColor;
+    font-size: $diseaseDetailCommonFontSize;
+  }
+
+  i {
+    position: absolute;
+    right: 0;
+    color: $diseaseHospitalDeptLinkColor;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.disease-hospital-more-btn {
+  display: block;
+  margin-bottom: $diseaseDetailPaneDis*2;
+  font-size: $diseaseHospitalMoreBtnFontSize;
+  text-align: center;
+  text-decoration: none;
+  color: $diseaseHospitalMoreBtnColor;
+}
+.disease-no-hospital-text{
+  text-align: center;
+  margin-top: 20%;
+}
+
+
+.disease-detail-box {
+  .disease_content {
+    @extend .disease-detail-item;
+
+    .disease_numbers {
+      @extend %float-left;
+      margin-right: $diseaseDescTitleNumDis;
+    }
+  }
+  .disease_title1 {
+    @extend .disease-detail-item-title;
+  }
+  .disease_content_para {
+    @extend .disease-detail-item-con;
+    padding: 5px 0;
+  }
+}
+

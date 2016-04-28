@@ -1,0 +1,190 @@
+/* 
+* @Author: ky
+* @Date:   2015-07-24 10:32:59
+* @Last Modified by:   ky
+* @Last Modified time: 2015-09-11 14:39:15
+*/
+
+.clearfix:before,.clearfix:after{
+	display:table;
+	content:"";}
+.clearfix:after{
+	clear:both;}
+.clearfix{zoom:1;}
+.border-radius-35{
+	border-radius: 35px;
+	-webkit-border-radius:35px;
+	-moz-border-radius:35px;
+	-o-border-radius:35px;
+}
+
+.border-radius-5{
+	border-radius: 5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+}
+
+.width-95{
+	width:95%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.padding-5{
+	padding:0 10px;
+}
+
+.apointmentInfoName{
+	font-size: 13px;
+	color:#ccc;
+
+}
+.appointmentInfoValue{
+	font-size: 14px;
+	margin-left:-10px;
+}
+
+@media ( min-width: 322px) and (max-width: 416px){
+	.appointmentInfoValue{
+		font-size: 14px;
+		margin-left:25px;
+	}
+}
+
+@media (max-width: 321px){
+	.apointmentInfoName{
+		font-size: 13px;
+	}
+    .appointmentInfoValue{
+		font-size: 13px;
+		margin-left:15px;
+	}
+}
+
+
+
+
+.list-borderless .li-border-bottom-dashed{
+	border-width:0 0 1px 0;
+	border-color: #ccc;
+	border-style: dashed;
+	line-height: 50px;
+	overflow: hidden;
+	height:44px;
+}
+.list-borderless .no-border{
+	line-height: 50px;
+	border-width:0;
+	overflow: hidden;
+	height:44px;
+}
+.successColor {
+  color:#3fae48;
+}
+.errorColor {
+  color:#ff3333;
+}
+
+.PopUpMessageBox{
+	background:rgba(0,0,0,0.4);
+	color:#fff;
+	font-size:13px;
+	padding:30px 20px;
+	position: fixed;
+	bottom:80px;
+	left:50%;
+	transform: translate(-50%,0);
+	-webkit-transform: translate(-50%,0);
+	-moz-transform: translate(-50%,0);
+	-o-transform: translate(-50%,0);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	z-index: 9999;
+}
+.only-cancel-button{
+	top:50%;
+	margin-top:-50%;
+}
+.absoluteImg_50{
+	position: absolute;
+	top:50%;
+	transform: translate(0,-50%);
+	-webkit-transform: translate(0,-50%);
+	-o-transform: translate(0,-50%);
+	-moz-transform: translate(0,-50%);
+	right:-50px;
+}
+.absoluteImg_24{
+	position: absolute;
+	top:50%;
+	transform: translate(0,-50%);
+	-webkit-transform: translate(0,-50%);
+	-o-transform: translate(0,-50%);
+	-moz-transform: translate(0,-50%);
+	right:-24px;
+}
+
+.absoluteImg_74{
+	position: absolute;
+	top:50%;
+	transform: translate(0,-50%);
+	-webkit-transform: translate(0,-50%);
+	-o-transform: translate(0,-50%);
+	-moz-transform: translate(0,-50%);
+	right:-74px;
+}
+
+
+
+.featrueCategoryTiele{
+	font-size: 16px;
+	font-weight: 600;
+	color: #fff;
+	
+	line-height: 25px;
+	background-color: #3fae48;
+}
+.featrueCategoryHospital{
+	font-size: 14px;
+	color: #fff;
+	padding-bottom: 10px;
+	background-color: #3fae48;
+}
+.featrueDepetIndroduce .featrueDepetIndroduceMore{
+	color: #cccccc;
+	font-size: 13px;
+	cursor: pointer;
+}
+.featrueDepetIndroduce p
+{
+	color: #666;
+	font-size: 14px;
+}
+#SelectDateList a:link {
+	color: #666;
+}
+#SelectDateList a:visited {
+	color:#11c1f3;
+}
+#SelectDateList a:hover{
+	color:#11c1f3;
+}
+#SelectDateList a:active{
+	color:#11c1f3;
+}
+.report-info .row{
+	border-bottom:solid 1px #ddd !important;
+}
+
+
+
+.showBillNo{
+	display:inline-block;
+	word-wrap: break-word;line-height:16px;padding-top:8px;
+}
+.item-Column{
+	margin-top:20px;
+	padding:0;
+}

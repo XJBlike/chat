@@ -1,0 +1,96 @@
+.paymentDetail-pane-height {
+  height: 30rem;
+}
+
+.paymentDetail-pay-type {
+  color: #aaa;
+  img {
+    vertical-align: text-top;
+    margin-bottom: 0;
+    width: 2.9rem;
+  }
+}
+
+.paymentDetail-pay-type-list {
+  position: relative;
+  padding-bottom: 0;
+  padding-top: 0;
+  height: 4.4rem;
+  img {
+    vertical-align: text-top;
+    margin-bottom: 0;
+    width: 2.9rem;
+  }
+}
+
+.paymentDetail-desc-pane {
+  word-wrap: break-word;
+  word-break: normal;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.paymentOrder-amount {
+  float: right;
+}
+
+.paymentOrder-pwd-input {
+  display: inline
+}
+
+.paymentDetail-select-card-pane {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.paymentDetail-select-card-change-btn {
+  cursor: hand;
+  color: green;
+}
+
+.paymentDetail-pay-btn {
+  margin-bottom: 1rem;
+}
+
+.paymentDetail-pay-tip {
+  margin-top: 8rem;
+  text-align: center;
+  word-wrap: break-word;
+  word-break: normal;
+}
+
+.paymentResult-pane {
+  padding: 1rem;
+}
+
+.paymentResult-con-pane {
+  line-height: 2rem;
+  text-align: center;
+  padding-top: 10rem;
+}
+
+.paymentResult-back-btn {
+  margin-top: 8.5rem;
+}
+
+.paymentResult-con-message {
+  color: red;
+  font-size: 2.2rem;
+}
+
+.paymentResult-con-error-message {
+  font-size: 1.2rem;
+  color: red;
+}
+
+.paymentValidate-input {
+  display: inline;
+}
+
+.paymentValidate-input-mobile {
+  width: 100%;
+}
+
+.paymentValidate-get-code-btn {
+  float: right;
+}

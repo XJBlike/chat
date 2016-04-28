@@ -1,0 +1,24 @@
+<ion-view view-title= "好友列表" hide-back-button="true">
+  <ion-nav-title ng-bind=""></ion-nav-title>
+<ion-nav-buttons>
+    <div class="home-search-box">
+      <a class="home-search-input" ng-click="goSearch()">搜索用户doge号，可添加好友</a>
+      <i class="icon ion-ios-search home-search-input-icon"></i>
+    </div>
+</ion-nav-buttons>
+  <ion-content>
+
+    <ion-list>
+      <ion-item>
+        <p>所有好友</p>
+      </ion-item>
+      <ion-item class="item-remove-animate item-avatar item-icon-right item-padding-left" ng-repeat="friend in friends" type="item-text-wrap" ng-click="goChat(friend)">
+          <img style="max-height: 40px; max-width: 40px;" ng-click="goFriendInfo(friend)" ng-src="{{friend.img}}">
+          <h2 style="line-height: initial;" ng-bind="friend.name">{{friend.id}}</h2>
+          <p class="desc-font" ng-bind="friend.description">暂无描述</p>
+        <ion-option-button class="button-assertive" ng-click="removeFriend(friend)">
+          删除好友
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+</ion-view>

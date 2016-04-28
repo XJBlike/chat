@@ -1,0 +1,63 @@
+
+@font-face {font-family: "iconfont";
+    src: url('../css/fonts/iconfont.eot'); /* IE9*/
+    src: url('../css/fonts/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../css/fonts/iconfont.woff') format('woff'), /* chrome, firefox */
+    url('../css/fonts/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../css/fonts/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+[class^="qyIcon-"], [class*=" qyIcon-"] {
+    font-family:"iconfont";
+    font-size:2.5em;
+    font-style:normal;
+    text-transform: none;
+    line-height: 1.4;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="qytabicon-"], [class*=" qytabicon-"] {
+    font-family:"iconfont";
+    font-size:2.5em !important;
+    font-style:normal;
+    text-transform: none;
+    line-height: 1.4;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="qyfooticon-"], [class*=" qyfooticon-"] {
+    margin-top: 1.2rem;
+    line-height: 2.8rem;
+    font-size: 2.8rem;
+    display: block;
+    font-family:"iconfont";
+    font-style:normal;
+    text-transform: none;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+.qyfooticon-pc:before { content: "\e61b"; }
+.qyfooticon-mobile:before { content: "\e61a"; }
+.qyfooticon-download:before { content: "\e619"; }
+.icon-logo:before { content: "\e612"; }
+.qytabicon-iconmyselfcolour:before { content: "\e60d"; }
+.qytabicon-iconmyself:before { content: "\e60b"; }
+.qytabicon-iconhealthycolour:before { content: "\e60a"; }
+.qytabicon-iconhealthy:before { content: "\e609"; }
+.qytabicon-iconhospitalcolour:before { content: "\e608"; }
+.qytabicon-iconhospital:before { content: "\e607"; }
+.qytabicon-iconhomecolour:before { content: "\e606"; }
+.qytabicon-iconhome:before { content: "\e605"; }
+.icon-icon:before { content: "\e601"; }
+.qyIcon-top:before { content: "\e69e"; }

@@ -1,0 +1,28 @@
+body{
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.mobilebg{
+    margin: 0 auto;
+    max-width: 100%;
+    height: 20em
+}
+
+.mobile-android{
+    position: relative;
+    max-width: 30%;
+    padding-left: 35%;
+    padding-right: 35%;
+}
+.text{
+    position: relative;
+    color: rgb(127, 127, 127);
+    width: 80%;
+    text-align: center;
+    font-size: 1em;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: 0 auto;
+    /* top: 2em; */
+}

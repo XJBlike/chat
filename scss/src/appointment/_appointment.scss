@@ -1,0 +1,243 @@
+%appointFullSize {
+  width: 100%;
+  height: 100%;
+}
+
+%line-height-28 {
+  line-height: 28px;
+}
+
+%padding-left-3 {
+  padding-left: 3px;
+}
+
+%padding-0 {
+  padding: 0;
+}
+
+.before-icon-padding{
+  padding-left: 3rem;
+}
+.appointment-button {
+  margin: 15px;
+  border-radius: 8px;
+}
+
+.appointment-sub-button {
+  margin: 8px;
+  border-radius: 6px;
+}
+
+.addMedicalCard-info-item {
+  height: 45px;
+}
+
+.addMedicalCard-info-label {
+  float: left;
+  width: 20%;
+}
+
+.addMedicalCard-info-text {
+  float: left;
+  margin-left: 10%;
+  width: 70%;
+}
+
+.long-text-ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.addMedicalCard-input-text {
+  width: 70%;
+  display: inline;
+  float: left;
+  margin-left: 10%;
+  padding-bottom: 14px;
+}
+
+.addMedicalCard-save-btn {
+  @extend %appointFullSize;
+}
+
+.appointmentCreate-item-card {
+  padding: 10px 0 10px 12px;
+}
+
+.registerCreate-item-card {
+  padding: 9px 0 13px 10px;
+}
+
+.appointmentCreate-item-card-num,
+.registerCreate-item-card-num {
+  @extend %padding-left-3;
+}
+
+.appointmentDetail-status-pane {
+  height: 44px;
+  text-align: center;
+  line-height: 44px;
+  margin-top: 16px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.appointmentDetail-status {
+  position: relative;
+  text-align: center;
+  img {
+    vertical-align: text-top
+  }
+}
+
+.appointmentDetail-info-pane {
+  margin-top: 20px;
+  background: #fff;
+}
+
+.appointmentDetail-timeout-label {
+  font-weight: 600;
+}
+
+.appointmentDetail-message-img {
+  vertical-align: text-top;
+}
+
+.appointmentDetail-type-img-width {
+  width: 50px;
+}
+
+.appointmentCreate-booking-btn,
+.appointmentDetail-btn-item,
+.registerCreate-submit-btn {
+  @extend %appointFullSize;
+}
+
+.appointmentDetail-bottom-box {
+  width: 100%;
+  height: 42px;
+  background: #ebebeb;
+}
+
+.registerDetail-bottom-box {
+  width: 100%;
+  height: 20px;
+  background: #ebebeb;
+}
+
+.medicalCardSelectList-line-height,
+.patientsSelectList-line-height {
+  @extend %line-height-28;
+}
+
+.medicalCardSelectList-add-btn {
+  border: 1px dashed #000;
+}
+
+.padding-0 {
+  @extend %padding-0;
+}
+
+.register-info-pane,.patient-info-pane{
+  margin-bottom: 1rem;
+  .register-info-padding {
+    padding: 1rem;
+    .item-key {
+      display: block;
+      float: left;
+      width: 33.3%;
+      color: $commonFontGreyColor;
+    }
+    .item-medicalCard{
+      display: block;
+      float: left;
+      width: 18%;
+      color: $commonFontGreyColor;
+    }
+    .item-value {
+      margin-left: 10%;
+      text-align: center;
+    }
+    .radio-gap {
+      margin-left: 3rem;
+    }
+    .input-card {
+      padding-left: 25%;
+      float: left;
+      height: 2rem;
+      padding-top: 0;
+      width: 70%;
+    }
+    .card-select {
+      padding-left: 4rem;
+    }
+  }
+}
+
+.register-notes {
+  margin-bottom: 10px;
+  display: block;
+  color: #ff0000;
+  font-size: $commonFontSizeSmall;
+}
+
+.icon-plus {
+  padding-left: 0.9rem;
+  color: $commonGreen;
+}
+.icon-right {
+  position: absolute;
+  right: 1rem;
+  color: $commonFontGreyColor;
+}
+
+.register-protocol-pane {
+  font-size: $commonFontSizeSmall;
+  margin-left: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  .protocol-checkbox {
+    margin-top: 0.3rem;
+    display: block;
+    float: left;
+  }
+  .protocol-text {
+    display: block;
+    float: left;
+  }
+  .protocol-link {
+    color: $commonGreen;
+  }
+}
+.submit-register-button {
+  position: relative;
+  border-radius: 0.2rem;
+  width: 90%;
+  height: 3.334rem;
+  font-size: $commonFontSizeLarge;
+  margin: 0 2rem 1.5rem;
+  padding: 0.5rem;
+  color: $commonWhite;
+  border: #108029;
+  background-color: $commonRed;
+  right: 0.5rem;
+  top: 1.2rem;
+}
+
+.create-select-card-radio {
+  margin-left: 10% !important;
+  position: relative;
+  top: -1px;
+}
+
+.create-order-patient-add-icon {
+  &:before {
+    color: $commonGreen;
+  }
+}
+
+.radio-margin{
+  margin-right: 1% !important;
+}

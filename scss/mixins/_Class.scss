@@ -1,0 +1,201 @@
+@charset "UTF-8";
+
+//非传参型用 % 占位选择器；  @extend 导入；
+
+%text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%center-block {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+//传参型用 @mixin 占位选择器；  @include 导入；
+
+@mixin full-fixed-page($bgColor: #000) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $bgColor;
+  z-index: 100;
+}
+
+// perspective
+// --------------------------------------------------
+
+@mixin perspective($var: 800px) {
+  perspective:$var;
+  -webkit-perspective: $var;
+}
+
+// transform-style
+// --------------------------------------------------
+
+@mixin transform-style($var: preserve-3d) {
+  transform-style:$var;
+  -webkit-transform-style: $var;
+}
+
+
+// Transform Mixins
+// --------------------------------------------------
+
+@mixin transform($val...) {
+  -webkit-transform: $val;
+  transform: $val;
+}
+
+
+// perspective-origin
+// --------------------------------------------------
+
+@mixin perspective-origin($var: center top) {
+  perspective-origin:$var;
+  -webkit-perspective-origin: $var;
+}
+
+
+// Box-sizing
+// --------------------------------------------------
+
+@mixin box-sizing($val: border-box) {
+  box-sizing: $val;
+  -webkit-box-sizing: $val;
+  -moz-box-sizing: $val;
+}
+
+// Pseudo element
+// --------------------------------------------------
+
+@mixin pseudo-element($val: '') {
+  position: absolute;
+  content: $val;
+}
+
+// Box shadows
+// --------------------------------------------------
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+// Transition Mixins
+// --------------------------------------------------
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+//img-retina
+// --------------------------------------------------
+
+@mixin img-retina($file-1x, $file-2x, $width-1x, $height-1x) {
+  background-image: url($file-1x);
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+    background-image: url($file-2x);
+    background-size: $width-1x $height-1x;
+  }
+}
+
+
+//media screen
+// ---------------------------------------------------
+
+@mixin media-max-screen($res){
+  @media only screen and ( max-width: $res )
+  {
+    @content;
+  }
+}
+
+@mixin media-min-screen($res){
+  @media only screen and ( min-width: $res )
+  {
+    @content;
+  }
+}
+
+//animation
+// ---------------------------------------------------
+
+@mixin animation($animate...) {
+  $max: length($animate);
+  $animations: '';
+
+  @for $i from 1 through $max {
+    $animations: #{$animations + nth($animate, $i)};
+
+    @if $i < $max {
+      $animations: #{$animations + ", "};
+    }
+  }
+  -webkit-animation: $animations;
+  -moz-animation:    $animations;
+  -o-animation:      $animations;
+  animation:         $animations;
+}
+
+@mixin animationFillMode($val: forwards) {
+  -webkit-animation-fill-mode: $val;
+  -moz-animation-fill-mode: $val;
+  -o-animation-fill-mode: $val;
+  animation-fill-mode: $val;
+}
+
+@mixin animationDuration($val) {
+  -webkit-animation-duration: $val;
+  -moz-animation-duration: $val;
+  -o-animation-duration: $val;
+  animation-duration: $val;
+}
+
+@mixin animationDelay($val) {
+  animation-delay: $val;
+  -webkit-animation-delay: $val;
+}
+
+//keyframes
+// ---------------------------------------------------
+
+@mixin keyframes ($animationName){
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+
+
+//background-image
+// ---------------------------------------------------
+
+@mixin backgroundImage ($width, $height, $image, $imageSize, $imagePosition: top center, $imageRepeat: no-repeat) {
+  width: $width;
+  height: $height;
+  background-image: $image;
+  background-size: $imageSize;
+  background-position: $imagePosition;
+  background-repeat: $imageRepeat;
+}

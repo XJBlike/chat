@@ -1,0 +1,621 @@
+/*old*/
+$mainBackgroundGray:              #ebebeb !default;
+$fontGray:                          #8c8c8c !default;
+$lineGray:                          #c8c8c8 !default;
+$fontRed:                           #f04c4a !default;
+$balanced:                          #22c191;
+$green:                           #3fae48 !global;
+$white:                           #fff !global;
+
+$item-font-size:12px;
+$item-padding:12px;
+$item-left-padding:15px;
+$item-img-right-padding:15px;
+$right123: 2px;
+
+$item-button-font-size:           13px ;
+$item-button-line-height:         24px;
+$item-icon-font-size:             24px;
+$item-icon-fill-font-size:        17px;
+$button-height:                  31px ;
+$button-padding:                  8px;
+// The path for our ionicons font files, relative to the built CSS in www/css//
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+$item-avatar-width:               30px;
+$item-avatar-height:              30px;
+$font-size-base:                  14px ;
+$font-size-large:                 16px ;
+$font-size-small:                 12px ;
+$item-thumbnail-width:            65px ;
+$item-thumbnail-height:           65px ;
+$item-thumbnail-margin:           10px;
+
+$slide-box-home : 120px;
+$font-size-middle-card-header : 20px;
+$font-size-middle-card-sub-header : 18px;
+$list-img-small-width:30px;
+$list-img-small-height:39px;
+$font-size-list-single-line:16px;
+$line-height-list-single-line:27px;
+$font-size-smaller:16px;
+$font-size-normal:20px;
+$font-size-larger:24px;
+$font-size-double-bigger:15px;
+$font-size-double-smaller:12px;
+
+
+/*new*/
+/*common*/
+$qy-theme-color: #3fae48 !global;
+$qy-theme-darken-color: darken(#3fae48, 5%) !global;
+$qy-theme-lighten-color: lighten(#3fae48, 5%) !global;
+
+$page_font_size: 1.4rem;
+$page_font_color: #434343;
+$page_white_color: #FFF;
+
+//qy-list
+$qyListIconPath: '../img/';
+//mine
+$qyMineListIconPath: $qyListIconPath + 'mine/list-icon/';
+$qyMineListIcons: user, friends, app, logout;
+//treatmentRecord
+$qyTreatmentRecordListIconPath: $qyListIconPath + 'treatmentRecord/list-icon/';
+$qyTreatmentRecordListIcons: booking, register, report;
+//hospital
+$qyHospitalListIconPath: $qyListIconPath + 'hospital/list-icon/';
+$qyHospitalListIcons: doctor, form, report;
+
+/*media*/
+$html_media_font_size: (375px, 375*10/320), (384px, 384*10/320), (480px, 480*10/320), (640px, 640*10/320);
+
+
+// Include all of Ionic
+@import "../www/lib/ionic/scss/ionic";
+@import "all";
+
+
+@each $mScreen, $mFontSize in $html_media_font_size {
+   @include media-min-screen($mScreen) {
+     html {
+       font-size: $mFontSize + px !important;
+       line-height: $mFontSize + px !important;
+     }
+   }
+}
+
+ /*reset*/
+ html {
+   font-size: 62.5%;  // 1rem = 10px; // >320
+//   font-size: calc(100vw/32);
+   min-height: 100%;
+   height: 100%;
+ }
+
+ .tr-3d {
+   @include transform(translateZ(0));
+ }
+
+ body {
+   margin: 0;
+   padding: 0;
+   height: 100%;
+   overflow: hidden;
+   font-size: $page_font_size;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   color: $page_font_color;
+ }
+
+ ul,li,p,input,span {
+   margin: 0;
+   padding: 0;
+ }
+
+
+ ul, li {
+   list-style: none;
+ }
+
+ a img {
+   border: none;
+ }
+
+
+ /*qy-list*/
+ .qy-list {
+
+   //list 间距
+   &.qy-list-space {
+     margin: 10px 0;
+     box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+   }
+
+   .qy-list-item {
+     display: block;
+     position: relative;
+     padding: 0 10px 0 55px;
+     width: 100%;
+     min-height: 45px;
+     line-height: 44px;
+     background-color: #fff;
+     border-top: 1px solid #f4f4f4;
+     font-size: 14px;
+     overflow: hidden;
+
+     &.activated {
+       background-color: #f7f7f7;
+     }
+     &:first-child {
+       border-top: none;
+     }
+     &:before, &:after {
+       position: absolute;
+       top: 3px;
+       width: 40px;
+       height: 40px;
+       line-height: 39px;
+       font-family: Ionicons;
+       font-style: normal;
+       font-weight: 400;
+       font-variant: normal;
+       text-transform: none;
+       text-rendering: auto;
+       text-align: center;
+       -webkit-font-smoothing: antialiased;
+     }
+     &:before {
+       content: '';
+       left: 5px;
+       background-repeat: no-repeat;
+       background-size: 25px;
+       background-position: center 45%;
+     }
+     &:after {
+       content: "\f125";
+       right: 5px;
+       color: #cdcdcd;
+     }
+     &.qy-list-tip-item {
+       &:before, &:after {
+         top: 11px;
+       }
+       &:before {
+         background-size: 40px;
+       }
+     }
+
+     //配置各个模块list icon ;
+     //mine
+     @each $mineIcon in $qyMineListIcons {
+       &.mine-#{$mineIcon}-item {
+         &:before {
+           background-image: url($qyMineListIconPath + '#{$mineIcon}.png');
+         }
+       }
+     }
+
+     //treatmentRecord
+     @each $Icon in $qyTreatmentRecordListIcons {
+       &.treatmentRecord-#{$Icon}-item {
+         &:before {
+           background-image: url($qyTreatmentRecordListIconPath + '#{$Icon}.png');
+         }
+       }
+     }
+
+     //hospital
+     @each $Icon in $qyHospitalListIcons {
+       &.hospital-#{$Icon}-item {
+         &:before {
+           background-image: url($qyHospitalListIconPath + '#{$Icon}.png');
+         }
+       }
+     }
+
+   }
+
+
+   .qy-list-item-text {
+     color: #454545;
+   }
+
+   .qy-list-item-tip {
+     margin: -10px 0 10px 0;
+     font-size: 13px;
+     color: #666;
+     line-height: 20px;
+   }
+ }
+
+
+ /*ionic reset*/
+
+ //qy-bar-green
+ .bar {
+   &.bar-green {
+     border-color: $qy-theme-darken-color;
+     background-color: $qy-theme-color;
+     background-image: linear-gradient(0deg, $qy-theme-darken-color, $qy-theme-darken-color 50%, transparent 50%);
+     color: #fff;
+
+     &.bar-footer {
+       background-image: linear-gradient(180deg, $qy-theme-darken-color, $qy-theme-darken-color 50%, transparent 50%);
+     }
+     .title {
+       color: #fff;
+     }
+   },
+ &.bar-grey{
+   border-color: #8e8e93;
+   background-color: $commonDarkGrey;
+   background-image: linear-gradient(0deg, #8e8e93, #8e8e93 50%, transparent 50%);
+   color: #fff;
+
+   &.bar-footer {
+     background-image: linear-gradient(180deg, #8e8e93, #8e8e93 50%, transparent 50%);
+   }
+   .title {
+     color: #fff;
+   }
+ }
+ }
+
+ //qy-button-green
+ .bar-green {
+   .button {
+     border-color: $qy-theme-darken-color;
+     background-color: $qy-theme-color;
+     color: #fff;
+
+     &:hover {
+       color: #fff;
+       text-decoration: none;
+     }
+     &.active,
+     &.activated {
+       border-color: $qy-theme-darken-color;
+       background-color: $qy-theme-darken-color;
+       box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1);
+     }
+     &.button-clear {
+       border-color: transparent;
+       background: none;
+       box-shadow: none;
+       color: #fff;
+       font-size: 17px;
+     }
+     &.button-icon {
+       border-color: transparent;
+       background: none;
+     }
+   }
+ }
+
+ //qy-tab
+
+ %tab_tabs-green {
+   border-color: $qy-theme-darken-color;
+   background-color: $qy-theme-color;
+   background-image: linear-gradient(0deg, $qy-theme-darken-color, $qy-theme-darken-color 50%, transparent 50%);
+   color: #fff;
+ }
+
+ %tab_tabs-green_tab-item_badge {
+   background-color: #fff;
+   color: $qy-theme-color;
+ }
+
+ .tabs {
+   &.tabs-green {
+     @extend %tab_tabs-green;
+     .tab-item {
+       .badge {
+         @extend %tab_tabs-green_tab-item_badge;
+       }
+     }
+   }
+ }
+
+ .tabs-green {
+   & > .tabs {
+     @extend %tab_tabs-green;
+     .tab-item {
+       .badge {
+         @extend %tab_tabs-green_tab-item_badge;
+       }
+     }
+   }
+   &.tabs-striped {
+     .tabs {
+       background-color: $qy-theme-color;
+     }
+     .tab-item {
+       color: rgba(255, 255, 255, 0.4);
+       opacity: 1;
+
+       &.tab-item-active,
+       &.active,
+       &.activated {
+         margin-top: -2px;
+         color: #fff;
+         border-style: solid;
+         border-width: 2px 0 0 0;
+         border-color: #fff;
+       }
+       .badge {
+         opacity: 0.4;
+       }
+     }
+   }
+ }
+
+ .tabs-background-green {
+   .tabs,
+   > .tabs {
+     background-color: $qy-theme-color;
+     background-image: linear-gradient(0deg, $qy-theme-darken-color, $qy-theme-darken-color 50%, transparent 50%);
+     border-color: $qy-theme-darken-color;
+   }
+
+   &.tabs-striped {
+     .tabs {
+       background-color: $qy-theme-color;
+       background-image: none;
+     }
+     .tab-item {
+       color: $qy-theme-lighten-color;
+       opacity: 1;
+
+       &.tab-item-active,
+       &.active,
+       &.activated {
+         margin-top: -2px;
+         color: $qy-theme-color;
+         border: 0 solid $qy-theme-color;
+         border-top-width: 2px;
+         .badge {
+           top: 2px;
+           opacity: 1;
+         }
+       }
+       .badge {
+         opacity: 0.4;
+       }
+     }
+   }
+ }
+
+ .tabs-color-green {
+   .tab-item {
+     color: $qy-theme-lighten-color;
+     opacity: 1;
+
+     &.tab-item-active,
+     &.active,
+     &.activated {
+       color: $qy-theme-color;
+       border: 0 solid $qy-theme-color;
+       .badge {
+         opacity: 1;
+       }
+     }
+     .badge {
+       opacity: 0.4;
+     }
+   }
+ }
+
+ ion-tabs {
+   &.tabs-color-active-green {
+     .tab-item {
+       color: #444;
+       &.tab-item-active,
+       &.active,
+       &.activated {
+         color: $qy-theme-color;
+       }
+     }
+   }
+ }
+
+ .tab-item.tab-item-green {
+   &.tab-item-active,
+   &.active,
+   &.activated {
+     color: $qy-theme-color;
+   }
+ }
+
+ .item.item-green {
+   border-color: $qy-theme-darken-color;
+   background-color: $qy-theme-color;
+   color: #fff;
+ }
+
+ .item.active.item-green,
+ .item.activated.item-green,
+ .item-complex.active .item-content.item-green,
+ .item-complex.activated .item-content.item-green,
+ .item .item-content.active.item-green,
+ .item .item-content.activated.item-green {
+   border-color: $qy-theme-darken-color;
+   background-color: $qy-theme-darken-color;
+ }
+
+
+ .item-complex.item-green > .item-content {
+   border-color: $qy-theme-darken-color;
+   background-color: $qy-theme-color;
+   color: #fff;
+ }
+ .item-complex.item-green > .item-content.active,
+ .item-complex.item-green > .item-content:active {
+   border-color: $qy-theme-darken-color;
+   background-color: $qy-theme-darken-color;
+ }
+
+
+ .tabs .tab-item .badge.badge-green,
+ .badge.badge-green {
+   background-color: $qy-theme-color;
+   color: #fff;
+ }
+
+
+ .spinner.spinner-green {
+   stroke: $qy-theme-color;
+   fill: $qy-theme-color; }
+
+
+ .checkbox-green input:before,
+ .checkbox-green .checkbox-icon:before {
+   border-color: $qy-theme-color;
+ }
+
+ .checkbox-green input:checked:before,
+ .checkbox-green input:checked + .checkbox-icon:before {
+   background: $qy-theme-color;
+   border-color: $qy-theme-color;
+ }
+
+
+ .toggle.toggle-green input:checked + .track {
+   border-color: $qy-theme-color;
+   background-color: $qy-theme-color;
+ }
+
+ .toggle-small .toggle-green input:checked + .track {
+   background-color: $qy-theme-lighten-color
+ }
+
+ .toggle-small .toggle-green input:checked + .track .handle {
+   background-color: $qy-theme-color;
+ }
+
+
+ .range.range-green input::-webkit-slider-thumb:before {
+   background: $qy-theme-color;
+ }
+
+
+ .item-select.item-green select {
+   background: $qy-theme-color;
+   color: #fff;
+ }
+ .item-select.item-green:after,
+ .item-select.item-green .input-label {
+   color: #fff;
+ }
+
+
+
+ //button-green
+ .button {
+   &.button-green {
+     border-color: $qy-theme-darken-color;
+     background-color: $qy-theme-color;
+     color: #fff;
+     &:hover {
+       color: #fff;
+       text-decoration: none;
+     }
+     &.activated,
+     &.active {
+       border-color: $qy-theme-darken-color;
+       background-color: $qy-theme-darken-color;
+       box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1);
+     }
+     &.button-clear {
+       border-color: transparent;
+       background: none;
+       box-shadow: none;
+       color: $qy-theme-color;
+     }
+     &.button-icon {
+       border-color: transparent;
+       background: none;
+     }
+     &.button-outline {
+       border-color: $qy-theme-color;
+       background: transparent;
+       color: $qy-theme-color;
+       &.active,
+       &.activated {
+         background-color: $qy-theme-color;
+         box-shadow: none;
+         color: #fff;
+       }
+     }
+   }
+ }
+
+ //green
+ .green,
+ a.green {
+   color: $qy-theme-color;
+ }
+
+ .green-bg {
+   background-color: $qy-theme-color;
+ }
+
+ .green-border {
+   border-color: $qy-theme-darken-color;
+ }
+
+ //white
+
+ .white,
+ a.white {
+   color: $white;
+ }
+
+ .white-bg {
+   background-color: $white;
+ }
+
+ .white-border {
+   border-color: $white;
+ }
+
+
+ //col
+ .col-43, .col-44 {
+   @include flex(0, 0, 43.75%);
+   max-width: 43.75%;
+ }
+ .col-30 {
+   @include flex(0, 0, 30%);
+   max-width: 30%;
+ }
+ .col-70 {
+   @include flex(0, 0, 70%);
+   max-width: 70%;
+ }
+
+ .slider-pager {
+   position: absolute;
+   bottom: 10px;
+   z-index: $z-index-slider-pager;
+   width: 100%;
+   height: 10px;
+   text-align: center;
+
+   .slider-pager-page {
+     display: inline-block;
+     margin: 0 2px;
+     width: 12px;
+     color: #000;
+     text-decoration: none;
+
+     opacity: 0.3;
+
+     &.active {
+       @include transition(opacity 0.4s ease-in);
+       color: $green;
+       opacity: 1;
+     }
+   }
+ }
+
+

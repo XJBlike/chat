@@ -1,0 +1,31 @@
+.login-icon-padding{
+  padding-right: $item-padding
+}
+.login-head {
+  margin-top: $item-padding*2;
+}
+.login-head-padding {
+  padding-top: $item-padding;
+}
+.login-button-margin-right{
+  margin-right: $item-padding;
+}
+.login-forget-a, .login-forget-a .col{
+  padding: 0!important;
+
+}
+.login-forget-a div:first-child a{
+  padding-left: 8.69%!important;
+}
+.login-forget-a div:last-child a{
+  padding-right: 8.69%!important;
+}
+.register-button{
+  width: 100%!important;
+  border-color: #ffffff!important;
+  height: 24px!important;
+  border-radius: 4px;
+  line-height: 29px!important;
+  margin-right: 10px;
+  margin-top: 1.75px;
+}

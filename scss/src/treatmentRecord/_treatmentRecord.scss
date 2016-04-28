@@ -1,0 +1,41 @@
+.treatment-record-slide-box{
+  height: 115px;
+}
+.treatment-head{
+  height: 145px;
+  padding: 20px 0!important;
+  margin-bottom: 20px;
+}
+.treatment-head-title{
+  font-size:$font-size-normal ;
+  line-height: $line-height-list-single-line;
+  color: $fontGray;
+  margin-bottom: 30px;
+}
+.treatment-button{
+  min-width: 160px;
+  min-height:48px;
+  border-width: 1px;
+  border-color: $green;
+  font-size:$font-size-larger ;
+  color: $green;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+.check-form{
+  margin-bottom: 15px!important;
+}
+.check-form,.report-info{
+  background-color: #ffffff!important;
+}
+.report-info .row{
+
+  padding: 0!important;
+  margin: 0px!important;
+}
+.report-info .row .col{
+  padding: 10px!important;
+}
+.report-info .row:last-child{
+  border-bottom-width: 0px!important;
+}

@@ -1,0 +1,34 @@
+<ion-view hide-nav-bar="false" hide-back-button="true" view-title="我">
+  <ion-content has-bouncing="false" class="main-gray-bg" scroll="true">
+
+    <div class="row main-gray-bg-white " style="padding:18px 0;" ng-click="goPage(forwardTo.settings[0])">
+      <div class="col col-25" style="padding-left:10px;">
+        <img style="height: 60px; width:60px"
+             class="img-radius50-border"
+             ng-if="!params.user.name"
+             ng-src="img/head/2.png"
+             ng-click="buttonGoPage(forwardTo.login[0])">
+      </div>
+      <div class="col col-66" style="line-height: 60px;">
+        <a class="font-white text-center" ng-click="goLogin()" ng-hide="user.name">dogelover</a>
+      </div>
+      <div class="col text-left" style="line-height: 60px;">
+        <i class="icon ion-chevron-right icon-accessory" style="color:#fff;font-size: 17px;"></i>
+      </div>
+    </div>
+    <div class="qy-list qy-list-space">
+      <a class="qy-list-item mine-user-item" ng-click="goAccount()">
+        <span class="qy-list-item-text">账户信息</span>
+      </a>
+      <a class="qy-list-item mine-friends-item" ng-click="goSpecialFriends()">
+        <span class="qy-list-item-text">关心好友</span>
+      </a>
+      <a class="qy-list-item mine-app-item" ng-click="goAboutApp()">
+        <span class="qy-list-item-text">应用信息</span>
+      </a>
+      <a class="qy-list-item mine-logout-item" ng-click="logOut()">
+        <span class="qy-list-item-text">退出登录</span>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

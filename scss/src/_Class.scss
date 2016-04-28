@@ -1,0 +1,134 @@
+.img-radius50{
+  border-radius: 50%!important;
+}
+.img-radius50-border{
+  border: 2px #ffffff solid;
+  border-radius: 50%!important;
+}
+.img-radius0{
+  border-radius: 0%!important;
+}
+.text-select{
+  color: #ffffff;
+}
+.main-gray-bg{
+  background-color: $mainBackgroundGray!important;
+}
+.font-red{
+  color: $fontRed;
+}
+.font-white{
+  color:#ffffff;
+}
+.button-light-noBottom{
+  border-color: #ffffff;
+  background-color: #fff;
+  color: #444;
+}
+
+.button.button-balanced-noborder{
+  background-color: $green;
+  color: #fff;
+  border-color: $green!important;
+}
+.button.margin-right{
+  margin-right: 1.0rem;
+}
+.button.button-balanced-bottom {
+  border-bottom:2px solid;
+  font-weight:bold;
+  color:$green !important;
+  border-bottom-color: $green !important;
+}
+
+.index-list-img{
+  border-radius: 0%!important;
+  width: $list-img-small-width!important;
+  height: $list-img-small-height!important;
+  max-height: $list-img-small-height !important;
+  max-width: $list-img-small-width!important;
+  top: $item-padding -($list-img-small-height - $item-avatar-height)/2!important;
+}
+
+.mine-list-img{
+  border-radius: 0%!important;
+  width: 20px !important;
+  height:20px !important;
+  max-height:25px !important;
+  max-width: 25px !important;
+  top: 15px!important;
+}
+.index-list-img-double{
+  border-radius: 0%!important;
+  width: $list-img-small-width!important;
+  height: $list-img-small-height!important;
+  max-height: $list-img-small-height !important;
+  max-width: $list-img-small-width!important;
+  top: $item-padding!important;
+}
+.single-line{
+  font-size: $font-size-list-single-line!important;
+  line-height: $line-height-list-single-line !important;
+}
+.single-line-simple{
+  font-size: $font-size-list-single-line!important;
+  line-height: $font-size-list-single-line !important;
+}
+.double-line-bigger{
+  font-size:$font-size-double-bigger;
+  font-weight: 300;
+}
+.double-line-smaller{
+  font-size:$font-size-double-smaller;
+}
+.item-back-gray {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  min-height: 30px;
+  background-color: $mainBackgroundGray;
+  color: #222;
+  font-weight: 500; }
+.font-gray{
+  color: $fontGray!important;
+}
+.font-balanced{
+  color:$green!important;
+}
+.font-green{
+  color:$green!important;
+}
+.full-balanced-button{
+  margin: 4.688% 4.69% 3.125% 4.69%!important;
+  border-radius: 8px;
+//  background-color: $balanced;
+  color: #ffffff;
+  button{
+    width: 100%;
+  }
+}
+.full-button{
+  margin:2px!important;
+}
+.button-radius8{
+  border-radius: 8px;
+}
+.no-border{
+  padding-top: 0px!important;
+}
+.no-border-button{
+  border: 0px!important;
+}
+.border-white{
+  border-color: #ffffff!important;
+}
+.none-msg{
+  font-size: $font-size-large;
+  width:100%;
+  padding-top: 50%!important;
+  text-align: center;
+  color: $fontGray;
+  height: 100%;
+}
+.font-size-base{
+  font-size: 15px!important;
+}

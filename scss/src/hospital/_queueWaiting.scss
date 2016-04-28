@@ -1,0 +1,35 @@
+.queue-sub-header-button {
+  border-color: #ffffff !important;
+  max-height: 33px;
+}
+
+.queue-sub-header-bar {
+  padding-left: 10% !important;
+  padding-right: 10% !important;
+}
+
+.queue-card-bg {
+  margin: 10px $item-padding 0px $item-padding;
+  border-radius: 4px;
+}
+
+.queue-card-row {
+  padding: 0px !important;
+  font-size: $font-size-small;
+}
+
+.queue-hospital-waiting-subheader {
+  margin-top: 30px;
+  padding-right: 26px;
+}
+
+.queue-waiting-item-title {
+  font-size: $font-size-small;
+  max-height: 40px;
+  padding: 5px $item-padding+10px !important;
+}
+
+.queue-icon {
+  display: inline-block;
+  text-align: right;
+}

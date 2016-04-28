@@ -1,0 +1,75 @@
+.search-bar-div {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+
+.search-ele {
+  /*padding-top: 7.25px!important;*/
+  .item-input-wrapper {
+    padding: 0 !important;
+  }
+}
+
+.search-ele .qyicon-search:before {
+  color: $green !important;
+  padding-left: 3px;
+}
+
+.disease-none-msg {
+  font-size: $font-size-large;
+  width: 100%;
+  padding-top: 50% !important;
+  text-align: center;
+  color: $fontGray;
+  height: 100%;
+}
+
+.diseaseDetail-disease-name {
+  font-size: 14px;
+  padding-top: 8px;
+  padding-left: 2px;
+}
+
+.diseaseDetail-text-from {
+  margin: 10px;
+  a {
+    color: #377bee;
+  }
+}
+
+.diseaseDetail-con-html {
+  margin: 10px;
+}
+
+.search-input-box {
+  width: 100%;
+}
+
+.searchResult-disease-pane {
+  padding: 0;
+}
+
+.searchResult-disease-item {
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.searchResult-disease-name {
+  margin-top: 10px;
+  font-size: $homeBigFontSize!important;
+}
+
+.searchResult-disease-desc {
+  white-space: normal
+}
+
+.searchResult-disease-desc-more-btn {
+  height: 40px;
+  width: 100%;
+  i {
+    height: 40px;
+    position: relative;
+    margin-left: 20px;
+  }
+}

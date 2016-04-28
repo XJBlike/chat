@@ -1,0 +1,15 @@
+.bill-sub-header-bar {
+  padding-left: 3% !important;
+  padding-right: 3% !important;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.bill-item{
+  background-color: $mainBackgroundGray!important;
+//  margin-right: -33px!important;
+  border-color: #ffffff!important;
+}
+.bill-border{
+  border: 1px $fontGray solid;
+  border-radius: 8px;
+}

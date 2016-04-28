@@ -1,0 +1,47 @@
+.home-avatar{
+  img{
+    border-radius:0px!important;
+  }
+  line-height: 36px;
+  font-size: 20px;
+}
+.mine-head{
+  height: 77px;
+  width: 77px;
+  min-width: 77px;
+  text-align: center;
+  img{
+    height: 56px;
+  }
+}
+.mine-slide-box{
+   height: 115px;
+   text-align: center;
+ }
+.mine-slide{
+   height: 116px;
+   text-align: center;
+ }
+
+.mine-photo{
+  width: 200px!important;
+  text-align: center;
+}
+.mine-medical-card{
+  padding: 0px !important;
+  margin-bottom: 20px;
+}
+.mine-medical-card-title{
+  color: $fontGray;
+  padding:$item-padding ;
+}
+.mine-home-head{
+  background-color: $green;
+  border-color: $green;
+  padding-top: 33px!important;
+}
+.treatment-card-head{
+  height: 138px;
+  padding: 20px 0!important;
+  margin-bottom: 20px;
+}
