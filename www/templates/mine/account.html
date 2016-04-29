@@ -15,9 +15,20 @@
           <span  style="font-size: 14px;float: right;" ng-bind="account.userId"></span>
         </div>
       </ion-item>
+    </ion-list>
+
+    <ion-list class="account-list-margin">
+      <ion-item ng-click="changeSex()">
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">性别</span>
+        <span style="font-size: 14px;float: right;" ng-bind="account.sex"></span>
+      </ion-item>
+      <ion-item ng-click="changeLocation()">
+          <span style="font-size: 14px;color: #8e8e93;">地区</span>
+          <span  style="font-size: 14px;float: right;" ng-bind="account.location"></span>
+      </ion-item>
       <ion-item ng-click="changeDesc()">
-          <span style="font-size: 14px;color: #8e8e93;margin-right: 30px;">个性签名</span>
-          <span  style="font-size: 14px;float: right;" ng-bind="account.description"></span>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 30px;">个性签名</span>
+        <span  style="font-size: 14px;float: right;" ng-bind="account.description"></span>
       </ion-item>
     </ion-list>
   </ion-content>
