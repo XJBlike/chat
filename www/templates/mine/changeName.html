@@ -1,0 +1,11 @@
+<ion-view view-title="修改昵称">
+  <ion-nav-buttons side="right">
+    <a class="button button-clear border-white button-padding"  ng-click="saveChange()">保存</a>
+  </ion-nav-buttons>
+  <ion-content>
+    <label class="item item-input input-label-padding">
+      <input  maxlength="10" type="text" data-ng-model="user.userName" ng-keyup="showLeftLength()">
+      <span ng-bind="leftLength"></span>
+    </label>
+  </ion-content>
+</ion-view>

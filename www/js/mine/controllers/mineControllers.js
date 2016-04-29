@@ -14,9 +14,16 @@ CHAT.CONTROLLERS
   }])
   .controller('AccountCtrl',['$scope','CommonMethods','Storage','$state',
     function($scope,CommonMethods,Storage,$state){
-          $scope.$on('$ionicHistory.loaded',function(){
+          $scope.$on('$ionicView.beforeEnter',function(){
             var userInfo = Storage.get("userInfo");
             userInfo.img = "../../../img/head/" + userInfo.img + ".png";
             $scope.account = userInfo;
-          })
+          });
+
+          $scope.changeName = function(){
+              $state.go('tab.mine-changeName',{"userName":$scope.account.userName});
+          };
+          $scope.changeDesc = function(){
+              $state.go('tab.mine-changeDesc',{"description":$scope.account.description});
+          };
     }]);
