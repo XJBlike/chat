@@ -22,3 +22,29 @@
 .setting-logout-btn {
   margin-top: 20px;
 }
+.account-img-position{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+.item-account-img{
+  min-height: 77px;
+}
+.gray-background{
+  background-color: #e8e8e8;
+}
+.account-list-margin{
+  .list{
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+}
+.text-no-wrap{
+  white-space: normal;
+}
+
+.div-like-item{
+  background-color: #ffffff;
+  min-height: 47px;
+  padding: 12px;
+}

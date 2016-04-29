@@ -41,6 +41,8 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
       mine: {
         mine: ['tab.mine','#/tab/mine'],
         account: ['tab.mine-account','#/tab/mine/account'],
+        changeName: ['tab.mine-changeName','#/tab/mine/changeName'],
+        changeDesc: ['tab.mine-changeDesc','#/tab/mine/changeDesc'],
         login: ['tab.mine-login', '#/tab/mine/login'],
         register: ['tab.mine-register','#/tab/mine/register']
       }
@@ -198,6 +200,32 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         'tab-mine':{
           templateUrl: 'templates/mine/account.html',
           controller: 'AccountCtrl'
+        }
+      },
+      data:{
+        forwardTo: tabsModuleStates.mine
+      }
+    })
+    .state('tab.mine-changeName',{
+      url: "/mine/changeName",
+      params: {"userName":null},
+      views:{
+        'tab-mine':{
+          templateUrl: 'templates/mine/changeName.html',
+          controller: 'ChangeNameCtrl'
+        }
+      },
+      data:{
+        forwardTo: tabsModuleStates.mine
+      }
+    })
+    .state('tab.mine-changeDesc',{
+      url: "/mine/changeDesc",
+      params: {"description":null},
+      views:{
+        'tab-mine':{
+          templateUrl: 'templates/mine/changeDesc.html',
+          controller: 'ChangeDescCtrl'
         }
       },
       data:{
