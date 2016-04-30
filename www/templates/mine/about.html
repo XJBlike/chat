@@ -1,0 +1,29 @@
+<ion-view view-title="应用信息">
+  <ion-content class="gray-background">
+    <ion-list class="account-list-margin">
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">应用名</span>
+        <span style="font-size: 14px;float: right;" ng-bind="appName"></span>
+      </ion-item>
+      <ion-item>
+          <span style="font-size: 14px;color: #8e8e93;">应用版本</span>
+          <span  style="font-size: 14px;float: right;" ng-bind="appVersion"></span>
+      </ion-item>
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;">运行平台</span>
+        <span  style="font-size: 14px;float: right;" ng-bind="appPlatform"></span>
+      </ion-item>
+    </ion-list>
+
+    <ion-list class="account-list-margin">
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">作者</span>
+        <span style="font-size: 14px;float: right;" ng-bind="author"></span>
+      </ion-item>
+      <ion-item ng-click="showContact()">
+        <p style="font-size: 14px;color: #8e8e93;text-align: center;">联系方式</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-view>

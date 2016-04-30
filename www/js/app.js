@@ -3,8 +3,9 @@ var CHAT = {};
 CHAT.COMMON = angular.module('CHAT.common', []);
 CHAT.SERVICES = angular.module('CHAT.services', ['CHAT.common']);
 CHAT.CONTROLLERS = angular.module('CHAT.controllers', ['CHAT.services','CHAT.common']);
+CHAT.DIRECTIVES = angular.module('CHAT.directives',[]);
 
-angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.services'])
+angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.services','CHAT.directives'])
   .run(['$ionicPlatform','SqliteOperationService',function($ionicPlatform,SqliteOperationService) {
     $ionicPlatform.ready(function() {
 
@@ -43,6 +44,8 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         account: ['tab.mine-account','#/tab/mine/account'],
         changeName: ['tab.mine-changeName','#/tab/mine/changeName'],
         changeDesc: ['tab.mine-changeDesc','#/tab/mine/changeDesc'],
+        changeLocation: ['tab.mine-changeLocation','#/tab/mine/changeLocation'],
+        about: ['tab.mine-about','#/tab/mine/about'],
         login: ['tab.mine-login', '#/tab/mine/login'],
         register: ['tab.mine-register','#/tab/mine/register']
       }
@@ -226,6 +229,31 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         'tab-mine':{
           templateUrl: 'templates/mine/changeDesc.html',
           controller: 'ChangeDescCtrl'
+        }
+      },
+      data:{
+        forwardTo: tabsModuleStates.mine
+      }
+    })
+    .state('tab.mine-changeLocation',{
+      url: "/mine/changeLocation",
+      params: {"location":null},
+      views:{
+        'tab-mine':{
+          templateUrl: 'templates/mine/changeLocation.html',
+          controller: 'ChangeLocationCtrl'
+        }
+      },
+      data:{
+        forwardTo: tabsModuleStates.mine
+      }
+    })
+    .state('tab.mine-about',{
+      url: "/mine/about",
+      views:{
+        'tab-mine':{
+          templateUrl: 'templates/mine/about.html',
+          controller: 'AboutCtrl'
         }
       },
       data:{

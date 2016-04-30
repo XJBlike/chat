@@ -22,24 +22,45 @@ CHAT.CONTROLLERS
       };
     }])
 
-  .controller('ChangeNameCtrl',['$scope','Storage','$ionicHistory','$state',
+  .controller('ChangeLocationCtrl',['$scope','Storage','$ionicHistory','$state',
   function($scope,Storage,$ionicHistory,$state){
     var user = $scope.user = {};
 
     $scope.$on('$ionicView.beforeEnter',function(){
-      $scope.userName = $state.params.userName;
-      user.userName = $scope.userName;
+      $scope.location = $state.params.location;
+      user.location = $scope.location;
     });
 
     $scope.saveChange = function(){
       var userInfo = Storage.get("userInfo");
-      userInfo.userName = user.userName;
+      userInfo.location = user.location;
       Storage.set("userInfo",userInfo);
       $ionicHistory.goBack();
     };
 
     $scope.showLeftLength = function(){
-      var userName = user.userName;
-      $scope.leftLength = 10 - userName.length;
+      var location = user.location;
+      $scope.leftLength = 10 - location.length;
     };
-  }]);
+  }])
+  .controller('ChangeNameCtrl',['$scope','Storage','$ionicHistory','$state',
+    function($scope,Storage,$ionicHistory,$state){
+      var user = $scope.user = {};
+
+      $scope.$on('$ionicView.beforeEnter',function(){
+        $scope.userName = $state.params.userName;
+        user.userName = $scope.userName;
+      });
+
+      $scope.saveChange = function(){
+        var userInfo = Storage.get("userInfo");
+        userInfo.userName = user.userName;
+        Storage.set("userInfo",userInfo);
+        $ionicHistory.goBack();
+      };
+
+      $scope.showLeftLength = function(){
+        var userName = user.userName;
+        $scope.leftLength = 10 - userName.length;
+      };
+    }]);
