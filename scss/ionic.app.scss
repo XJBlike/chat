@@ -106,6 +106,7 @@ $html_media_font_size: (375px, 375*10/320), (384px, 384*10/320), (480px, 480*10/
    color: $page_font_color;
  }
 
+
  ul,li,p,input,span {
    margin: 0;
    padding: 0;
@@ -316,6 +317,10 @@ $html_media_font_size: (375px, 375*10/320), (384px, 384*10/320), (480px, 480*10/
    }
  }
 
+.item.my-popup {
+  padding: ($item-padding+5px);
+  padding-left: $item-padding * 2;
+}
  .tabs-green {
    & > .tabs {
      @extend %tab_tabs-green;
