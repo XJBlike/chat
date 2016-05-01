@@ -1,10 +1,10 @@
 {
     "messages": [{
-        "id": 8,
-        "name": "李明",
-        "pic": "img/adam.jpg",
+        "userId": "99990909",
+        "name": "胡歌",
+        "img": "img/head/16.png",
         "lastMessage": {
-            "originalTime": "2015-11-27 06:34:55",
+            "originalTime": "2016-04-27 06:34:55",
             "time": "",
             "timeFrome1970": 0,
             "content": "你在干什么?",
@@ -13,6 +13,7 @@
         "noReadMessages": 2,
         "showHints": true,
         "isTop": 0,
+        "showMessage":true,
         "message": [{
             "isFromeMe": false,
             "content": "你好!",
@@ -83,11 +84,11 @@
             "time": "2015-11-27 06:34:55"
         }]
     }, {
-        "id": 1,
-        "name": "王峰",
-        "pic": "img/ben.png",
+        "userId": "99990999",
+        "name": "王凯",
+        "img": "img/head/6.png",
         "lastMessage": {
-            "originalTime": "2015-11-26 5:22:55",
+            "originalTime": "2016-04-26 05:22:55",
             "time": "",
             "timeFrome1970": 0,
             "content": "明天什么时候去吃饭?",
@@ -96,6 +97,7 @@
         "noReadMessages": 5,
         "showHints": true,
         "isTop": 0,
+        "showMessage":true,
         "message": [{
             "isFromeMe": false,
             "content": "你好!",
@@ -107,14 +109,14 @@
         }, {
             "isFromeMe": false,
             "content": "明天什么时候去吃饭?",
-            "time": "2015-11-26 5:22:55"
+            "time": "2016-04-26 05:22:55"
         }]
     }, {
-        "id": 7,
-        "name": "潘敏",
-        "pic": "img/max.png",
+        "userId": "47327356",
+        "name": "雷军",
+        "img": "img/head/18.png",
         "lastMessage": {
-            "originalTime": "2015-11-22 15:34:55",
+            "originalTime": "2016-04-22 15:34:55",
             "time": "",
             "timeFrome1970": 0,
             "content": "我就在软件园?",
@@ -123,6 +125,7 @@
         "noReadMessages": 0,
         "showHints": false,
         "isTop": 0,
+        "showMessage":true,
         "message": [{
             "isFromeMe": false,
             "content": "你好!",
@@ -134,14 +137,14 @@
         }, {
             "isFromeMe": false,
             "content": "我就在软件园?",
-            "time": "2015-11-22 15:34:55"
+            "time": "2016-04-22 15:34:55"
         }]
     }, {
-        "id": 2,
-        "name": "王振启",
-        "pic": "img/mike.png",
+        "userId": "13145200",
+        "name": "曾沁",
+        "img": "img/head/8.png",
         "lastMessage": {
-            "originalTime": "2015-11-21 15:34:55",
+            "originalTime": "2016-05-01 15:34:55",
             "time": "",
             "timeFrome1970": 0,
             "content": "周末有什么安排?",
@@ -149,13 +152,14 @@
         },
         "noReadMessages": 20,
         "showHints": true,
-        "isTop": 0
+        "isTop": 0,
+        "showMessage":true
     }, {
-        "id": 6,
-        "name": "许仁杰",
-        "pic": "img/perry.png",
+        "userId": "22010000",
+        "name": "安迪",
+        "img": "img/head/9.png",
         "lastMessage": {
-            "originalTime": "2014-10-12 15:34:55",
+            "originalTime": "2016-05-01 15:34:55",
             "time": "",
             "timeFrome1970": 0,
             "content": "好",
@@ -163,6 +167,7 @@
         },
         "noReadMessages": 0,
         "showHints": false,
-        "isTop": 0
+        "isTop": 0,
+        "showMessage":true
     }]
 }
