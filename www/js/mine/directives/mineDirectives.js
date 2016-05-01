@@ -2,13 +2,12 @@
  * Created by XJB11 on 2016/4/30 0030.
  */
 CHAT.DIRECTIVES
-  .directive('closeBackDrop', [function() {
+  .directive('rjCloseBackDrop', [function() {
     return {
-      scope: false,//共享父scope
+      scope: false,
       restrict: 'A',
       replace: false,
       link: function(scope, iElm, iAttrs, controller) {
-        //要在html上添加点击事件, 试了很久- -!
         var htmlEl = angular.element(document.querySelector('html'));
         htmlEl.on("click", function(event) {
           if (event.target.nodeName === "HTML" &&
