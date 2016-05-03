@@ -139,7 +139,7 @@ $html_media_font_size: (375px, 375*10/320), (384px, 384*10/320), (480px, 480*10/
    .qy-list-item {
      display: block;
      position: relative;
-     padding: 0 10px 0 55px;
+     padding: 0 10px 0 10px;
      width: 100%;
      min-height: 45px;
      line-height: 44px;
@@ -223,6 +223,8 @@ $html_media_font_size: (375px, 375*10/320), (384px, 384*10/320), (480px, 480*10/
 
    .qy-list-item-text {
      color: #454545;
+     font-size: 16px;
+     padding-left: 5px;
    }
 
    .qy-list-item-tip {

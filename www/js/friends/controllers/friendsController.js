@@ -21,19 +21,13 @@ CHAT.CONTROLLERS
       $scope.changeShow = function(){
         $scope.showFriendList = !$scope.showFriendList;
       };
+
+      $scope.goSearch = function(){
+        $state.go('tab.friends-search');
+      }
   }])
   .controller('FriendInfoCtrl',['$scope','Storage','$state',
     function($scope,Storage,$state){
 
-    }])
-  .controller('SearchCtrl',['$scope','Storage','$state','$ionicHistory',
-  function($scope,Storage,$state,$ionicHistory){
-    $scope.goBack = function(){
-      $ionicHistory.goBack();
-    };
+    }]);
 
-  }])
-  .controller('SearchResultCtrl',['$scope','Storage','$state',
-    function($scope,Storage,$state){
-
-  }])

@@ -16,8 +16,8 @@ CHAT.CONTROLLERS
         $state.go('tab.mine-about');
       };
   }])
-  .controller('AccountCtrl',['$scope','CommonMethods','Storage','$state','$ionicPopup','$http',
-    function($scope,CommonMethods,Storage,$state,$ionicPopup,$http){
+  .controller('AccountCtrl',['$scope','CommonMethods','Storage','$state','$ionicPopup','$http','$ionicHistory',
+    function($scope,CommonMethods,Storage,$state,$ionicPopup,$http,$ionicHistory){
           $scope.$on('$ionicView.beforeEnter',function(){
             var userInfo = {};
             $http.get("../../../data/json/userInfo.json").success(function(data){
@@ -57,11 +57,15 @@ CHAT.CONTROLLERS
           };
           $scope.changeLocation = function(){
             $state.go('tab.mine-changeLocation',{"location":$scope.account.location});
-          }
+          };
+
+      $scope.goBack =function(){
+        $ionicHistory.goBack();
+      };
     }])
 
-  .controller('AboutCtrl',['$scope','$http','$ionicPopup','$timeout',
-    function($scope,$http,$ionicPopup,$timeout){
+  .controller('AboutCtrl',['$scope','$http','$ionicPopup','$timeout','$ionicHistory',
+    function($scope,$http,$ionicPopup,$timeout,$ionicHistory){
            $scope.$on("$ionicView.beforeEnter",function(){
              $http.get("../../../data/json/conformation.json").success(function(data){
                $scope.appName = data.appName;
@@ -85,5 +89,9 @@ CHAT.CONTROLLERS
         $timeout(function(){
           contactPopup.close();
         },500);
+      };
+
+      $scope.goBack =function(){
+        $ionicHistory.goBack();
       };
   }]);
