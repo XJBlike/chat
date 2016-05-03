@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/26 0026.
  */
 CHAT.CONTROLLERS
-  .controller('MineCtrl',['$scope','CommonMethods','Storage','$state',
-    function($scope,CommonMethods,Storage,$state){
+  .controller('MineCtrl',['$scope','CommonMethods','Storage','$state','$http',
+    function($scope,CommonMethods,Storage,$state,$http){
       $scope.goLogin = function(){
         $state.go('tab.mine-login');
       };
@@ -16,17 +16,21 @@ CHAT.CONTROLLERS
         $state.go('tab.mine-about');
       };
   }])
-  .controller('AccountCtrl',['$scope','CommonMethods','Storage','$state','$ionicPopup',
-    function($scope,CommonMethods,Storage,$state,$ionicPopup){
+  .controller('AccountCtrl',['$scope','CommonMethods','Storage','$state','$ionicPopup','$http',
+    function($scope,CommonMethods,Storage,$state,$ionicPopup,$http){
           $scope.$on('$ionicView.beforeEnter',function(){
-            var userInfo = Storage.get("userInfo");
-            $scope.account = userInfo;
-            $scope.account.img = "../../../img/head/" + userInfo.img + ".png";
-            if(userInfo.sex == "男"){
-              $scope.sex = 1;//表示男性
-            } else {
-              $scope.sex = 0;
-            }
+            var userInfo = {};
+            $http.get("../../../data/json/userInfo.json").success(function(data){
+              $scope.readResult = data.userInfo;
+            }).then(function(){
+               userInfo = $scope.readResult;
+              $scope.account = userInfo;
+              $scope.account.img = "../../../img/head/" + userInfo.img + ".png";
+            })
+           //TODO 最终完成为读取服务器上的json文件，改变时post到服务器。
+
+           // var userInfo = Storage.get("userInfo");
+
           });
 
           $scope.changeName = function(){

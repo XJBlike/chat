@@ -26,8 +26,11 @@ CHAT.CONTROLLERS
     function($scope,Storage,$state){
 
     }])
-  .controller('SearchCtrl',['$scope','Storage','$state',
-  function($scope,Storage,$state){
+  .controller('SearchCtrl',['$scope','Storage','$state','$ionicHistory',
+  function($scope,Storage,$state,$ionicHistory){
+    $scope.goBack = function(){
+      $ionicHistory.goBack();
+    };
 
   }])
   .controller('SearchResultCtrl',['$scope','Storage','$state',
