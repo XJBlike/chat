@@ -1,5 +1,39 @@
-<ion-view view-title="Account">
-  <ion-content>
-    <p>account</p>
+<ion-view view-title="账户信息" hide-back-button="true">
+  <ion-nav-buttons>
+    <a class="button button-clear icon ion-ios-arrow-back" ng-click="goBack()"></a>
+  </ion-nav-buttons>
+  <ion-content class="gray-background">
+    <ion-list class="account-list-margin">
+      <ion-item class="item-account-img"  type="item-text-wrap" ng-click="goChat(chat)">
+        <h2 style="margin-top: 18px;font-size: 14px;color: #8e8e93;">头像</h2>
+        <img class="account-img-position" style="max-height: 50px; max-width: 50px;" ng-src="{{account.img}}">
+      </ion-item>
+      <ion-item ng-click="changeName()">
+          <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">昵称</span>
+          <span style="font-size: 14px;float: right;" ng-bind="account.userName"></span>
+      </ion-item>
+      <ion-item>
+        <div>
+          <span style="font-size: 14px;color: #8e8e93;">doge号</span>
+          <span  style="font-size: 14px;float: right;" ng-bind="account.userId"></span>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-list class="account-list-margin">
+      <ion-item ng-click="selectSex()">
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">性别</span>
+        <span style="font-size: 14px;float: right;" ng-bind="account.sex"></span>
+      </ion-item>
+      <ion-item ng-click="changeLocation()">
+          <span style="font-size: 14px;color: #8e8e93;">地区</span>
+          <span  style="font-size: 14px;float: right;" ng-bind="account.location"></span>
+      </ion-item>
+      <ion-item ng-click="changeDesc()">
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 30px;">个性签名</span>
+        <span  style="font-size: 14px;float: right;" ng-bind="account.description"></span>
+      </ion-item>
+    </ion-list>
   </ion-content>
+
 </ion-view>

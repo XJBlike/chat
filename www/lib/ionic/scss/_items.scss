@@ -477,7 +477,7 @@ button.item.item-button-right {
 .item-avatar .item-content,
 .item-avatar-left,
 .item-avatar-left .item-content {
-  padding-left: $item-avatar-width + ($item-padding * 2);
+  padding-left: $item-avatar-width + ($item-padding * 2)+10px;
   min-height: $item-avatar-width + ($item-padding * 2);
 
   > img:first-child,

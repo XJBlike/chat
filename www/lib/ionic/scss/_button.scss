@@ -184,11 +184,12 @@
 .button-clear {
   @include button-clear($button-default-border);
   @include transition(opacity .1s);
-  padding: 0 $button-clear-padding;
+  padding: 0 6px;
   max-height: $button-height;
   border-color: transparent;
   background: none;
   box-shadow: none;
+  font-size: 14px!important;
 
   &.active,
   &.activated {
