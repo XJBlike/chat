@@ -1,4 +1,7 @@
-<ion-view view-title="所在地区">
+<ion-view view-title="所在地区" hide-back-button="true">
+  <ion-nav-buttons>
+    <a class="button button-clear icon ion-ios-arrow-back" ng-click="goBack()"></a>
+  </ion-nav-buttons>
   <ion-nav-buttons side="right">
     <a class="button button-clear border-white button-padding"  ng-click="saveChange()">保存</a>
   </ion-nav-buttons>

@@ -74,7 +74,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
 
     .state('tab.chat-detail',{
       url: "/chat/detail",
-      params: {friendId: null},
+      params: {messageId: null},
       views: {
         'tab-chat': {
           templateUrl: 'templates/chat/chatDetail.html',

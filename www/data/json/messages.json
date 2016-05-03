@@ -1,7 +1,7 @@
 {
     "messages": [{
         "userId": "99990909",
-        "name": "胡歌",
+        "userName": "胡歌",
         "img": "img/head/16.png",
         "lastMessage": {
             "originalTime": "2016-04-27 06:34:55",
@@ -80,12 +80,12 @@
             "time": "2015-11-22 08:51:02"
         }, {
             "isFromeMe": false,
-            "content": "被酒莫惊春睡重，赌书消得泼茶香，当时只道是寻常",
-            "time": "2015-11-27 06:34:55"
+            "content": "你在干什么?",
+            "time": "2016-04-27 06:34:55"
         }]
     }, {
         "userId": "99990999",
-        "name": "王凯",
+        "userName": "王凯",
         "img": "img/head/6.png",
         "lastMessage": {
             "originalTime": "2016-04-26 05:22:55",
@@ -113,7 +113,7 @@
         }]
     }, {
         "userId": "47327356",
-        "name": "雷军",
+        "userName": "雷军",
         "img": "img/head/18.png",
         "lastMessage": {
             "originalTime": "2016-04-22 15:34:55",
@@ -141,7 +141,7 @@
         }]
     }, {
         "userId": "13145200",
-        "name": "曾沁",
+        "userName": "曾沁",
         "img": "img/head/8.png",
         "lastMessage": {
             "originalTime": "2016-05-01 15:34:55",
@@ -153,10 +153,23 @@
         "noReadMessages": 20,
         "showHints": true,
         "isTop": 0,
-        "showMessage":true
+        "showMessage":true,
+      "message": [{
+        "isFromeMe": false,
+        "content": "你好!",
+        "time": "2016-4-22 08:50:22"
+      }, {
+        "isFromeMe": true,
+        "content": "你好, 你是谁?",
+        "time": "2016-4-22 08:51:02"
+      }, {
+        "isFromeMe": false,
+        "content": "周末有什么安排?",
+        "time": "2016-05-01 15:34:55"
+      }]
     }, {
         "userId": "22010000",
-        "name": "安迪",
+        "userName": "安迪",
         "img": "img/head/9.png",
         "lastMessage": {
             "originalTime": "2016-05-01 15:34:55",
@@ -168,6 +181,19 @@
         "noReadMessages": 0,
         "showHints": false,
         "isTop": 0,
-        "showMessage":true
+        "showMessage":true,
+      "message": [{
+        "isFromeMe": false,
+        "content": "你好!",
+        "time": "2016-4-22 08:50:22"
+      }, {
+        "isFromeMe": true,
+        "content": "你好, 你是谁?",
+        "time": "2016-4-22 08:51:02"
+      }, {
+        "isFromeMe": false,
+        "content": "好",
+        "time": "2016-05-01 15:34:55"
+      }]
     }]
 }

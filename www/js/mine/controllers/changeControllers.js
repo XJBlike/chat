@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/29 0029.
  */
 CHAT.CONTROLLERS
-  .controller('ChangeDescCtrl',['$scope','Storage','$ionicHistory','$state',
-    function($scope,Storage,$ionicHistory,$state){
+  .controller('ChangeDescCtrl',['$scope','Storage','$ionicHistory','$state','$ionicHistory',
+    function($scope,Storage,$ionicHistory,$state,$ionicHistory){
       var user = $scope.user = {};
 
       $scope.$on('$ionicView.beforeEnter',function(){
@@ -19,6 +19,9 @@ CHAT.CONTROLLERS
       $scope.showLeftLength = function(){
         var desc = user.description;
         $scope.leftLength = 12 - desc.length;
+      };
+      $scope.goBack =function(){
+        $ionicHistory.goBack();
       };
     }])
 
@@ -42,6 +45,9 @@ CHAT.CONTROLLERS
       var location = user.location;
       $scope.leftLength = 10 - location.length;
     };
+    $scope.goBack =function(){
+      $ionicHistory.goBack();
+    };
   }])
   .controller('ChangeNameCtrl',['$scope','Storage','$ionicHistory','$state',
     function($scope,Storage,$ionicHistory,$state){
@@ -62,5 +68,9 @@ CHAT.CONTROLLERS
       $scope.showLeftLength = function(){
         var userName = user.userName;
         $scope.leftLength = 10 - userName.length;
+      };
+
+      $scope.goBack =function(){
+        $ionicHistory.goBack();
       };
     }]);

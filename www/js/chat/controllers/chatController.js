@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/24 0024.
  */
 CHAT.CONTROLLERS
-  .controller('ChatCtrl',['$scope','$ionicPopup','Message','$timeout',
-    function($scope,$ionicPopup,Message,$timeout){
+  .controller('ChatCtrl',['$scope','$ionicPopup','Message','$timeout','$state',
+    function($scope,$ionicPopup,Message,$timeout,$state){
         $scope.$on('$ionicView.beforeEnter',function(){
             $scope.messages = Message.getAll();
             $scope.popup = {
@@ -41,4 +41,7 @@ CHAT.CONTROLLERS
         },3000);
       };
 
+      $scope.goMessageDetail = function(message){
+        $state.go('tab.chat-detail',{"messageId":message.userId});
+      };
   }]);
