@@ -26,7 +26,7 @@ CHAT.CONTROLLERS
                userInfo = $scope.readResult;
               $scope.account = userInfo;
               $scope.account.img = "../../../img/head/" + userInfo.img + ".png";
-            })
+            });
            //TODO 最终完成为读取服务器上的json文件，改变时post到服务器。
 
            // var userInfo = Storage.get("userInfo");

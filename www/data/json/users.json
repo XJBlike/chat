@@ -1,8 +1,7 @@
 {
-  "friends":[
+  "users":[
     {
       "userName": "曾沁",
-      "backUp": "沁宝宝",
       "userId": "13145200",
       "img": "img/head/8.png",
       "location":"北京",
@@ -11,7 +10,6 @@
     },
     {
       "userName": "安迪",
-      "backUp": "安迪",
       "userId": "22010000",
       "img": "img/head/9.png",
       "location":"武汉",
@@ -20,7 +18,6 @@
     },
     {
       "userName": "曲筱绡",
-      "backUp": "小曲",
       "userId": "22030000",
       "img": "img/head/5.png",
       "location":"武汉",
@@ -29,7 +26,6 @@
     },
     {
       "userName": "樊胜美",
-      "backUp": "小樊",
       "userId": "22021000",
       "img": "img/head/7.png",
       "location":"武汉",
@@ -38,7 +34,6 @@
     },
     {
       "userName": "邱盈盈",
-      "backUp": "小蚯蚓",
       "userId": "22022000",
       "img": "img/head/11.png",
       "location":"武汉",
@@ -47,7 +42,6 @@
     },
     {
       "userName": "关雎尔",
-      "backUp": "关关",
       "userId": "22023000",
       "img": "img/head/12.png",
       "location":"武汉",
@@ -56,7 +50,6 @@
     },
     {
       "userName": "魏渭",
-      "backUp": "奇点",
       "userId": "52022010",
       "img": "img/head/14.png",
       "location":"武汉",
@@ -64,8 +57,7 @@
       "description": "安迪你是喜欢我的！"
     },
     {
-      "userName": "谭宗明",
-      "backUp": "老谭",
+      "userName": "老谭",
       "userId": "88660000",
       "img": "img/head/17.png",
       "location":"上海",
@@ -73,8 +65,7 @@
       "description": "最近她跟一个网友走得很近，哎，心里苦"
     },
     {
-      "userName": "古月哥欠",
-      "backUp": "老胡",
+      "userName": "胡歌",
       "userId": "99990909",
       "img": "img/head/16.png",
       "location":"上海",
@@ -82,8 +73,7 @@
       "description": "这剧居然不带我玩，不开心"
     },
     {
-      "userName": "凯凯王",
-      "backUp": "王凯",
+      "userName": "王凯",
       "userId": "99990999",
       "img": "img/head/6.png",
       "location":"武汉",
@@ -92,12 +82,51 @@
     },
     {
       "userName": "雷军",
-      "backUp": "猴王",
       "userId": "47327356",
       "img": "img/head/18.png",
       "location":"武汉",
       "sex":"男",
       "description": "Hello,Indian Mi fans!"
+    },
+    {
+      "userName": "徐佳宝",
+      "userId": "19941208",
+      "img": "img/head/19.png",
+      "location":"武汉",
+      "sex":"男",
+      "description": "如果我高比利你会爱我吗？"
+    },
+    {
+      "userName": "诸葛孔明",
+      "userId": "22500000",
+      "img": "img/head/20.png",
+      "location":"南阳",
+      "sex":"男",
+      "description": "从未见有如此厚颜无耻之人！"
+    },
+    {
+      "userName": "王司徒",
+      "userId": "22500001",
+      "img": "img/head/21.png",
+      "location":"许昌",
+      "sex":"男",
+      "description": "倒戈卸甲，以礼来降"
+    },
+    {
+      "userName": "司马懿",
+      "userId": "22500002",
+      "img": "img/head/21.png",
+      "location":"许昌",
+      "sex":"男",
+      "description": "妙啊!"
+    },
+    {
+      "userName": "曾沁",
+      "userId": "19940326",
+      "img": "img/head/9.png",
+      "location":"武汉",
+      "sex":"女",
+      "description": "我是徐佳宝的女人"
     }
   ]
 }
