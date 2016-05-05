@@ -110,11 +110,14 @@ CHAT.SERVICES
               }
             },
             updateMessage: function(message) {
-              var id = 0;
-              if (message) {
-                id = message.id;
-                Storage.set("message_"+id,angular.toJson(message));
+              var messages = Storage.get("messages");
+              for(var i = 0;i < messages.length;i++){
+                if (message.userId == messages[i].userId) {
+                  messages[i] = message;
+                  Storage.set("messages",messages);
+                }
               }
+
             }
           }
    }])

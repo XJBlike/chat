@@ -22,6 +22,10 @@ CHAT.CONTROLLERS
         $scope.showFriendList = !$scope.showFriendList;
       };
 
+      $scope.goChat = function(friend){
+          $state.go('tab.friends-chatDetail',{"messageId":friend.userId,backUp:friend.backUp,userName:friend.userName,img:friend.img});
+      };
+
       $scope.goSearch = function(){
         $state.go('tab.friends-search');
       }

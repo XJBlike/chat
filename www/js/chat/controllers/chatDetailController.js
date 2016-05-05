@@ -18,13 +18,31 @@ CHAT.CONTROLLERS
     };
 
     $scope.$on("$ionicView.beforeEnter", function() {
+      var params = {
+        "userId": $stateParams.messageId,
+        "backUp": $stateParams.backUp,
+        "userName": $stateParams.userName,
+        "img": $stateParams.img,
+        "lastMessage": null,
+        "noReadMessages": 0,
+        "showHints": false,
+        "isTop": 0,
+        "showMessage":true,
+        "message": []
+      };
       $scope.message = Message.getMessageById($stateParams.messageId);
-      $scope.message.noReadMessages = 0;
-      $scope.message.showHints = false;
-      Message.updateMessage($scope.message);
-      $scope.messageNum = 10;
-      $scope.messageDetils = Message.getAmountMessageById($scope.messageNum,
-        $stateParams.messageId);
+      if($scope.message){
+        $scope.message.noReadMessages = 0;
+        $scope.message.showHints = false;
+        Message.updateMessage($scope.message);
+        $scope.messageNum = 10;
+        $scope.messageDetils = Message.getAmountMessageById($scope.messageNum,
+          $stateParams.messageId);
+      } else {
+        $scope.message = params;
+        $scope.messageNum = 0;
+        $scope.messageDetails = [];
+      }
       $timeout(function() {
         viewScroll.scrollBottom();
       }, 0);
