@@ -34,8 +34,10 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
       friends: {
         friends: ['tab.friends','#/tab/friends'],
         info: ['tab.friends-info','#/tab/friends/info'],
+        chatDetail: ['tab.friends-chatDetail','#tab/friends/chatDetail'],
         search: ['tab.friends-search','#/tab/friends/search'],
         searchResult: ['tab.friends-searchResult','#/tab/friends/searchResult'],
+        addFriend: ['tab.friends-add','#/tab/friends/add'],
         login: ['tab.friends-login', '#/tab/friends/login'],
         register: ['tab.friends-register','#/tab/friends/register']
       },
@@ -137,6 +139,19 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         forwardTo: tabsModuleStates.friends
       }
     })
+    .state('tab.friends-chatDetail',{
+      url: "/friends/chatDetail",
+      params: {messageId: null,backUp:null,userName: null,img: null},
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/chat/chatDetail.html',
+          controller: 'ChatDetailCtrl'
+        }
+      },
+      data:　{
+        forwardTo: tabsModuleStates.friends
+      }
+    })
     .state('tab.friends-search',{
       url: "/friends/search",
       views: {
@@ -151,10 +166,24 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
     })
     .state('tab.friends-searchResult',{
       url: "/friends/searchResult",
+      params: {keyword: null},
       views: {
         'tab-friends': {
           templateUrl: 'templates/friends/searchResult.html',
           controller: 'SearchResultCtrl'
+        }
+      },
+      data: {
+        forwardTo: tabsModuleStates.friends
+      }
+    })
+    .state('tab.friends-add',{
+      url: "/friends/add",
+      params: {userId: null},
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/friends/addFriend.html',
+          controller: 'AddFriendCtrl'
         }
       },
       data: {
@@ -276,7 +305,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
       url: "/mine/register",
       views: {
         'tab.mine': {
-          templateUrl: 'templates/register/register.html',
+          templateUrl: 'templates/login/register.html',
           controller: 'RegisterCtrl'
         }
       },

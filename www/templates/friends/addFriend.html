@@ -1,0 +1,14 @@
+<ion-view view-title="添加好友" hide-back-button="true">
+  <ion-nav-buttons>
+    <a class="button button-clear icon ion-ios-arrow-back" ng-click="goBack()"></a>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <a class="button button-clear border-white button-padding"  ng-click="addRequest()">发送</a>
+  </ion-nav-buttons>
+  <ion-content>
+    <label class="item item-input input-label-padding">
+      <input name="desc" maxlength="12" type="text" data-ng-model="user.message" ng-keyup="showLeftLength()">
+      <span ng-bind="leftLength"></span>
+    </label>
+  </ion-content>
+</ion-view>

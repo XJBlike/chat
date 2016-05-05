@@ -3,8 +3,17 @@
  */
 
 CHAT.SERVICES
-  .service('Search',['CommonMethods','SearchBuffer','Storage',
-    function(CommonMethods,SearchBuffer,Storage){
+  .service('Search',['CommonMethods','SearchBuffer','Storage','$http',
+    function(CommonMethods,SearchBuffer,Storage,$http){
+      var friendArray = [];
+      var userArray = [];
+      $http.get("../../../data/json/friends.json").success(function(data){
+        friendArray = data.friends;
+      }).then(function(){
+        $http.get("../../../data/json/users.json").success(function(data){
+          userArray = data.users;
+        });
+      });
 
       //查询要添加的记录是否在数组中
       this.isEleInArray = function (ele, arr) {
@@ -15,6 +24,39 @@ CHAT.SERVICES
           }
         });
         return find;
+      };
+
+      this.isUserInFriends = function(user,friends){
+        var find = false;
+        angular.forEach(friends,function(data){
+          if(data.userId == user.userId){
+            find = true;
+          }
+        });
+        return find;
+      };
+
+      this.searchUser = function(keyword){
+        var result = {
+          "friends":[],
+          "users": []
+        };
+        for(var i = 0; i < friendArray.length; i++){
+          if(friendArray[i].userId == keyword
+            || friendArray[i].userName == keyword
+            || friendArray[i].backUp == keyword){
+            result.friends.push(friendArray[i]);
+          }
+        }
+        for(var j = 0;j < userArray.length;j++){
+          if(userArray[j].userId == keyword
+            || userArray[j].userName == keyword){
+            if(!this.isUserInFriends(userArray[j],result.friends)){
+              result.users.push(userArray[j]);
+            }
+          }
+        }
+        return result;
       };
 
 
