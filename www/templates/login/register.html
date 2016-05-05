@@ -1,6 +1,6 @@
-<ion-view view-title="用户登录" class="main-gray-bg" hide-back-button="true">
+<ion-view view-title="新用户注册" class="main-gray-bg">
   <ion-content>
-    <form name="loginForm">
+    <form name="RegisterForm">
       <div class="content login-head">
         <div class="list">
           <div class="item item-input">
@@ -14,18 +14,25 @@
                    required ng-model="user.password" style="padding-top:4px;">
             <i  class="icon ion-eye-disabled placeholder-icon login-icon-padding"></i>
           </div>
+          <div class="item item-input">
+            <i class="icon ion-locked placeholder-icon"></i>
+            <!--密文显示-->
+            <input name="passwordRepeat" type="password" placeholder="确认密码"
+                   required ng-model="user.passwordRepeat" style="padding-top:4px;">
+            <i  class="icon ion-eye-disabled placeholder-icon login-icon-padding"></i>
+          </div>
 
         </div>
         <div class="full-balanced-button">
-          <button class="button button-green button-radius8" ng-click="userLogin()"
-                  ng-disabled="(loginForm.username.$invalid || loginForm.password.$invalid)">登录
+          <button class="button button-green button-radius8" ng-click="userRegist()"
+                  ng-disabled="(RegisterForm.username.$invalid || RegisterForm.password.$invalid || RegisterForm.passwordRepeat.$invalid)">注册
           </button>
 
         </div>
       </div>
       <div class="row login-forget-a">
         <div class="col col-80">
-          <a class="green" ui-sref="tab.mine-register" style="font-size: 12px; color: #8e8e93;text-decoration:none;display:inline-block;width:200px;">新用户注册</a>
+          <a class="green" ng-click="goLogin()" style="font-size: 12px; color: #8e8e93;text-decoration:none;display:inline-block;width:200px;">已有账号，登陆</a>
         </div>
       </div>
     </form>

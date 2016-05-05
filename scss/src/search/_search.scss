@@ -73,3 +73,12 @@
     margin-left: 20px;
   }
 }
+
+.search-list{
+  background-color: #eeeeee;
+  .list{
+    &:last-child{
+      margin-bottom: 2rem;
+    }
+  }
+}

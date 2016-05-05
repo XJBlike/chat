@@ -1,5 +1,33 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <p>search</p>
+<ion-view hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button class="button back-button buttons button-clear header-item" ng-click="goBack()">
+      <i class="icon ion-ios-arrow-back"></i>
+      <span class="back-text"></span>
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <div class="item-input-inset search-ele">
+      <label class="item-input-wrapper">
+        <label class="item-input-wrapper">
+          <i class="icon qyicon-search placeholder-icon"></i>
+          <input autofocus="autofocus" name="keywords" class="search-input-box" type="text" ng-model="search.keyword" focus="true">
+        </label>
+      </label>
+    </div>
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button name="searchBtn" class="button button-clear font-size-base" ng-click="searchUser()">搜索</button>
+  </ion-nav-buttons>
+  <ion-content direction="y">
+    <!--历史搜索项-->
+    <ion-list>
+      <ion-item ng-repeat="item in tipResult" ng-click="historyClick(item)">
+        <div ng-bind="item">
+        </div>
+      </ion-item>
+      <div class="row" ng-show=" tipResult && tipResult.length > 0">
+        <button class="button button-clear col col-50 col-offset-25 font-green" ng-click="clearSearchHistory()">清空历史记录</button>
+      </div>
+    </ion-list>
   </ion-content>
 </ion-view>

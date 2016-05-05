@@ -3,8 +3,9 @@ var CHAT = {};
 CHAT.COMMON = angular.module('CHAT.common', []);
 CHAT.SERVICES = angular.module('CHAT.services', ['CHAT.common']);
 CHAT.CONTROLLERS = angular.module('CHAT.controllers', ['CHAT.services','CHAT.common']);
+CHAT.DIRECTIVES = angular.module('CHAT.directives',[]);
 
-angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.services'])
+angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.services','CHAT.directives'])
   .run(['$ionicPlatform','SqliteOperationService',function($ionicPlatform,SqliteOperationService) {
     $ionicPlatform.ready(function() {
 
@@ -33,14 +34,20 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
       friends: {
         friends: ['tab.friends','#/tab/friends'],
         info: ['tab.friends-info','#/tab/friends/info'],
+        chatDetail: ['tab.friends-chatDetail','#tab/friends/chatDetail'],
         search: ['tab.friends-search','#/tab/friends/search'],
         searchResult: ['tab.friends-searchResult','#/tab/friends/searchResult'],
+        addFriend: ['tab.friends-add','#/tab/friends/add'],
         login: ['tab.friends-login', '#/tab/friends/login'],
         register: ['tab.friends-register','#/tab/friends/register']
       },
       mine: {
         mine: ['tab.mine','#/tab/mine'],
         account: ['tab.mine-account','#/tab/mine/account'],
+        changeName: ['tab.mine-changeName','#/tab/mine/changeName'],
+        changeDesc: ['tab.mine-changeDesc','#/tab/mine/changeDesc'],
+        changeLocation: ['tab.mine-changeLocation','#/tab/mine/changeLocation'],
+        about: ['tab.mine-about','#/tab/mine/about'],
         login: ['tab.mine-login', '#/tab/mine/login'],
         register: ['tab.mine-register','#/tab/mine/register']
       }
@@ -69,7 +76,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
 
     .state('tab.chat-detail',{
       url: "/chat/detail",
-      params: {friendId: null},
+      params: {messageId: null},
       views: {
         'tab-chat': {
           templateUrl: 'templates/chat/chatDetail.html',
@@ -132,6 +139,19 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         forwardTo: tabsModuleStates.friends
       }
     })
+    .state('tab.friends-chatDetail',{
+      url: "/friends/chatDetail",
+      params: {messageId: null,backUp:null,userName: null,img: null},
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/chat/chatDetail.html',
+          controller: 'ChatDetailCtrl'
+        }
+      },
+      data:　{
+        forwardTo: tabsModuleStates.friends
+      }
+    })
     .state('tab.friends-search',{
       url: "/friends/search",
       views: {
@@ -146,10 +166,24 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
     })
     .state('tab.friends-searchResult',{
       url: "/friends/searchResult",
+      params: {keyword: null},
       views: {
         'tab-friends': {
           templateUrl: 'templates/friends/searchResult.html',
           controller: 'SearchResultCtrl'
+        }
+      },
+      data: {
+        forwardTo: tabsModuleStates.friends
+      }
+    })
+    .state('tab.friends-add',{
+      url: "/friends/add",
+      params: {userId: null},
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/friends/addFriend.html',
+          controller: 'AddFriendCtrl'
         }
       },
       data: {
@@ -204,6 +238,57 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         forwardTo: tabsModuleStates.mine
       }
     })
+    .state('tab.mine-changeName',{
+      url: "/mine/changeName",
+      params: {"userName":null},
+      views:{
+        'tab-mine':{
+          templateUrl: 'templates/mine/changeName.html',
+          controller: 'ChangeNameCtrl'
+        }
+      },
+      data:{
+        forwardTo: tabsModuleStates.mine
+      }
+    })
+    .state('tab.mine-changeDesc',{
+      url: "/mine/changeDesc",
+      params: {"description":null},
+      views:{
+        'tab-mine':{
+          templateUrl: 'templates/mine/changeDesc.html',
+          controller: 'ChangeDescCtrl'
+        }
+      },
+      data:{
+        forwardTo: tabsModuleStates.mine
+      }
+    })
+    .state('tab.mine-changeLocation',{
+      url: "/mine/changeLocation",
+      params: {"location":null},
+      views:{
+        'tab-mine':{
+          templateUrl: 'templates/mine/changeLocation.html',
+          controller: 'ChangeLocationCtrl'
+        }
+      },
+      data:{
+        forwardTo: tabsModuleStates.mine
+      }
+    })
+    .state('tab.mine-about',{
+      url: "/mine/about",
+      views:{
+        'tab-mine':{
+          templateUrl: 'templates/mine/about.html',
+          controller: 'AboutCtrl'
+        }
+      },
+      data:{
+        forwardTo: tabsModuleStates.mine
+      }
+    })
     .state('tab.mine-login',{
       url: "/mine/login",
       views: {
@@ -220,7 +305,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
       url: "/mine/register",
       views: {
         'tab.mine': {
-          templateUrl: 'templates/register/register.html',
+          templateUrl: 'templates/login/register.html',
           controller: 'RegisterCtrl'
         }
       },

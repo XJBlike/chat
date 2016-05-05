@@ -1,15 +1,12 @@
-<ion-view view-title="消息">
-  <ion-content>
+<ion-view view-title="最近会话">
+  <ion-content on-swipe-left="onSwipeLeft()">
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right item-padding-left" ng-repeat="chat in chats" type="item-text-wrap" ng-click="goChat(chat)" ng-show="chat.showChat">
-        <img style="max-height: 40px; max-width: 40px;" ng-src="{{chat.img}}">
-        <h2 style="line-height: initial;" ng-bind="chat.name">暂无昵称</h2>
-        <p class="desc-font" ng-bind="chat.lastText"></p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="removeChat(chat)">
-          删除
-        </ion-option-button>
+      <ion-item class="item-avatar" ng-class="{'rj-item-top': message.isTop}" on-hold="popupMessageOpthins(message)" rj-hold-active ng-repeat="message in messages | orderBy:['isTop', 'lastMessage.timeFrome1970']:true" ng-click="goMessageDetail(message)" ng-show="message.showMessage">
+        <img style="max-width: 40px;max-height: 40px;border-radius: 0;" ng-src="{{message.img}}">
+        <span class="rj-sm-red-icon" ng-show="message.showHints"><p ng-bind="message.noReadMessages"></p></span>
+        <h2 ng-bind="message.backUp"></h2>
+        <p class="rj-list-p" ng-bind="message.lastMessage.content"></p>
+        <span class="rj-push-right" ng-bind="message.lastMessage.originalTime"></span>
       </ion-item>
     </ion-list>
   </ion-content>

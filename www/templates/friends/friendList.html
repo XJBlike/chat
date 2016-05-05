@@ -6,15 +6,44 @@
       <i class="icon ion-ios-search home-search-input-icon"></i>
     </div>
 </ion-nav-buttons>
-  <ion-content>
-
-    <ion-list>
-      <ion-item>
-        <p>所有好友</p>
+  <ion-content class="gray-background">
+    <ion-list class="rj-list" style="background-color: #ffffff;">
+      <ion-item class="rj-item">
+        <div class="rj-contacts-pic rj-orange-bgc">
+          <i class="ion-person-add"></i>
+        </div>
+        <h2>新的朋友</h2>
       </ion-item>
+      <ion-item class="rj-item">
+        <div class="rj-contacts-pic rj-green-bgc">
+          <i class="ion-person-stalker"></i>
+        </div>
+        <h2>群聊</h2>
+      </ion-item>
+      <ion-item class="rj-item">
+        <div class="rj-contacts-pic rj-blue-bgc">
+          <i class="ion-ios-pricetag"></i>
+        </div>
+        <h2>标签</h2>
+      </ion-item>
+      <ion-item class="rj-item" style="margin-bottom: 2rem;">
+        <div class="rj-contacts-pic rj-blue-bgc">
+          <i class="ion-person-add"></i>
+        </div>
+        <h2>公众号</h2>
+      </ion-item>
+    </ion-list>
+    <ion-item style="padding: 0 12px;" ng-click="changeShow()">
+      <div class="doctorIntroduceTop item-icon-right font-gray" >
+        <span class="icon ion-ionic" style="left: 0px;"></span>
+        <span style="padding-left: 27px;color: #000;">好友列表</span>
+        <i class="icon ion-chevron-up icon-accessory shedule-arr" ng-show="showFriendList"></i><i class="icon ion-chevron-down icon-accessory shedule-arr" ng-show="!showFriendList"></i>
+      </div>
+    </ion-item>
+    <ion-list ng-show="showFriendList" class="list-background">
       <ion-item class="item-remove-animate item-avatar item-icon-right item-padding-left" ng-repeat="friend in friends" type="item-text-wrap" ng-click="goChat(friend)">
-          <img style="max-height: 40px; max-width: 40px;" ng-click="goFriendInfo(friend)" ng-src="{{friend.img}}">
-          <h2 style="line-height: initial;" ng-bind="friend.name">{{friend.id}}</h2>
+          <img style="max-height: 40px; max-width: 40px;border-radius: 0;" ng-click="goFriendInfo(friend)" ng-src="{{friend.img}}">
+          <p><span style="line-height: initial;font-size: 16px;" ng-bind="friend.backUp"></span><span style="line-height: initial;font-size: 12px;color:#8e8e93">({{friend.userName}})</span></p>
           <p class="desc-font" ng-bind="friend.description">暂无描述</p>
         <ion-option-button class="button-assertive" ng-click="removeFriend(friend)">
           删除好友
