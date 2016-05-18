@@ -35,9 +35,11 @@
     <script src="lib/ionic/js/angular/angular-resource.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script src="js/app.js"></script>
     <script src="js/chat/controllers/chatController.js"></script>
     <script src="js/chat/controllers/chatDetailController.js"></script>
+    <script src="js/socket/services/socket.js"></script>
     <script src="js/user/controllers.js"></script>
     <script src="js/friends/controllers/friendsController.js"></script>
     <script src="js/mine/controllers/mineControllers.js"></script>
@@ -54,6 +56,7 @@
     <script src="js/common/services/toastService.js"></script>
     <script src="js/database/services/sqliteService.js"></script>
     <script src="js/home/controller.js"></script>
+
 
   </head>
   <body ng-app="CHAT">
