@@ -7,8 +7,12 @@
   </ion-nav-buttons>
   <ion-content>
     <label class="item item-input input-label-padding">
-      <input name="desc" maxlength="12" type="text" data-ng-model="user.message" ng-keyup="showLeftLength()">
-      <span ng-bind="leftLength"></span>
+      <span>验证消息:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <input name="desc" maxlength="12" type="text" data-ng-model="add.message">
+    </label>
+    <label class="item item-input input-label-padding">
+      <span>好友备注:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <input name="desc" maxlength="12" type="text" data-ng-model="add.backname">
     </label>
   </ion-content>
 </ion-view>

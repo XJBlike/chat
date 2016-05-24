@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/5/17 0017.
  */
 CHAT.SERVICES
-  .factory('socket', function ($rootScope) {
-  var socket = io.connect("192.168.1.104:3000");
+  .factory('socket', function ($rootScope,Storage) {
+    var socket = io.connect("192.168.1.108:9000");
   return {
     on: function (eventName, callback) {
       socket.on(eventName, function () {

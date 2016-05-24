@@ -33,21 +33,46 @@
         <h2>公众号</h2>
       </ion-item>
     </ion-list>
-    <ion-item style="padding: 0 12px;" ng-click="changeShow()">
+    <ion-item class="item-toggle" style="padding: 0 12px;" ng-click="changeShow()">
       <div class="doctorIntroduceTop item-icon-right font-gray" >
-        <span class="icon ion-ionic" style="left: 0px;"></span>
+        <span class="icon ion-person-stalker" style="left: 0px;"></span>
         <span style="padding-left: 27px;color: #000;">好友列表</span>
-        <i class="icon ion-chevron-up icon-accessory shedule-arr" ng-show="showFriendList"></i><i class="icon ion-chevron-down icon-accessory shedule-arr" ng-show="!showFriendList"></i>
+        <label class="toggle toggle-balanced">
+          <input type="checkbox" ng-checked="showFriendList">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+        <!--<i class="icon ion-chevron-up icon-accessory shedule-arr" ng-show="showFriendList"></i><i class="icon ion-chevron-down icon-accessory shedule-arr" ng-show="!showFriendList"></i>-->
       </div>
     </ion-item>
     <ion-list ng-show="showFriendList" class="list-background">
       <ion-item class="item-remove-animate item-avatar item-icon-right item-padding-left" ng-repeat="friend in friends" type="item-text-wrap" ng-click="goChat(friend)">
-          <img style="max-height: 40px; max-width: 40px;border-radius: 0;" ng-click="goFriendInfo(friend)" ng-src="{{friend.img}}">
-          <p><span style="line-height: initial;font-size: 16px;" ng-bind="friend.backUp"></span><span style="line-height: initial;font-size: 12px;color:#8e8e93">({{friend.userName}})</span></p>
+          <img style="max-height: 40px; max-width: 40px;border-radius: 0;" ng-click="goFriendInfo(friend)" ng-src="img/head/{{friend.img}}.png">
+          <p><span style="line-height: initial;font-size: 16px;" ng-bind="friend.backname">{{friend.id}}</span><span style="line-height: initial;font-size: 12px;color:#8e8e93">({{friend.nickname}})</span></p>
           <p class="desc-font" ng-bind="friend.description">暂无描述</p>
-        <ion-option-button class="button-assertive" ng-click="removeFriend(friend)">
+        <ion-option-button class="button"  style="background-color: #838B8B;" ng-click="goFriendInfo(friend)">
+          查看资料
+        </ion-option-button>
+        <ion-option-button class="button-assertive"  ng-click="removeFriend(friend)">
           删除好友
         </ion-option-button>
       </ion-item>
     </ion-list>
+    <ion-item class="item-toggle" style="padding: 0 12px;" ng-click="changeShowImg()">
+      <div class="doctorIntroduceTop item-icon-right font-gray" >
+        <span class="icon ion-ios-flower" style="left: 0px;"></span>
+        <span style="padding-left: 27px;color: #000;">我的二维码</span>
+          <label class="toggle toggle-assertive">
+              <input type="checkbox" ng-checked="isShowImg">
+              <div class="track">
+                <div class="handle"></div>
+              </div>
+          </label>
+      </div>
+    </ion-item>
+    <div style="width: 100%;background-color: #ffffff" ng-show="isShowImg">
+      <img style="margin-left: 7%;" src="img/myself.png">
+    </div>
+    </ion-content>
 </ion-view>

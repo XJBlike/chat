@@ -2,11 +2,12 @@
  * Created by XJB11 on 2016/5/5 0005.
  */
 CHAT.CONTROLLERS
-  .controller('SearchResultCtrl',['$scope','Search','$state','$stateParams','$ionicHistory','CommonMethods',
-    function($scope,Search,$state,$stateParams,$ionicHistory,CommonMethods){
-          $scope.$on('$ionicView.loaded',function(){
+  .controller('SearchResultCtrl',['$scope','Search','$state','$stateParams','$ionicHistory','CommonMethods','socket','Storage',
+    function($scope,Search,$state,$stateParams,$ionicHistory,CommonMethods,socket,Storage){
+          $scope.$on('$ionicView.beforeEnter',function(){
             $scope.search = {};
             $scope.search.keyword = $stateParams.keyword;
+            $scope.userId = Storage.get("userInfo").id;
             if($scope.search.keyword){
               $scope.result = Search.searchUser($scope.search.keyword);
               Search.addUserSearchHistory($scope.search.keyword);
@@ -32,7 +33,16 @@ CHAT.CONTROLLERS
         }
       };
 
+      $scope.removeFriend = function(friend){
+        for(var i=0;i<$scope.result.friends.length;i++){
+          if($scope.result.friends[i].id == friend.id){
+            $scope.result.friends.splice(i,1);
+          }
+        }
+        socket.emit("remove:friend",{friend:friend,userId:$scope.userId});
+      };
+
       $scope.addFriend = function(user){
-        $state.go('tab.friends-add',{"userId":user.userId});
+        $state.go('tab.friends-add',{"friendId":user.id});
       }
   }]);

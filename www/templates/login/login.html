@@ -1,31 +1,59 @@
-<ion-view view-title="用户登录" class="main-gray-bg" hide-back-button="true">
+<ion-view view-title="登录/注册" class="main-gray-bg" hide-back-button="true">
   <ion-content>
     <form name="loginForm">
       <div class="content login-head">
         <div class="list">
-          <div class="item item-input">
-            <i class="icon ion-person placeholder-icon"></i>
-            <input name="username" type="text" placeholder="手机号" required ng-model="user.username" style="padding-top:4px;" ng-change="inputPassValidaten1(user.username)">
+          <ion-item class="item-toggle" style="padding: 0 12px;" ng-click="changeRequest()">
+            <div class="doctorIntroduceTop item-icon-right font-gray" >
+              <span class="icon ion-upload" style="left: 0px;"></span>
+              <span style="padding-left: 27px;color: #8e8e93;">注册新用户</span>
+              <label class="toggle toggle-balanced">
+                <input type="checkbox" ng-checked="isRegister">
+                <div class="track">
+                  <div class="handle"></div>
+                </div>
+              </label>
+            </div>
+          </ion-item>
+          <div class="item item-input" style="padding-right: 10%;">
+            <span style="font-size: 20px;" class="icon ion-person placeholder-icon"></span>
+            <input name="username" type="text" placeholder="doge号" required ng-model="user.userId" style="padding-top:4px;" ng-change="inputPassValidaten1(user.user)" maxlength="10">
           </div>
           <div class="item item-input">
-            <i class="icon ion-locked placeholder-icon"></i>
+            <span style="font-size: 20px;" class="icon ion-locked placeholder-icon"></span>
+            <!--明文显示-->
+            <input ng-if="(passType1 == 'text')" name="password" type="text" placeholder="密码" required
+                   ng-model="user.password" style="padding-top:4px;" maxlength="10">
+            <span ng-if="(passType1 == 'text')" style="font-size: 20px;" class="icon ion-eye placeholder-icon login-icon-padding"
+               ng-click="modifyPassType(1)"></span>
             <!--密文显示-->
-            <input name="password" type="password" placeholder="密码"
-                   required ng-model="user.password" style="padding-top:4px;">
-            <i  class="icon ion-eye-disabled placeholder-icon login-icon-padding"></i>
+            <input ng-if="(passType1 == 'password')" name="password" type="password" placeholder="密码"
+                   required ng-model="user.password" style="padding-top:4px;" maxlength="10">
+            <span ng-if="(passType1 == 'password')" style="font-size: 20px;" class="icon ion-eye-disabled placeholder-icon login-icon-padding" ng-click="modifyPassType(1)"></span>
           </div>
-
+          <div class="item item-input" ng-show="isRegister">
+            <span style="font-size: 20px;" class="icon ion-locked placeholder-icon"></span>
+            <!--明文显示-->
+            <input ng-if="(passType2 == 'text')" name="passwordConfirm" type="text" placeholder="确认密码" required
+                   ng-model="user.passwordConfirm" style="padding-top:4px;" maxlength="10">
+            <span ng-if="(passType2 == 'text')" style="font-size: 20px;" class="icon ion-eye placeholder-icon login-icon-padding"
+                  ng-click="modifyPassType(2)"></span>
+            <!--密文显示-->
+            <input ng-if="(passType2 == 'password')" name="passwordConfirm" type="password" placeholder="确认密码"
+                   required ng-model="user.passwordConfirm" style="padding-top:4px;" maxlength="10">
+            <span ng-if="(passType2 == 'password')" style="font-size: 20px;" class="icon ion-eye-disabled placeholder-icon login-icon-padding" ng-click="modifyPassType(2)"></span>
+          </div>
         </div>
-        <div class="full-balanced-button">
+        <div class="full-balanced-button" ng-hide="isRegister">
           <button class="button button-green button-radius8" ng-click="userLogin()"
-                  ng-disabled="(loginForm.username.$invalid || loginForm.password.$invalid)">登录
+                  ng-disabled="(loginForm.user.$invalid || loginForm.password.$invalid)">登录
           </button>
-
         </div>
-      </div>
-      <div class="row login-forget-a">
-        <div class="col col-80">
-          <a class="green" ui-sref="tab.mine-register" style="font-size: 12px; color: #8e8e93;text-decoration:none;display:inline-block;width:200px;">新用户注册</a>
+
+        <div class="full-balanced-button" ng-show="isRegister">
+          <button class="button button-green button-radius8"  ng-click="userRegister()"
+                  ng-disabled="(loginForm.user.$invalid || loginForm.password.$invalid || loginForm.passwordConfirm.$invalid)">注册
+          </button>
         </div>
       </div>
     </form>

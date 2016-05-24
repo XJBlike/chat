@@ -1,16 +1,16 @@
 <ion-view hide-nav-bar="false" hide-back-button="true" view-title="账户">
   <ion-content has-bouncing="false" class="main-gray-bg" scroll="true" >
 
-    <div class="row main-gray-bg-white " style="padding:18px 0;" ng-click="goPage(forwardTo.settings[0])">
+    <div class="row main-gray-bg-white " style="padding:18px 0;">
       <div class="col col-25" style="padding-left:10px;">
         <img style="height: 60px; width:60px"
              class="img-radius50-border"
-             ng-if="!params.user.name"
-             ng-src="img/head/2.png"
-             ng-click="buttonGoPage(forwardTo.login[0])">
+             ng-src="{{userInfo.img}}"
+             alt="更换头像"
+             ng-click="changeImg()">
       </div>
       <div class="col col-66" style="line-height: 60px;">
-        <a class="font-white text-center" ng-click="goLogin()" ng-hide="user.name">dogelover</a>
+        <a class="font-white text-center" ng-click="goSetNickname()" ng-bind="userInfo.nickname">点击设置昵称</a>
       </div>
     </div>
     <ul class="qy-list qy-list-space">
@@ -28,7 +28,7 @@
       </li>
       <li class="qy-list-item" ng-click="logOut()">
         <span class="icon ion-power" style="font-size: 20px;"></span>
-        <span class="qy-list-item-text">退出登录</span>
+        <span  class="qy-list-item-text">退出登录</span>
       </li>
     </ul>
   </ion-content>

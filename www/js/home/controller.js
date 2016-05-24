@@ -9,12 +9,16 @@ CHAT.CONTROLLERS
         $scope.isShowTabs = $state.is('tab.chat') ||
                             $state.is('tab.friends') ||
                             $state.is('tab.mine');
-      //if(!Storage.get("userInfo")){
-      //    var loginUrl = $state.current.data.forwardTo.login[0];
-      //    $state.go(loginUrl);
-      //  }
+      if(!Storage.get("userInfo")&&!$state.is('tab.mine-register')){
+          $state.go("tab.mine-login");
+        }else{
         if($scope.isShowTabs){
           $ionicHistory.clearHistory();
         }
+        if($ionicHistory.backView()==null&&!$scope.isShowTabs){
+          $state.go('tab.friends');
+        }
+      }
+
       });
   }]);

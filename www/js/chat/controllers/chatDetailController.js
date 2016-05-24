@@ -3,8 +3,8 @@
  */
 CHAT.CONTROLLERS
 .controller('ChatDetailCtrl', ['$scope', '$stateParams',
-  'Message', '$ionicScrollDelegate', '$timeout','$ionicHistory',
-  function($scope, $stateParams, Message, $ionicScrollDelegate, $timeout,$ionicHistory) {
+  'Message', '$ionicScrollDelegate', '$timeout','$ionicHistory','$state',
+  function($scope, $stateParams, Message, $ionicScrollDelegate, $timeout,$ionicHistory,$state) {
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     // console.log("enter");
     $scope.doRefresh = function() {
@@ -50,6 +50,11 @@ CHAT.CONTROLLERS
 
     $scope.goBack = function(){
       $ionicHistory.goBack();
+    };
+
+    $scope.goFriendInfo = function(){
+    var forwardTo =  $state.current.data.forwardTo.friendInfo;
+      $state.go(forwardTo[0],{friendId:$scope.message.userId});
     };
 
     window.addEventListener("native.keyboardshow", function(e){

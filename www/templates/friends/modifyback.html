@@ -1,4 +1,4 @@
-<ion-view view-title="修改昵称"hide-back-button="true">
+<ion-view view-title="修改备注" hide-back-button="true">
   <ion-nav-buttons>
     <a class="button button-clear icon ion-ios-arrow-back" ng-click="goBack()"></a>
   </ion-nav-buttons>
@@ -7,7 +7,7 @@
   </ion-nav-buttons>
   <ion-content>
     <label class="item item-input input-label-padding">
-      <input  maxlength="10" type="text" data-ng-model="user.nickname" ng-keyup="showLeftLength()">
+      <input name="desc" maxlength="12" type="text" data-ng-model="friend.backname" ng-keyup="showLeftLength()">
       <span ng-bind="leftLength"></span>
     </label>
   </ion-content>
