@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/26 0026.
  */
 CHAT.CONTROLLERS
-  .controller('MineCtrl',['$scope','CommonMethods','Storage','$state','$http','socket',
-    function($scope,CommonMethods,Storage,$state,$http,socket){
+  .controller('MineCtrl',['$scope','CommonMethods','Storage','$state','socket','$ionicPopup','$timeout',
+    function($scope,CommonMethods,Storage,$state,socket,$ionicPopup,$timeout){
      $scope.goSetNickname = function(){
        $state.go("tab.mine-changeName",{nickname:$scope.userInfo.nickname});
      };
@@ -14,6 +14,26 @@ CHAT.CONTROLLERS
 
       $scope.goAboutApp = function(){
         $state.go('tab.mine-about');
+      };
+
+      $scope.confirmPop = function(){
+        $scope.confirmPopup = $ionicPopup.show({
+          title: "性别",
+          templateUrl: "templates/mine/confirmPopup.html",
+          scope: $scope
+        });
+        $timeout(function(){
+          $scope.confirmPopup.close();
+        },2000);
+      };
+
+      $scope.confirm = function(choice){
+        if(!choice){
+          $scope.confirmPopup.close();
+        }else{
+          $scope.confirmPopup.close();
+          $scope.logOut();
+        }
       };
 
       $scope.logOut = function(){
@@ -27,24 +47,9 @@ CHAT.CONTROLLERS
         $scope.userInfo = Storage.get("userInfo");
         $scope.userInfo.img = "img/head/"+$scope.userInfo.img+".png";
       });
-
-      $scope.changeImg = function(){
-        var userInfo = Storage.get("userInfo");
-        userInfo.img = (userInfo.img+10)%28;
-        if(!userInfo.img){
-          userInfo.img = 1;
-        }
-        $scope.userInfo.img = "img/head/"+userInfo.img + ".png";
-        Storage.set("userInfo",userInfo);
-        socket.emit("changeImg",{userInfo:userInfo});
-      };
-
-      socket.on("changeImg:success",function(data){
-        CommonMethods.showToast(data.info);
-      })
   }])
-  .controller('AccountCtrl',['$scope','CommonMethods','Storage','$state','$ionicPopup','$http','$ionicHistory','socket',
-    function($scope,CommonMethods,Storage,$state,$ionicPopup,$http,$ionicHistory,socket){
+  .controller('AccountCtrl',['$scope','CommonMethods','Storage','$state','$ionicPopup','$timeout','$ionicHistory','socket',
+    function($scope,CommonMethods,Storage,$state,$ionicPopup,$timeout,$ionicHistory,socket){
           $scope.$on('$ionicView.beforeEnter',function(){
             var userInfo = Storage.get("userInfo");
               $scope.account = userInfo;
@@ -76,6 +81,9 @@ CHAT.CONTROLLERS
               templateUrl: "templates/mine/sexPopup.html",
               scope: $scope
             });
+            $timeout(function(){
+              $scope.sexPopup.close();
+            },3000);
           };
           $scope.setSex = function(sex){
             var userInfo = Storage.get("userInfo");
@@ -92,6 +100,25 @@ CHAT.CONTROLLERS
 
       $scope.goBack =function(){
         $ionicHistory.goBack();
+      };
+      $scope.changeImgPop = function(){
+        $scope.changeImgPopup = $ionicPopup.show({
+          title: "性别",
+          templateUrl: "templates/mine/changeImgPopup.html",
+          scope: $scope
+        });
+        $timeout(function(){
+          $scope.changeImgPopup.close();
+        },3000);
+      };
+
+      $scope.confirm = function(choice){
+        if(!choice){
+          $scope.changeImgPopup.close();
+        }else{
+          $scope.changeImgPopup.close();
+          $scope.changeImg();
+        }
       };
     }])
 

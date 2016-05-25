@@ -15,7 +15,7 @@ CHAT.CONTROLLERS
 
       $scope.addRequest = function(){
         socket.emit("add:friend",{userId:$scope.user.id,friendId:$scope.friendId,backname:$scope.add.backname,message:$scope.add.message});
-        $ionicHistory.goBack();
+        $state.go('tab.friends');
       };
 
       $scope.goBack =function(){

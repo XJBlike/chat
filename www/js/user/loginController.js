@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/26 0026.
  */
 CHAT.CONTROLLERS
- .controller('LoginCtrl',['$scope','Storage','$rootScope','CommonMethods','$ionicHistory','SqliteOperationService','$state','$http','socket',
-   function($scope,Storage,$rootScope,CommonMethods,$ionicHistory,SqliteOperationService,$state,$http,socket){
+ .controller('LoginCtrl',['$scope','Storage','$rootScope','CommonMethods','$ionicHistory','SqliteOperationService','$state','$ionicPopup','socket',
+   function($scope,Storage,$rootScope,CommonMethods,$ionicHistory,SqliteOperationService,$state,$ionicPopup,socket){
      $scope.$on("$ionicView.loaded",function(){
        $ionicHistory.clearHistory();
        if(Storage.get("userInfo")){
@@ -20,6 +20,11 @@ CHAT.CONTROLLERS
        $scope.passType1 = 'password';
        $scope.passType2 = 'password';
        $scope.isRegister = false;
+       $scope.userList = [];
+       socket.emit("users",{userId:$scope.user.userId});
+       socket.on("users:success",function(data) {
+         $scope.userList = data.users;
+       });
      });
 
      $scope.modifyPassType = function(num){
@@ -46,8 +51,29 @@ CHAT.CONTROLLERS
           socket.emit('login',$scope.user);
      };
      $scope.userRegister = function(){
-
+           if($scope.user.password !== $scope.user.passwordConfirm){
+             var passwordPopup = $ionicPopup.alert({
+               title:"提示",
+               template:"<ion-item style='background-color: #EDEDED'><span style='margin-left: 15%;font-size: 16px;'>两次输入密码不一致！</span></ion-item>",
+               okText: "确定"
+             });
+           }else{
+               for(var i=0;i<$scope.userList.length;i++){
+                 if($scope.userList[i].id === $scope.user.userId){
+                   var tipPopup = $ionicPopup.alert({
+                     title:"提示",
+                     template:"<ion-item style='background-color: #EDEDED'><span style='margin-left: 30%;font-size: 16px;'>此id已经存在！</span></ion-item>",
+                     okText: "确定"
+                   });
+                   break;
+                 }
+               }
+               if(i == $scope.userList.length){
+                 $state.go('tab.mine-information',{user:$scope.user});
+               }
+             }
      };
+
      socket.on('login:success',function(data){
        Storage.set("userInfo",data.userInfo);
        $state.go("tab.mine");

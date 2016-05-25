@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/26 0026.
  */
 CHAT.CONTROLLERS
-  .controller('FriendsCtrl',['$scope','Storage','$state','CommonMethods','$http','socket',
-    function($scope,Storage,$state,CommonMethods,$http,socket){
+  .controller('FriendsCtrl',['$scope','Storage','$state','CommonMethods','$http','socket','$ionicPopup','$timeout',
+    function($scope,Storage,$state,CommonMethods,$http,socket,$ionicPopup,$timeout){
          $scope.$on("$ionicView.beforeEnter",function(){
            $scope.initScope();
          });
@@ -28,8 +28,30 @@ CHAT.CONTROLLERS
         $scope.isShowImg = !$scope.isShowImg;
       };
 
+      $scope.friendPop = function(friend){
+        $scope.currentFriend = friend;
+        $scope.friendPopup = $ionicPopup.show({
+          templateUrl: "templates/friends/friendPopup.html",
+          scope: $scope
+        });
+        $timeout(function(){
+          $scope.friendPopup.close();
+        },3000);
+      };
+
+      $scope.friendChoice = function(choice){
+        if(!choice){
+          $scope.goChat($scope.currentFriend);
+        }else if(choice == 1){
+          $scope.goFriendInfo($scope.currentFriend);
+        }else{
+          $scope.removeFriend($scope.currentFriend);
+        }
+        $scope.friendPopup.close();
+      };
+
       $scope.goChat = function(friend){
-          $state.go('tab.friends-chatDetail',{"messageId":friend.userId,backUp:friend.backUp,userName:friend.userName,img:friend.img});
+          $state.go('tab.friends-chatDetail',{messageId:friend.id,backname:friend.backname,nickname:friend.nickname,img:friend.img});
       };
 
       $scope.goSearch = function(){

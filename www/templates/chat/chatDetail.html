@@ -1,7 +1,7 @@
 <ion-view view-title="" hide-back-button="true">
   <ion-nav-title class="">
     <div>
-      {{message.backUp}}
+      {{message.backname}}
     </div>
   </ion-nav-title>
   <ion-nav-buttons>
@@ -12,7 +12,7 @@
   <div ng-repeat="item in messageDetils">
     <p class="rj-message-time" ng-bind="item.time" ng-if="false"></p>
     <div class="rj-message-wrap" ng-if="!item.isFromeMe">
-      <img ng-src="{{message.img}}" ng-click="goFriendInfo()" class="rj-head-pic">
+      <img ng-src="img/head/{{message.img}}.png" ng-click="goFriendInfo()" class="rj-head-pic">
       <span class="rj-triangle-left"></span>
       <p class="rj-message" ng-bind="item.content"></p>
     </div>

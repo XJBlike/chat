@@ -18,7 +18,10 @@ CHAT.CONTROLLERS
        };
        $scope.goModifyBackname = function(){
          $state.go($state.current.data.forwardTo.modifyBack[0],{friend:$scope.friend,userId:$scope.userId});
-       }
+       };
+       $scope.goChat = function(friend){
+         $state.go('tab.friends-chatDetail',{"messageId":friend.id,backname:friend.backname,nickname:friend.nickname,img:friend.img});
+       };
    }])
 
 .controller('ModifyBackCtrl',['$scope','$ionicHistory','socket','$state','$stateParams',

@@ -9,7 +9,7 @@ CHAT.CONTROLLERS
         $scope.isShowTabs = $state.is('tab.chat') ||
                             $state.is('tab.friends') ||
                             $state.is('tab.mine');
-      if(!Storage.get("userInfo")&&!$state.is('tab.mine-register')){
+      if(!Storage.get("userInfo")&&!$state.is('tab.mine-information')){
           $state.go("tab.mine-login");
         }else{
         if($scope.isShowTabs){

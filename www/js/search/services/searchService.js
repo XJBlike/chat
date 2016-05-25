@@ -49,23 +49,36 @@ CHAT.SERVICES
        * @param searchText
        */
       this.addUserSearchHistory = function (searchText) {
-        var userHistory = Storage.get("userHistory");
-        if (!userHistory) {
-          userHistory = [];
-        }
+        var userHistory = Storage.get("userHistory")||[];
+        var id = Storage.get("userInfo").id;
+        var history = [];
         if (searchText) {
-          userHistory.push(searchText);
+          for(var i=0;i<userHistory.length;i++){
+            if(id == userHistory[i].id){
+              history = userHistory[i].history;
+              userHistory.splice(i,1);
+            }
+          }
+          history.push(searchText);
+          userHistory.push({id:id,history:history});
         }
         Storage.set("userHistory", userHistory);
       };
 
       this.getUserSearchHistory = function () {
-        var userHistory = Storage.get("userHistory");
+        var id = Storage.get("userInfo").id;
+        var userHistory = Storage.get("userHistory")||[];
         var reverseArr = [];
-        userHistory = (!userHistory) ? []:userHistory.reverse();
-        for (var arr in userHistory) {
-          if (!this.isEleInArray(userHistory[arr], reverseArr)) {
-            reverseArr.push(userHistory[arr]);
+        var history = [];
+        for(var i = 0;i<userHistory.length;i++){
+          if(userHistory[i].id==id){
+            history = userHistory[i].history;
+          }
+        }
+        history = (!history) ? []:history.reverse();
+        for (var arr in history) {
+          if (!this.isEleInArray(history[arr], reverseArr)) {
+            reverseArr.push(history[arr]);
             if (reverseArr.length >= 5) {
               break;
             }
@@ -75,7 +88,14 @@ CHAT.SERVICES
       };
 
       this.clearUserSearchHistory = function () {
-        Storage.set("userHistory", []);
+        var userId = Storage.get("userInfo").id;
+        var userHistory = Storage.get("userHistory")||[];
+        for(var i = 0;i<userHistory.length;i++){
+          if(userHistory[i].id==userId){
+             userHistory.splice(i,1);
+          }
+        }
+        Storage.set("userHistory",userHistory);
       };
     }]);
 

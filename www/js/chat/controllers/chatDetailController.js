@@ -19,9 +19,9 @@ CHAT.CONTROLLERS
 
     $scope.$on("$ionicView.beforeEnter", function() {
       var params = {
-        "userId": $stateParams.messageId,
-        "backUp": $stateParams.backUp,
-        "userName": $stateParams.userName,
+        "id": $stateParams.messageId,
+        "backname": $stateParams.backname,
+        "nickname": $stateParams.nickname,
         "img": $stateParams.img,
         "lastMessage": null,
         "noReadMessages": 0,
@@ -54,7 +54,7 @@ CHAT.CONTROLLERS
 
     $scope.goFriendInfo = function(){
     var forwardTo =  $state.current.data.forwardTo.friendInfo;
-      $state.go(forwardTo[0],{friendId:$scope.message.userId});
+      $state.go(forwardTo[0],{friendId:$scope.message.id});
     };
 
     window.addEventListener("native.keyboardshow", function(e){

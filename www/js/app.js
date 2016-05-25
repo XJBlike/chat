@@ -41,7 +41,8 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         searchResult: ['tab.friends-searchResult','#/tab/friends/searchResult'],
         addFriend: ['tab.friends-add','#/tab/friends/add'],
         friendInfo: ['tab.friends-info','#/tab/friends/info'],
-        modifyBack: ['tab.friends-modifyBack','#/tab/friends/modifyBack']
+        modifyBack: ['tab.friends-modifyBack','#/tab/friends/modifyBack'],
+        userInfo: ['tab.friends-userInfo','#/tab/friends/userInfo']
       },
       mine: {
         mine: ['tab.mine','#/tab/mine'],
@@ -50,7 +51,8 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         changeDesc: ['tab.mine-changeDesc','#/tab/mine/changeDesc'],
         changeLocation: ['tab.mine-changeLocation','#/tab/mine/changeLocation'],
         about: ['tab.mine-about','#/tab/mine/about'],
-        login: ['tab.mine-login','#/tab/mine/login']
+        login: ['tab.mine-login','#/tab/mine/login'],
+        information: ['tab.mine-information','#/tab/mine/information']
       }
     };
 
@@ -144,6 +146,19 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         forwardTo: tabsModuleStates.friends
       }
     })
+    .state('tab.friends-userInfo',{
+      url: "/friends/userInfo",
+      params: {user: null},
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/search/userInfo.html',
+          controller: 'UserInfoCtrl'
+        }
+      },
+      data:{
+        forwardTo: tabsModuleStates.friends
+      }
+    })
     .state('tab.friends-modifyBack',{
       url: "/friends/modifyBack",
       params: {friend: null,userId:null},
@@ -159,7 +174,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
     })
     .state('tab.friends-chatDetail',{
       url: "/friends/chatDetail",
-      params: {messageId: null,backUp:null,userName: null,img: null},
+      params: {messageId: null,backname:null,nickname: null,img: null},
       views: {
         'tab-friends': {
           templateUrl: 'templates/chat/chatDetail.html',
@@ -290,6 +305,19 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         'tab-mine':{
           templateUrl: 'templates/login/login.html',
           controller: 'LoginCtrl'
+        }
+      },
+      data: {
+        forwardTo: tabsModuleStates.mine
+      }
+    })
+    .state('tab.mine-information',{
+      url: "/mine/information",
+      params:{user:null},
+      views: {
+        'tab-mine':{
+          templateUrl: 'templates/login/information.html',
+          controller: 'InformationCtrl'
         }
       },
       data: {
