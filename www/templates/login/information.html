@@ -1,0 +1,39 @@
+<ion-view view-title="资料填写" class="main-gray-bg" hide-back-button="true">
+  <ion-nav-buttons>
+    <a class="button button-clear icon ion-ios-arrow-back" ng-click="goBack()"></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <form name="InfoForm">
+      <div class="content login-head">
+        <div class="list">
+          <ion-item class="item-account-img"  type="item-text-wrap">
+            <img class="account-img-position" style="max-height: 60px; max-width: 60px;margin-right: 35%;" ng-src="img/head/{{user.img}}.png" ng-click="changeImg()">
+          </ion-item>
+          <div class="item item-input" style="padding-right: 10%;">
+            <span style="font-size: 20px;margin-right: 32%;" class="icon ion-person placeholder-icon"></span>
+            <input name="nickname" type="text" placeholder="昵称" required data-ng-model="user.nickname" style="padding-top:4px;" maxlength="12">
+          </div>
+          <div class="item item-input" style="padding-right: 10%;" ng-click="sexPop()">
+            <span style="font-size: 20px;margin-right: 33%;" class="icon ion-male placeholder-icon"></span>
+            <span  style="padding-top:4px;font-size: 15px;">{{user.sex}}</span>
+          </div>
+          <div class="item item-input">
+            <span style="font-size: 20px;margin-right: 29%;" class="icon ion-ios-location placeholder-icon"></span>
+            <input  name="location" type="text" placeholder="地区" required
+                   data-ng-model="user.location" style="padding-top:4px;" maxlength="12">
+          </div>
+          <div class="item item-input">
+            <span style="font-size: 20px;margin-right: 28%;" class="icon ion-ios-book placeholder-icon"></span>
+            <input  name="description" type="text" placeholder="签名" required
+                    data-ng-model="user.description" style="padding-top:4px;" maxlength="12">
+          </div>
+        </div>
+        <div class="full-balanced-button">
+          <button class="button button-green button-radius8"  ng-click="register()"
+                  ng-disabled="(InfoForm.nickname.$invalid ||InfoForm.location.$invalid ||InfoForm.description.$invalid)">提交
+          </button>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

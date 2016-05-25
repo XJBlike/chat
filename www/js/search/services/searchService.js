@@ -3,18 +3,13 @@
  */
 
 CHAT.SERVICES
-  .service('Search',['CommonMethods','SearchBuffer','Storage','$http',
-    function(CommonMethods,SearchBuffer,Storage,$http){
-      var friendArray = [];
-      var userArray = [];
-      $http.get("../../../data/json/friends.json").success(function(data){
-        friendArray = data.friends;
-      }).then(function(){
-        $http.get("../../../data/json/users.json").success(function(data){
-          userArray = data.users;
-        });
-      });
-
+  .service('Search',['CommonMethods','Storage','$http','socket',
+    function(CommonMethods,Storage,$http,socket){
+      var result = {
+        "friends":[],
+        "users": []
+      };
+      var userId = Storage.get("userInfo").id;
       //查询要添加的记录是否在数组中
       this.isEleInArray = function (ele, arr) {
         var find = false;
@@ -37,25 +32,14 @@ CHAT.SERVICES
       };
 
       this.searchUser = function(keyword){
-        var result = {
-          "friends":[],
-          "users": []
-        };
-        for(var i = 0; i < friendArray.length; i++){
-          if(friendArray[i].userId == keyword
-            || friendArray[i].userName == keyword
-            || friendArray[i].backUp == keyword){
-            result.friends.push(friendArray[i]);
-          }
-        }
-        for(var j = 0;j < userArray.length;j++){
-          if(userArray[j].userId == keyword
-            || userArray[j].userName == keyword){
-            if(!this.isUserInFriends(userArray[j],result.friends)){
-              result.users.push(userArray[j]);
-            }
-          }
-        }
+        socket.emit('searchFriends',{keyword:keyword,userId:userId});
+        socket.emit('searchUsers',{keyword:keyword,userId:userId});
+        socket.on("searchFriends:success",function(data){
+          result.friends = data.friends;
+        });
+        socket.on("searchUsers:success",function(data){
+          result.users = data.users;
+        });
         return result;
       };
 
@@ -65,23 +49,36 @@ CHAT.SERVICES
        * @param searchText
        */
       this.addUserSearchHistory = function (searchText) {
-        var userHistory = Storage.get("userHistory");
-        if (!userHistory) {
-          userHistory = [];
-        }
+        var userHistory = Storage.get("userHistory")||[];
+        var id = Storage.get("userInfo").id;
+        var history = [];
         if (searchText) {
-          userHistory.push(searchText);
+          for(var i=0;i<userHistory.length;i++){
+            if(id == userHistory[i].id){
+              history = userHistory[i].history;
+              userHistory.splice(i,1);
+            }
+          }
+          history.push(searchText);
+          userHistory.push({id:id,history:history});
         }
         Storage.set("userHistory", userHistory);
       };
 
       this.getUserSearchHistory = function () {
-        var userHistory = Storage.get("userHistory");
+        var id = Storage.get("userInfo").id;
+        var userHistory = Storage.get("userHistory")||[];
         var reverseArr = [];
-        userHistory = (!userHistory) ? []:userHistory.reverse();
-        for (var arr in userHistory) {
-          if (!this.isEleInArray(userHistory[arr], reverseArr)) {
-            reverseArr.push(userHistory[arr]);
+        var history = [];
+        for(var i = 0;i<userHistory.length;i++){
+          if(userHistory[i].id==id){
+            history = userHistory[i].history;
+          }
+        }
+        history = (!history) ? []:history.reverse();
+        for (var arr in history) {
+          if (!this.isEleInArray(history[arr], reverseArr)) {
+            reverseArr.push(history[arr]);
             if (reverseArr.length >= 5) {
               break;
             }
@@ -91,39 +88,17 @@ CHAT.SERVICES
       };
 
       this.clearUserSearchHistory = function () {
-        Storage.set("userHistory", []);
+        var userId = Storage.get("userInfo").id;
+        var userHistory = Storage.get("userHistory")||[];
+        for(var i = 0;i<userHistory.length;i++){
+          if(userHistory[i].id==userId){
+             userHistory.splice(i,1);
+          }
+        }
+        Storage.set("userHistory",userHistory);
       };
-    }])
+    }]);
 
 
-  .factory('SearchBuffer',function(){
-    var SearchBuffer = [];
-    return{
-      add: function(keyWord,data){
-        var searchResult = {
-          "keyWord":keyWord,
-          "data": data
-        };
-        SearchBuffer.push(searchResult);
-      },
-      get: function(keyWord){
-        for(var i = 0; i < SearchBuffer.length; i++){
-          if(keyWord == SearchBuffer[i].keyWord){
-            return SearchBuffer[i];
-          }
-        }
-        return null;
-      },
-      clear: function(keyWord){
-        for(var i=0;i < SearchBuffer.length; i++){
-          if(keyWord == SearchBuffer[i].keyWord){
-            SearchBuffer.remove(i);
-          }
-        }
-      },
-      clearAll:function(){
-        SearchBuffer = [];
-      }
-    }
-  });
+
 

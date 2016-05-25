@@ -1,9 +1,9 @@
 {
     "messages": [{
-        "userId": "99990909",
-        "backUp": "胡歌",
-        "userName": "古月哥欠",
-        "img": "img/head/16.png",
+        "id": "99990909",
+        "backname": "胡歌",
+        "nickname": "古月哥欠",
+        "img": 16,
         "lastMessage": {
             "originalTime": "2016-04-27 06:34:55",
             "time": "",
@@ -85,10 +85,10 @@
             "time": "2016-04-27 06:34:55"
         }]
     }, {
-        "userId": "99990999",
-        "backUp": "王凯",
-        "userName": "凯凯王",
-        "img": "img/head/6.png",
+        "id": "99990999",
+        "backname": "王凯",
+        "nickname": "凯凯王",
+        "img": 6,
         "lastMessage": {
             "originalTime": "2016-04-26 05:22:55",
             "time": "",
@@ -114,10 +114,10 @@
             "time": "2016-04-26 05:22:55"
         }]
     }, {
-        "userId": "47327356",
-        "backUp": "猴王",
-        "userName": "雷军",
-        "img": "img/head/18.png",
+        "id": "47327356",
+        "backname": "猴王",
+        "nickname": "雷军",
+        "img": 18,
         "lastMessage": {
             "originalTime": "2016-04-22 15:34:55",
             "time": "",
@@ -143,10 +143,10 @@
             "time": "2016-04-22 15:34:55"
         }]
     }, {
-        "userId": "13145200",
-        "backUp": "沁宝宝",
-        "userName": "曾沁",
-        "img": "img/head/8.png",
+        "id": "13145200",
+        "backname": "沁宝宝",
+        "nickname": "曾沁",
+        "img": 8,
         "lastMessage": {
             "originalTime": "2016-05-01 15:34:55",
             "time": "",
@@ -172,10 +172,10 @@
         "time": "2016-05-01 15:34:55"
       }]
     }, {
-        "userId": "22010000",
-        "backUp": "安迪",
-        "userName": "安迪",
-        "img": "img/head/9.png",
+        "id": "22010000",
+        "backname": "安迪",
+        "nickname": "安迪",
+        "img": 9,
         "lastMessage": {
             "originalTime": "2016-05-01 15:34:55",
             "time": "",

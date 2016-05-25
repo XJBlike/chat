@@ -1,5 +1,51 @@
-<ion-view view-title="Info">
-  <ion-content>
-    <p>Info</p>
+<ion-view view-title="好友信息" hide-back-button="true">
+  <ion-nav-buttons>
+    <a class="button button-clear icon ion-ios-arrow-back" ng-click="goBack()"></a>
+  </ion-nav-buttons>
+  <ion-content class="gray-background">
+    <ion-list class="account-list-margin">
+      <ion-item class="item-account-img"  type="item-text-wrap">
+        <h2 style="margin-top: 18px;font-size: 14px;color: #8e8e93;">头像</h2>
+        <img class="account-img-position" style="max-height: 50px; max-width: 50px;" ng-src="img/head/{{friend.img}}.png">
+      </ion-item>
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">备注</span>
+        <span style="font-size: 14px;float: right;" ng-bind="friend.backname"></span>
+      </ion-item>
+      <ion-item ng-click="goModifyBackname()">
+        <p style="text-align: center;">修改备注</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list class="account-list-margin">
+      <ion-item>
+        <div>
+          <span style="font-size: 14px;color: #8e8e93;">ID</span>
+          <span  style="font-size: 14px;float: right;" ng-bind="friend.id"></span>
+        </div>
+      </ion-item>
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">昵称</span>
+        <span style="font-size: 14px;float: right;" ng-bind="friend.nickname"></span>
+      </ion-item>
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">性别</span>
+        <span style="font-size: 14px;float: right;" ng-bind="friend.sex"></span>
+      </ion-item>
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;">地区</span>
+        <span  style="font-size: 14px;float: right;" ng-bind="friend.location"></span>
+      </ion-item>
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 30px;">个性签名</span>
+        <span  style="font-size: 14px;float: right;" ng-bind="friend.description"></span>
+      </ion-item>
+    </ion-list>
+
+    <div class="full-balanced-button">
+      <button class="button button-green button-radius8"  ng-click="goChat(friend)">发起聊天
+      </button>
+    </div>
   </ion-content>
+
 </ion-view>

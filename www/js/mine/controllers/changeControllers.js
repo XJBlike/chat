@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/29 0029.
  */
 CHAT.CONTROLLERS
-  .controller('ChangeDescCtrl',['$scope','Storage','$ionicHistory','$state','$ionicHistory',
-    function($scope,Storage,$ionicHistory,$state,$ionicHistory){
+  .controller('ChangeDescCtrl',['$scope','Storage','$ionicHistory','$state','$ionicHistory','socket',
+    function($scope,Storage,$ionicHistory,$state,$ionicHistory,socket){
       var user = $scope.user = {};
 
       $scope.$on('$ionicView.beforeEnter',function(){
@@ -14,6 +14,7 @@ CHAT.CONTROLLERS
         var userInfo = Storage.get("userInfo");
         userInfo.description = user.description;
         Storage.set("userInfo",userInfo);
+        socket.emit("changeDesc",{userInfo:userInfo});
         $ionicHistory.goBack();
       };
       $scope.showLeftLength = function(){
@@ -25,8 +26,8 @@ CHAT.CONTROLLERS
       };
     }])
 
-  .controller('ChangeLocationCtrl',['$scope','Storage','$ionicHistory','$state',
-  function($scope,Storage,$ionicHistory,$state){
+  .controller('ChangeLocationCtrl',['$scope','Storage','$ionicHistory','$state','socket',
+  function($scope,Storage,$ionicHistory,$state,socket){
     var user = $scope.user = {};
 
     $scope.$on('$ionicView.beforeEnter',function(){
@@ -38,6 +39,7 @@ CHAT.CONTROLLERS
       var userInfo = Storage.get("userInfo");
       userInfo.location = user.location;
       Storage.set("userInfo",userInfo);
+      socket.emit("changeLocation",{userInfo:userInfo});
       $ionicHistory.goBack();
     };
 
@@ -49,25 +51,28 @@ CHAT.CONTROLLERS
       $ionicHistory.goBack();
     };
   }])
-  .controller('ChangeNameCtrl',['$scope','Storage','$ionicHistory','$state',
-    function($scope,Storage,$ionicHistory,$state){
+  .controller('ChangeNameCtrl',['$scope','Storage','$ionicHistory','$state','socket',
+    function($scope,Storage,$ionicHistory,$state,socket){
       var user = $scope.user = {};
 
       $scope.$on('$ionicView.beforeEnter',function(){
-        $scope.userName = $state.params.userName;
-        user.userName = $scope.userName;
+        $scope.nickname = $state.params.nickname;
+        user.nickname = $scope.nickname;
       });
 
       $scope.saveChange = function(){
         var userInfo = Storage.get("userInfo");
-        userInfo.userName = user.userName;
+        userInfo.nickname = user.nickname;
         Storage.set("userInfo",userInfo);
+        socket.emit("changeNickname",{userInfo:userInfo});
         $ionicHistory.goBack();
       };
 
+
+
       $scope.showLeftLength = function(){
-        var userName = user.userName;
-        $scope.leftLength = 10 - userName.length;
+        var nickname = user.nickname;
+        $scope.leftLength = 10 - nickname.length;
       };
 
       $scope.goBack =function(){

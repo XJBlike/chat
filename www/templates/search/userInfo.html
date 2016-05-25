@@ -1,0 +1,39 @@
+<ion-view view-title="账户信息" hide-back-button="true">
+  <ion-nav-buttons>
+    <a class="button button-clear icon ion-ios-arrow-back" ng-click="goBack()"></a>
+  </ion-nav-buttons>
+  <ion-content class="gray-background">
+    <ion-list class="account-list-margin">
+      <ion-item class="item-account-img"  type="item-text-wrap">
+        <h2 style="margin-top: 18px;font-size: 14px;color: #8e8e93;">头像</h2>
+        <img class="account-img-position" style="max-height: 50px; max-width: 50px;" ng-src="img/head/{{user.img}}.png">
+      </ion-item>
+      <ion-item>
+        <div>
+          <span style="font-size: 14px;color: #8e8e93;">ID</span>
+          <span  style="font-size: 14px;float: right;" ng-bind="user.id"></span>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-list class="account-list-margin">
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">性别</span>
+        <span style="font-size: 14px;float: right;" ng-bind="user.sex"></span>
+      </ion-item>
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;">地区</span>
+        <span  style="font-size: 14px;float: right;" ng-bind="user.location"></span>
+      </ion-item>
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 30px;">个性签名</span>
+        <span  style="font-size: 14px;float: right;" ng-bind="user.description"></span>
+      </ion-item>
+    </ion-list>
+
+    <div class="full-balanced-button">
+      <button class="button button-green button-radius8"  ng-click="addFriend()">添加好友
+      </button>
+    </div>
+  </ion-content>
+</ion-view>
