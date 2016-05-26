@@ -34,12 +34,17 @@ CHAT.CONTROLLERS
       };
 
       $scope.removeFriend = function(friend){
-        for(var i=0;i<$scope.result.friends.length;i++){
-          if($scope.result.friends[i].id == friend.id){
-            $scope.result.friends.splice(i,1);
-          }
+        if(friend.id=='111111'){
+          CommonMethods.showAlert("建议不要删除客服！");
         }
-        socket.emit("remove:friend",{friend:friend,userId:$scope.id});
+        else{
+          for(var i=0;i<$scope.result.friends.length;i++){
+            if($scope.result.friends[i].id == friend.id){
+              $scope.result.friends.splice(i,1);
+            }
+          }
+          socket.emit("remove:friend",{friend:friend,userId:$scope.id});
+        }
       };
 
       $scope.addFriend = function(user){
@@ -47,7 +52,7 @@ CHAT.CONTROLLERS
       };
 
       $scope.goFriendInfo = function(friend){
-        $state.go('tab.friends-info',{friendId:friend.id});
+        $state.go('tab.friends-info',{friendId:friend.id,viewSource:"search"});
       };
       $scope.friendPop = function(friend){
         $scope.currentFriend = friend;

@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/26 0026.
  */
 CHAT.CONTROLLERS
- .controller('LoginCtrl',['$scope','Storage','$rootScope','CommonMethods','$ionicHistory','SqliteOperationService','$state','$ionicPopup','socket',
-   function($scope,Storage,$rootScope,CommonMethods,$ionicHistory,SqliteOperationService,$state,$ionicPopup,socket){
+ .controller('LoginCtrl',['$scope','Storage','$rootScope','CommonMethods','$ionicHistory','SqliteOperationService','$state','$ionicPopup','socket','$timeout',
+   function($scope,Storage,$rootScope,CommonMethods,$ionicHistory,SqliteOperationService,$state,$ionicPopup,socket,$timeout){
      $scope.$on("$ionicView.loaded",function(){
        $ionicHistory.clearHistory();
        if(Storage.get("userInfo")){
@@ -48,8 +48,25 @@ CHAT.CONTROLLERS
      };
 
      $scope.userLogin = function(){
-          socket.emit('login',$scope.user);
+       for(var i=0;i<$scope.userList.length;i++){
+         if($scope.userList[i].id === $scope.user.userId){
+           break;
+         }
+       }
+       if(i == $scope.userList.length){
+         var idExistPopup = $ionicPopup.alert({
+           title:"提示",
+           template:"<ion-item style='background-color: #EDEDED'><span style='margin-left: 25%;font-size: 16px;'>此id不存在!</span></ion-item>",
+           okText: "关闭"
+         });
+         $timeout(function(){
+           idExistPopup.close();
+         },2000);
+       }else{
+         socket.emit('login',$scope.user);
+       }
      };
+
      $scope.userRegister = function(){
            if($scope.user.password !== $scope.user.passwordConfirm){
              var passwordPopup = $ionicPopup.alert({
@@ -80,7 +97,14 @@ CHAT.CONTROLLERS
      });
 
      socket.on('login:fail',function(data){
-       CommonMethods.showToast(data.err);
+       var loginFailPopup = $ionicPopup.alert({
+         title:"提示",
+         template:"<ion-item style='background-color: #EDEDED'><span style='margin-left: 25%;font-size: 16px;'>"+data.err+"</span></ion-item>",
+         okText: "关闭"
+       });
+       $timeout(function(){
+         loginFailPopup.close();
+       },2000);
      })
    }]);
 

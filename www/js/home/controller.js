@@ -3,8 +3,8 @@
  */
 //
 CHAT.CONTROLLERS
-  .controller('AbstractTabsCtrl',['$rootScope','$scope','Storage','$state','$ionicHistory',
-    function($rootScope,$scope,Storage,$state,$ionicHistory){
+  .controller('AbstractTabsCtrl',['$rootScope','$scope','Storage','$state','$ionicHistory','Message','socket',
+    function($rootScope,$scope,Storage,$state,$ionicHistory,Message,socket){
       $scope.$on('$ionicView.beforeEnter',function(){
         $scope.isShowTabs = $state.is('tab.chat') ||
                             $state.is('tab.friends') ||
@@ -18,7 +18,18 @@ CHAT.CONTROLLERS
         if($ionicHistory.backView()==null&&!$scope.isShowTabs){
           $state.go('tab.friends');
         }
+        if(!Storage.get("records")){
+          Message.init();
+        }
       }
+      });
 
+      socket.on("message:receive",function(data){
+        var records = Storage.get("records");
+        for(var i=0;i<records.length;i++){
+          if(records[i].id == data.message.id){
+
+          }
+        }
       });
   }]);

@@ -39,6 +39,7 @@ CHAT.CONTROLLERS
       $scope.logOut = function(){
         var userInfo = Storage.get("userInfo");
         Storage.remove("userInfo");
+        Storage.remove("records");
         socket.emit("logout",{userInfo:userInfo});
         $state.go("tab.mine-login");
       };

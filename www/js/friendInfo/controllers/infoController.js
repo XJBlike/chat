@@ -5,8 +5,14 @@ CHAT.CONTROLLERS
    .controller("InfoCtrl",['$scope','$state','$stateParams','$ionicHistory','Storage','socket',
      function($scope,$state,$stateParams,$ionicHistory,Storage,socket){
         $scope.$on("$ionicView.beforeEnter",function(){
+          var viewSource = $stateParams.viewSource;
+          $scope.showChatButton = viewSource =="chatDetail"?false:true;
           $scope.friendId = $stateParams.friendId;
           $scope.userId = Storage.get("userInfo").id;
+          $scope.showModifyBack = true;
+          if($scope.friendId == '111111'){
+            $scope.showModifyBack = false;
+          }
           socket.emit('friendInfo',{friendId:$scope.friendId,userId:$scope.userId});
           socket.on('friendInfo:success',function(data){
             $scope.friend = data.friendInfo;

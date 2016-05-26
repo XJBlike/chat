@@ -1,72 +1,19 @@
 CHAT.SERVICES
     .factory('CommonMethods', ["$state","$timeout", "$ionicHistory", "$ionicPopup", "$ionicLoading","Storage",
         function ($state,$timeout, $ionicHistory, $ionicPopup, $ionicLoading, Storage) {
-
-            /**
-             * 日期转化为字符串。
-             * @param title
-             * @param content
-             * @param callback
-             */
-            var fill0 =  function (value,length) {
-                value = value + "";
-                if(value.length < length){
-                    value = "0" + value;
-                    return fill0(value,length);
-                }else{
-                    return value;
-                }
-            }
-            var showToastFlag = false;
         return {
-            /**
-             * 获取默认就诊人
-             * @param patientList
-             * @returns {*}
-             */
-            getDefaultPatient: function (patientList) {
-                if (!patientList) {
-                    return null;
-                }
-                for (var patient in patientList) {
-                    if (patientList[patient].isDefault) {
-                        return patientList[patient];
-                    }
-                }
-                return null;
-            },
-
-            /**
-             * 页面跳转
-             * @param page
-             * @param params
-             */
-            goPage: function (to, toParams, options) {
-                $state.go(to, toParams, options);
-            },
-            /**
-             * 返回页面
-             * @param page
-             * @param params
-             */
-            goBack: function () {
-                $ionicHistory.goBack();
-            },
             /**
              * 弹出对话框
              * @param title
              * @param context
              */
-            showAlert: function (title, context) {
-                if (title == null) {
-                    title = "";
-                }
+            showAlert: function (context) {
                 if (context == null) {
                     context = "";
                 }
                 var alertPopup = $ionicPopup.alert({
-                    title: title,
-                    template: context,
+                    title: "提示",
+                    template:"<ion-item style='background-color: #EDEDED;padding-left: 35px;padding-right: 35px;'><span style='font-size: 16px;'>"+context+"</span></ion-item>",
                     okText: '确认'
                 });
                 alertPopup.then();
@@ -267,6 +214,8 @@ CHAT.SERVICES
                     window.plugins.toast.show(message, duration, position, successCallback, errorCallback);
                 }
             },
+
+
             /**
              * 日期转化为字符串。
              * @param title

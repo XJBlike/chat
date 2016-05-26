@@ -12,7 +12,7 @@
         <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">备注</span>
         <span style="font-size: 14px;float: right;" ng-bind="friend.backname"></span>
       </ion-item>
-      <ion-item ng-click="goModifyBackname()">
+      <ion-item ng-click="goModifyBackname()" ng-show="showModifyBack">
         <p style="text-align: center;">修改备注</p>
       </ion-item>
     </ion-list>
@@ -42,7 +42,7 @@
       </ion-item>
     </ion-list>
 
-    <div class="full-balanced-button">
+    <div class="full-balanced-button" ng-show="showChatButton">
       <button class="button button-green button-radius8"  ng-click="goChat(friend)">发起聊天
       </button>
     </div>

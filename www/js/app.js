@@ -40,7 +40,6 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         search: ['tab.friends-search','#/tab/friends/search'],
         searchResult: ['tab.friends-searchResult','#/tab/friends/searchResult'],
         addFriend: ['tab.friends-add','#/tab/friends/add'],
-        friendInfo: ['tab.friends-info','#/tab/friends/info'],
         modifyBack: ['tab.friends-modifyBack','#/tab/friends/modifyBack'],
         userInfo: ['tab.friends-userInfo','#/tab/friends/userInfo']
       },
@@ -93,7 +92,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
 
     .state('tab.chat-info',{
       url: "/chat/info",
-      params: {friendId: null},
+      params: {friendId: null,viewSource:null},
       views: {
         'tab-chat': {
           templateUrl: 'templates/friends/info.html',
@@ -123,6 +122,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
 
     .state('tab.friends',{
       url: "/friends",
+      params:{viewSource:null},
       views:{
         'tab-friends':{
           templateUrl: 'templates/friends/friendList.html',
@@ -135,7 +135,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
     })
     .state('tab.friends-info',{
       url: "/friends/info",
-      params: {friendId: null},
+      params: {friendId: null,viewSource:null},
       views: {
         'tab-friends': {
           templateUrl: 'templates/friends/info.html',

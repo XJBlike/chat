@@ -2,122 +2,67 @@
  * Created by XJB11 on 2016/5/2 0002.
  */
 CHAT.SERVICES
-   .factory('Message',['$http','Storage','dateService',
-     function($http,Storage,dateService){
-       $http.get("../../../data/json/messages.json").success(function(data){
-         var messages = data.messages;
-         Storage.set("messages",messages);
-       });
+   .factory('Message',['Storage','dateService','socket',
+     function(Storage,dateService,socket){
+       var messageStruct = {
+         "id":null,
+         "backname":null,
+         "nickname":null,
+         "img":null,
+         "lastMessage":{},
+         "noReadMessages":0,
+         "showHints":true,
+         "isTop":0,
+         "showMessage":true,
+         "message":[]
+       };
+       var userInfo = Storage.get("userInfo");
           return{
-            init: function(messages) {
-              var i = 0;
-              var length = 0;
-              var messageID = new Array();
-              var date = null;
-              var messageDate = null;
-              if (messages) {
-                length = messages.length;
-                for (; i < length; i++) {
-                  messageDate = dateService.getMessageDate(messages[i]);
-                  if(!messageDate){
-                    return null;
-                  }
-                  date = new Date(messageDate.year, messageDate.month,
-                    messageDate.day, messageDate.hour, messageDate.minute,
-                    messageDate.second);
-                  messages[i].lastMessage.timeFrome1970 = date.getTime();
-                  messageID[i] = {
-                    id: messages[i].id
-                  };
-
+            init: function() {
+              var userId = Storage.get("userInfo").id;
+              var records = [];
+              socket.emit("messages:getAll",{userId:userId});
+              socket.on("messages:getAllSuccess",function(data){
+                for(var i=0;i<data.messages.length;i++){
+                  records[i] = JSON.parse(data.messages[i].record);
                 }
-               Storage.set("messageID", messageID);
-                for (i = 0; i < length; i++) {
-                  Storage.set("message_" + messages[i].id, messages[i]);
-                }
-              }
+                dateService.handleMessageDate(records);
+                Storage.set("records",records);
+              });
             },
-            getAllMessages: function() {
-              var messages = new Array();
-              var i = 0;
-              var messageID = Storage.get("messageID");
-              var length = 0;
-              var message = null;
-              if (messageID) {
-                length = messageID.length;
-
-                for (; i < length; i++) {
-                  message = Storage.get("message_" + messageID[i].id);
-                  if(message){
-                    messages.push(message);
-                  }
-                }
-                dateService.handleMessageDate(messages);
-                return messages;
-              }
-              return null;
-
+            getAll: function(){
+              var records = Storage.get("records");
+              return records;
             },
-            getAll : function(){
-              return Storage.get("messages");
-            },
-            removeMessage : function(message){
-              var messages = Storage.get("messages");
-              for(var i = 0;i < messages.length;i++){
-                if(messages[i].userId == message.userId){
-                  message.showMessage = false;
-                  messages.splice(i,1);
-                  Storage.set("messages");
+            removeMessage : function(record){
+              var records = Storage.get("records");
+              for(var i = 0;i < records.length;i++){
+                if(records[i].id == record.id){
+                  record.showMessage = false;
+                  records.splice(i,1);
+                  Storage.set("records");
                 }
               }
-            },
-            deleteMessageId: function(id){
-              var messageId = Storage.get("messageID");
-              var length = 0;
-              var i = 0;
-              if(!messageId){
-                return null;
-              }
-              length = messageId.length;
-              for(; i < length; i++){
-                if(messageId[i].id === id){
-                  messageId.splice(i, 1);
-                  break;
-                }
-              }
-              Storage.set("messageID", messageId);
             },
             getMessageById : function(id){
-              var messages = Storage.get("messages");
-              for(var i = 0;i < messages.length;i++){
-                if(messages[i].userId == id){
-                  return messages[i];
+              var records = Storage.get("records");
+              var record = messageStruct;
+              for(var i=0;i<records.length;i++) {
+                if (records[i].id == id) {
+                  return records[i];
                 }
               }
-              return null;
             },
-            getAmountMessageById: function(num, id){
-              var messages = [];
-              var message = this.getMessageById(id).message;
-              var length = 0;
-              if(num < 0 || !message) return;
-              length = message.length;
-              if(num < length){
-                messages = message.splice(length - num, length);
-                return messages;
-              }else{
-                return message;
-              }
-            },
-            updateMessage: function(message) {
-              var messages = Storage.get("messages");
-              for(var i = 0;i < messages.length;i++){
-                if (message.userId == messages[i].userId) {
-                  messages[i] = message;
-                  Storage.set("messages",messages);
+            updateMessage: function(message){
+              var records = Storage.get("records");
+              var userId = Storage.get("userInfo").id;
+              for(var i=0;i<records.length;i++){
+                if(records[i].id == message.id){
+                  records[i]=message;
+                  Storage.set("records",records);
+                  socket.emit("updateRecord",{record:message,userId:userId,friendId:message.id});
                 }
               }
-
             }
           }
    }])
@@ -202,7 +147,6 @@ CHAT.SERVICES
           messageDate.hour = parseInt(result[4]);
           messageDate.minute = parseInt(result[5]);
           messageDate.second = parseInt(result[6]);
-          // console.log(messageDate);
           return messageDate;
         } else {
           console.log("message is null");

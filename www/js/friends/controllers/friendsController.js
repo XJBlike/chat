@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/26 0026.
  */
 CHAT.CONTROLLERS
-  .controller('FriendsCtrl',['$scope','Storage','$state','CommonMethods','$http','socket','$ionicPopup','$timeout',
-    function($scope,Storage,$state,CommonMethods,$http,socket,$ionicPopup,$timeout){
+  .controller('FriendsCtrl',['$scope','Storage','$state','CommonMethods','$stateParams','socket','$ionicPopup','$timeout',
+    function($scope,Storage,$state,CommonMethods,$stateParams,socket,$ionicPopup,$timeout){
          $scope.$on("$ionicView.beforeEnter",function(){
            $scope.initScope();
          });
@@ -13,13 +13,16 @@ CHAT.CONTROLLERS
         socket.emit("friends",{id:$scope.userId});
         $scope.showFriendList = true;
         $scope.isShowImg =false;
+        if($stateParams.viewSource){
+          location.reload();
+        }
       };
       socket.on("friends:success",function(data){
          $scope.friends = data.friends;
       });
 
       $scope.goFriendInfo = function(friend){
-           $state.go('tab.friends-info',{friendId:friend.id});
+           $state.go('tab.friends-info',{friendId:friend.id,viewSource:"friendList"});
       };
       $scope.changeShow = function(){
         $scope.showFriendList = !$scope.showFriendList;
@@ -59,12 +62,16 @@ CHAT.CONTROLLERS
       };
 
       $scope.removeFriend = function(friend){
-        for(var i=0;i<$scope.friends.length;i++){
-          if($scope.friends[i].id == friend.id){
-            $scope.friends.splice(i,1);
+        if(friend.id=='111111'){
+           CommonMethods.showAlert("建议不要删除官方客服！");
+        }else{
+          for(var i=0;i<$scope.friends.length;i++){
+            if($scope.friends[i].id == friend.id){
+              $scope.friends.splice(i,1);
+            }
           }
+          socket.emit("remove:friend",{friend:friend,userId:$scope.userId});
         }
-        socket.emit("remove:friend",{friend:friend,userId:$scope.userId});
       };
   }]);
 
