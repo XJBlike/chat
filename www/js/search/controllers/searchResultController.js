@@ -48,7 +48,7 @@ CHAT.CONTROLLERS
       };
 
       $scope.addFriend = function(user){
-        $state.go('tab.friends-add',{"friendId":user.id});
+        $state.go('tab.friends-add',{"friend":user});
       };
 
       $scope.goFriendInfo = function(friend){

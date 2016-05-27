@@ -3,7 +3,6 @@
  */
 CHAT.SERVICES
   .factory('socket', function ($rootScope,Storage) {
-    var socket = io.connect("192.168.1.108:9000");
   return {
     on: function (eventName, callback) {
       socket.on(eventName, function () {

@@ -34,7 +34,7 @@
           <div class="item item-input" ng-show="isRegister">
             <span style="font-size: 20px;" class="icon ion-locked placeholder-icon"></span>
             <!--明文显示-->
-            <input ng-if="(passType2 == 'text')" name="passwordConfirm" type="text" placeholder="确认密码" required
+            <input ng-if="(passType2 == 'text')" name="passwordConfirm" type="text" placeholder="确认密码"
                    ng-model="user.passwordConfirm" style="padding-top:4px;" maxlength="10">
             <span ng-if="(passType2 == 'text')" style="font-size: 20px;" class="icon ion-eye placeholder-icon login-icon-padding"
                   ng-click="modifyPassType(2)"></span>

@@ -6,18 +6,12 @@ CHAT.CONTROLLERS
     function($scope,$ionicPopup,Message,$timeout,$state){
         $scope.$on('$ionicView.beforeEnter',function(){
             $scope.messages = Message.getAll();
-            $scope.messageTime();
             $scope.popup = {
               isPopup: false,
               index: 0
             };
         });
 
-        $scope.messageTime = function (){
-          for(var i=0;i<$scope.messages.length;i++){
-            $scope.messages[i].lastMessage.timeStamp = Date.parse($scope.messages[i].lastMessage.originalTime);
-          }
-        };
         $scope.removeMessage = function(message){
              Message.removeMessage(message);
              $scope.popup.optionsPopup.close();
@@ -62,6 +56,6 @@ CHAT.CONTROLLERS
         message.noReadMessages = 0;
         message.showHints = false;
         Message.updateMessage(message);
-        $state.go('tab.chat-detail',{"messageId":message.id});
+        $state.go('tab.chat-detail',{"id":message.id});
       };
   }]);

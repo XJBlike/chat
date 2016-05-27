@@ -34,6 +34,14 @@ CHAT.SERVICES
             hideLoading: function () {
                 $ionicLoading.hide();
             },
+            isMessageInArray : function(arr,message){
+              for(var i=0;i<arr.length;i++){
+                if(arr[i].time == message.time && arr[i].time == message.time){
+                  return true;
+                }
+              }
+              return false;
+            },
             /**
              * 警告对话框
              * @param title

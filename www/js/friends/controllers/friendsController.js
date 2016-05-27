@@ -4,13 +4,13 @@
 CHAT.CONTROLLERS
   .controller('FriendsCtrl',['$scope','Storage','$state','CommonMethods','$stateParams','socket','$ionicPopup','$timeout',
     function($scope,Storage,$state,CommonMethods,$stateParams,socket,$ionicPopup,$timeout){
-         $scope.$on("$ionicView.beforeEnter",function(){
+         $scope.$on("$ionicView.loaded",function(){
            $scope.initScope();
          });
 
       $scope.initScope = function(){
-        $scope.userId = Storage.get("userInfo").id;
-        socket.emit("friends",{id:$scope.userId});
+        $scope.user = Storage.get("userInfo");
+        socket.emit("friends",{id:$scope.user.id});
         $scope.showFriendList = true;
         $scope.isShowImg =false;
         if($stateParams.viewSource){
@@ -54,7 +54,7 @@ CHAT.CONTROLLERS
       };
 
       $scope.goChat = function(friend){
-          $state.go('tab.friends-chatDetail',{messageId:friend.id,backname:friend.backname,nickname:friend.nickname,img:friend.img});
+          $state.go('tab.friends-chatDetail',{id:friend.id});
       };
 
       $scope.goSearch = function(){

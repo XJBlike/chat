@@ -44,9 +44,15 @@ CHAT.CONTROLLERS
         $state.go("tab.mine-login");
       };
 
+     socket.on("friendInfo:success",function(data){
+          var friendInfo = data.friendInfo;
+          Storage.set("friendInfo",friendInfo);
+     });
+
       $scope.$on("$ionicView.beforeEnter",function(){
         $scope.userInfo = Storage.get("userInfo");
         $scope.userInfo.img = "img/head/"+$scope.userInfo.img+".png";
+        socket.emit("friendInfo",{userId:$scope.userInfo.id});
       });
   }])
   .controller('AccountCtrl',['$scope','CommonMethods','Storage','$state','$ionicPopup','$timeout','$ionicHistory','socket',

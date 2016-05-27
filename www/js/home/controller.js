@@ -3,8 +3,8 @@
  */
 //
 CHAT.CONTROLLERS
-  .controller('AbstractTabsCtrl',['$rootScope','$scope','Storage','$state','$ionicHistory','Message','socket',
-    function($rootScope,$scope,Storage,$state,$ionicHistory,Message,socket){
+  .controller('AbstractTabsCtrl',['$rootScope','$scope','Storage','$state','$ionicHistory','Message','socket','Message',
+    function($rootScope,$scope,Storage,$state,$ionicHistory,Message,socket,Message){
       $scope.$on('$ionicView.beforeEnter',function(){
         $scope.isShowTabs = $state.is('tab.chat') ||
                             $state.is('tab.friends') ||
@@ -25,11 +25,41 @@ CHAT.CONTROLLERS
       });
 
       socket.on("message:receive",function(data){
-        var records = Storage.get("records");
-        for(var i=0;i<records.length;i++){
-          if(records[i].id == data.message.id){
-
+        var friendId = data.friendId;
+        var friendInfo = Storage.get("friendInfo");
+        var fromFriend = {};
+        var messageStruct = {
+          "id": null,
+          "backname": null,
+          "nickname": null,
+          "img": null,
+          "lastMessage": {},
+          "noReadMessages": 0,
+          "showHints": false,
+          "isTop": 0,
+          "showMessage":true,
+          "messages": []
+        };
+        var record = Message.getMessageById(friendId);
+        if(!record){
+          for(var i=0;i<friendInfo.length;i++){
+            if(friendInfo[i].id == friendId){
+              fromFriend = friendInfo[i];
+            }
           }
+          messageStruct.id=fromFriend.id;
+          messageStruct.nickname=fromFriend.nickname;
+          messageStruct.backname=fromFriend.backname;
+          messageStruct.img=fromFriend.img;
+        }else{
+          messageStruct=record;
+        }
+        messageStruct.messages.push(data.message);
+        messageStruct.lastMessage=data.message;
+        if(!$state.is('tab.chat-detail')&&!$state.is('tab.friends-chatDetail')){
+          messageStruct.noReadMessages++;
+          messageStruct.showHints=true;
+          Message.updateMessage(messageStruct);
         }
       });
   }]);

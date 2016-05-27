@@ -4,7 +4,7 @@ CHAT.COMMON = angular.module('CHAT.common', []);
 CHAT.SERVICES = angular.module('CHAT.services', ['CHAT.common']);
 CHAT.CONTROLLERS = angular.module('CHAT.controllers', ['CHAT.services','CHAT.common']);
 CHAT.DIRECTIVES = angular.module('CHAT.directives',[]);
-
+var socket = io.connect("192.168.1.108:9000");
 
 
 angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.services','CHAT.directives'])
@@ -30,7 +30,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
       chat: {
         chat: ['tab.chat','#/tab/chat'],
         detail: ['tab.chat-detail','#/tab/chat/detail'],
-        friendInfo: ['tab.chat-info','#/tab/chat/info'],
+        info: ['tab.chat-info','#/tab/chat/info'],
         modifyBack: ['tab.chat-modifyBack','#/tab/chat/modifyBack']
         },
       friends: {
@@ -78,7 +78,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
 
     .state('tab.chat-detail',{
       url: "/chat/detail",
-      params: {messageId: null},
+      params: {id: null},
       views: {
         'tab-chat': {
           templateUrl: 'templates/chat/chatDetail.html',
@@ -174,7 +174,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
     })
     .state('tab.friends-chatDetail',{
       url: "/friends/chatDetail",
-      params: {messageId: null,backname:null,nickname: null,img: null},
+      params: {id: null},
       views: {
         'tab-friends': {
           templateUrl: 'templates/chat/chatDetail.html',
@@ -212,7 +212,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
     })
     .state('tab.friends-add',{
       url: "/friends/add",
-      params: {friendId: null},
+      params: {friend: null},
       views: {
         'tab-friends': {
           templateUrl: 'templates/friends/addFriend.html',

@@ -10,7 +10,7 @@
   <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" id="message-detail-content">
   <ion-refresher pulling-text="..." on-refresh="doRefresh()" pulling-icon=""></ion-refresher>
   <div ng-repeat="item in message.messages">
-    <p class="rj-message-time" ng-bind="item.time" ng-if="false"></p>
+    <p class="rj-message-time" ng-bind="item.realTime"></p>
     <div class="rj-message-wrap" ng-if="!item.isFromMe">
       <img ng-src="img/head/{{message.img}}.png" ng-click="goFriendInfo()" class="rj-head-pic">
       <span class="rj-triangle-left"></span>
@@ -23,7 +23,7 @@
     </div>
   </div>
 </ion-content>
-<ion-footer-bar align-title="left" class="bar-light" resize-foot-bar>
+<ion-footer-bar align-title="left" class="bar-light">
   <div class="rj-footer-btn-wrap">
     <button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left">
     </button>

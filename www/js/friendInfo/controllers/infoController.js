@@ -6,18 +6,23 @@ CHAT.CONTROLLERS
      function($scope,$state,$stateParams,$ionicHistory,Storage,socket){
         $scope.$on("$ionicView.beforeEnter",function(){
           var viewSource = $stateParams.viewSource;
-          $scope.showChatButton = viewSource =="chatDetail"?false:true;
+          $scope.showChatButton = (viewSource !="chatDetail");
           $scope.friendId = $stateParams.friendId;
           $scope.userId = Storage.get("userInfo").id;
-          $scope.showModifyBack = true;
-          if($scope.friendId == '111111'){
-            $scope.showModifyBack = false;
-          }
-          socket.emit('friendInfo',{friendId:$scope.friendId,userId:$scope.userId});
-          socket.on('friendInfo:success',function(data){
-            $scope.friend = data.friendInfo;
-          });
+          $scope.friend = $scope.getFriendInfo($scope.friendId);
         });
+
+       $scope.getFriendInfo = function(friendId){
+         var friendInfo = Storage.get("friendInfo");
+         if(friendInfo.length){
+           for(var i=0;i<friendInfo.length;i++){
+             if(friendInfo[i].id ==friendId){
+               return friendInfo[i];
+             }
+           }
+         }
+         return null;
+       };
 
        $scope.goBack =function(){
          $ionicHistory.goBack();
@@ -26,12 +31,12 @@ CHAT.CONTROLLERS
          $state.go($state.current.data.forwardTo.modifyBack[0],{friend:$scope.friend,userId:$scope.userId});
        };
        $scope.goChat = function(friend){
-         $state.go('tab.friends-chatDetail',{"messageId":friend.id,backname:friend.backname,nickname:friend.nickname,img:friend.img});
+         $state.go('tab.friends-chatDetail',{"id":friend.id,backname:friend.backname,nickname:friend.nickname,img:friend.img});
        };
    }])
 
-.controller('ModifyBackCtrl',['$scope','$ionicHistory','socket','$state','$stateParams',
-  function($scope,$ionicHistory,socket,$state,$stateParams){
+.controller('ModifyBackCtrl',['$scope','$ionicHistory','socket','$state','$stateParams','Storage',
+  function($scope,$ionicHistory,socket,$state,$stateParams,Storage){
     $scope.$on("$ionicView.beforeEnter",function(){
       $scope.friend = $stateParams.friend;
       $scope.userId = $stateParams.userId;
@@ -43,11 +48,39 @@ CHAT.CONTROLLERS
 
     $scope.saveChange = function(){
       socket.emit("backnameChange",{friend:$scope.friend,userId:$scope.userId});
+      $scope.modifyBackname($scope.friend);
       $ionicHistory.goBack();
     };
 
     $scope.showLeftLength = function(){
       var backname = $scope.friend.backname;
       $scope.leftLength = 12 - backname.length;
+    };
+
+    $scope.modifyBackname = function(friend){
+      var friendInfo = Storage.get("friendInfo");
+      var records = Storage.get("records");
+      var a = false;
+      var b =false;
+      if(friendInfo.length){
+        for(var i=0;i<friendInfo.length;i++){
+          if(friendInfo[i].id ==friend.id){
+            friendInfo[i].backname = friend.backname;
+            Storage.set("friendInfo",friendInfo);
+            a=true;
+            break;
+          }
+        }
+        for(var j=0;j<records.length;j++){
+          if(records[j].id == friend.id){
+            records[j].backname = friend.backname;
+            Storage.set("records",records);
+            b=true;
+            return a&b;
+          }
+        }
+        return a;
+      }
+      return false;
     };
 }]);

@@ -4,31 +4,9 @@
 CHAT.SERVICES
    .factory('Message',['Storage','dateService','socket',
      function(Storage,dateService,socket){
-       var messageStruct = {
-         "id":null,
-         "backname":null,
-         "nickname":null,
-         "img":null,
-         "lastMessage":{},
-         "noReadMessages":0,
-         "showHints":true,
-         "isTop":0,
-         "showMessage":true,
-         "message":[]
-       };
-       var userInfo = Storage.get("userInfo");
           return{
             init: function() {
-              var userId = Storage.get("userInfo").id;
-              var records = [];
-              socket.emit("messages:getAll",{userId:userId});
-              socket.on("messages:getAllSuccess",function(data){
-                for(var i=0;i<data.messages.length;i++){
-                  records[i] = JSON.parse(data.messages[i].record);
-                }
-                dateService.handleMessageDate(records);
-                Storage.set("records",records);
-              });
+              Storage.set("records",[]);
             },
             getAll: function(){
               var records = Storage.get("records");
@@ -36,6 +14,7 @@ CHAT.SERVICES
             },
             removeMessage : function(record){
               var records = Storage.get("records");
+              var userId = Storage.get("userInfo").id;
               for(var i = 0;i < records.length;i++){
                 if(records[i].id == record.id){
                   record.showMessage = false;
@@ -46,75 +25,68 @@ CHAT.SERVICES
             },
             getMessageById : function(id){
               var records = Storage.get("records");
-              var record = messageStruct;
               for(var i=0;i<records.length;i++) {
                 if (records[i].id == id) {
                   return records[i];
                 }
               }
+              return null;
             },
             updateMessage: function(message){
               var records = Storage.get("records");
-              var userId = Storage.get("userInfo").id;
-              for(var i=0;i<records.length;i++){
-                if(records[i].id == message.id){
-                  records[i]=message;
-                  Storage.set("records",records);
-                  socket.emit("updateRecord",{record:message,userId:userId,friendId:message.id});
+              if(records.length){
+                for(var i=0;i<records.length;i++){
+                  if(records[i].id == message.id){
+                    records[i]=message;
+                    break;
+                  }
                 }
+                if(i==records.length && records[i-1].id != message.id){
+                  records.push(message);
+                }
+              }else{
+                records.push(message);
               }
+              Storage.set("records",records);
             }
           }
    }])
   .factory('dateService', [function() {
     return {
-      handleMessageDate: function(messages) {
-        var i = 0,
-          length = 0,
-          messageDate = {},
+      handleMessageDate: function(message) {
+         var messageDate = {},
           nowDate = {},
           weekArray = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
           diffWeekValue = 0;
-        if (messages) {
+        if (message) {
           nowDate = this.getNowDate();
-          length = messages.length;
-          for (i = 0; i < length; i++) {
-            messageDate = this.getMessageDate(messages[i]);
+            messageDate = this.getMessageDate(message);
             if(!messageDate){
               return null;
             }
             if (nowDate.year - messageDate.year > 0) {
-              messages[i].lastMessage.time = messageDate.year + "";
-              continue;
+              message.realTime = messageDate.year + "";
             }
             if (nowDate.month - messageDate.month >= 0 ||
               nowDate.day - messageDate.day > nowDate.week) {
-              messages[i].lastMessage.time = messageDate.month +
+              message.realTime = messageDate.month +
                 "月" + messageDate.day + "日";
-              continue;
             }
             if (nowDate.day - messageDate.day <= nowDate.week &&
               nowDate.day - messageDate.day > 1) {
               diffWeekValue = nowDate.week - (nowDate.day - messageDate.day);
-              messages[i].lastMessage.time = weekArray[diffWeekValue];
-              continue;
+              message.realTime = weekArray[diffWeekValue];
             }
             if (nowDate.day - messageDate.day === 1) {
-              messages[i].lastMessage.time = "昨天";
-              continue;
+              message.realTime = "昨天 "+messageDate.hour+":"+messageDate.minute;
             }
             if (nowDate.day - messageDate.day === 0) {
-              messages[i].lastMessage.time = messageDate.hour + ":" + messageDate.minute;
-              continue;
+              message.realTime = messageDate.hour + ":" + messageDate.minute;
             }
-          }
-          // console.log(messages);
-          // return messages;
         } else {
-          console.log("messages is null");
+          console.log("message is null");
           return null;
         }
-
       },
       getNowDate: function() {
         var nowDate = {};
@@ -152,6 +124,16 @@ CHAT.SERVICES
           console.log("message is null");
           return null;
         }
+      },
+      getScreenDate:function (timeStamp) {
+        var   year=timeStamp.getFullYear();
+        var   month=timeStamp.getMonth()+1;
+        var   date=timeStamp.getDate();
+        var   hour=timeStamp.getHours();
+        var   minute=timeStamp.getMinutes();
+        var   second=timeStamp.getSeconds();
+        return   year+"-"+month+"-"+date+"   "+hour+":"+minute+":"+second;
       }
     };
+
   }]);
