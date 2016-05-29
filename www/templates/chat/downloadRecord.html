@@ -1,0 +1,13 @@
+<ion-view view-title="点击下载" hide-back-button="true">
+  <ion-nav-buttons>
+    <a class="button button-clear icon ion-ios-arrow-back" ng-click="goBack()"></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-avatar">
+        <img style="max-width: 40px;max-height: 40px;border-radius: 0;" ng-src="img/file.png">
+        <a href="http://192.168.0.100:9000/records/{{fileName}}" download="{{fileName}}">{{fileName}}</a>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

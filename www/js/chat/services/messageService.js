@@ -2,26 +2,45 @@
  * Created by XJB11 on 2016/5/2 0002.
  */
 CHAT.SERVICES
-   .factory('Message',['Storage','dateService','socket',
-     function(Storage,dateService,socket){
+   .factory('Message',['Storage','dateService','socket','$http','$rootScope',
+     function(Storage,dateService,socket,$http,$rootScope){
           return{
             init: function() {
-              Storage.set("records",[]);
+                var userId = Storage.get("userInfo").id;
+                var allRecords = Storage.get("allRecords");
+                var records = [];
+                if(allRecords){
+                  records = allRecords[userId]||[];
+                }
+               else{
+                  Storage.set("allRecords",{});
+                }
+                Storage.set("records",records);
             },
             getAll: function(){
-              var records = Storage.get("records");
-              return records;
+              return Storage.get("records");
             },
             removeMessage : function(record){
               var records = Storage.get("records");
               var userId = Storage.get("userInfo").id;
               for(var i = 0;i < records.length;i++){
                 if(records[i].id == record.id){
-                  record.showMessage = false;
-                  records.splice(i,1);
-                  Storage.set("records");
+                  records[i].showMessage = false;
+                  Storage.set("records",records);
+                  break;
                 }
               }
+            },
+            deleteMessageById: function(id){
+              var records = Storage.get("records");
+              for(var i=0;i<records.length;i++) {
+                if (records[i].id == id) {
+                  records.splice(i,1);
+                  Storage.set("records",records);
+                  return true;
+                }
+              }
+              return false;
             },
             getMessageById : function(id){
               var records = Storage.get("records");

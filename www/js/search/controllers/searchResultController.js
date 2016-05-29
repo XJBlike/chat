@@ -19,7 +19,7 @@ CHAT.CONTROLLERS
           };
 
       $scope.goChat = function(friend){
-        $state.go('tab.friends-chatDetail',{"messageId":friend.id,backname:friend.backname,nickname:friend.nickname,img:friend.img});
+        $state.go('tab.friends-chatDetail',{"id":friend.id,backname:friend.backname,nickname:friend.nickname,img:friend.img});
       };
 
       $scope.goFriendInfo = function(friend){

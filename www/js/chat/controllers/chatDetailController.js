@@ -40,11 +40,25 @@ CHAT.CONTROLLERS
       } else {
         $scope.message = params;
       }
+      Message.updateMessage($scope.message);
       $timeout(function() {
         viewScroll.scrollBottom();
       }, 0);
     });
 
+    $scope.minusTime = function(a,b){
+      var aTime = dateService.getMessageDate(a.screenTime);
+      var bTime = dateService.getMessageDate(b.screenTime);
+      if(aTime.year-bTime.year>0
+         ||aTime.month-bTime.month>0
+        ||aTime.day-bTime.day>0
+        ||aTime.hour-bTime.hour>0
+        ||aTime.minute-bTime.minute>1){
+        a.showTime= true;
+      }else{
+        a.showTime = false;
+      }
+    };
 
     $scope.goBack = function(){
       $ionicHistory.goBack();
@@ -66,6 +80,7 @@ CHAT.CONTROLLERS
       $scope.currentMessage.time = Date.parse(newDate);
       $scope.currentMessage.screenTime = dateService.getScreenDate(newDate);
       $scope.currentMessage.realTime =newDate.getHours()+":"+newDate.getMinutes();
+     // $scope.minusTime($scope.currentMessage,$scope.message.messages[$scope.message.messages.length-1]);
       if(!CommonMethods.isMessageInArray($scope.message.messages,$scope.currentMessage)){
         $scope.message.messages.push($scope.currentMessage);
         $scope.message.lastMessage = $scope.currentMessage;
@@ -74,6 +89,11 @@ CHAT.CONTROLLERS
       Message.updateMessage($scope.message);
       socket.emit("message:send",{userId:userId,friendId:$scope.message.id,currentMessage:$scope.currentMessage});
       $scope.currentMessage = {};
+    };
+
+    $scope.goRecord = function(){
+        var forwardTo = $state.current.data.forwardTo;
+          $state.go(forwardTo.record[0],{friendId:$scope.message.id,img:$scope.message.img});
     };
 
     $scope.getFromUserInfo= function(friendId){
@@ -111,14 +131,13 @@ CHAT.CONTROLLERS
         params.backname = fromUser.backname;
       }else{
         params = thisRecord;
+        params.showMessage = true;
       }
         if(friendId == $scope.message.id && !CommonMethods.isMessageInArray($scope.message.messages,data.message)){
           $scope.message.messages.push(data.message);
           viewScroll.scrollBottom();
         }
       if(!CommonMethods.isMessageInArray(params.messages,data.message)){
-        params.messages.push(data.message);
-        params.lastMessage = data.message;
         if(friendId != $scope.message.id){
           params.noReadMessages++;
           params.showHints = true;

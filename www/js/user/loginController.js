@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/26 0026.
  */
 CHAT.CONTROLLERS
- .controller('LoginCtrl',['$scope','Storage','$rootScope','CommonMethods','$ionicHistory','SqliteOperationService','$state','$ionicPopup','socket','$timeout',
-   function($scope,Storage,$rootScope,CommonMethods,$ionicHistory,SqliteOperationService,$state,$ionicPopup,socket,$timeout){
+ .controller('LoginCtrl',['$scope','Storage','$rootScope','CommonMethods','$ionicHistory','$state','$ionicPopup','socket','$timeout',
+   function($scope,Storage,$rootScope,CommonMethods,$ionicHistory,$state,$ionicPopup,socket,$timeout){
      $scope.$on("$ionicView.loaded",function(){
        $ionicHistory.clearHistory();
        if(Storage.get("userInfo")){
@@ -93,6 +93,7 @@ CHAT.CONTROLLERS
 
      socket.on('login:success',function(data){
        Storage.set("userInfo",data.userInfo);
+       $rootScope.userInfo = data.userInfo;
        $state.go("tab.mine");
      });
 

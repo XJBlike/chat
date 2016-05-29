@@ -13,9 +13,6 @@ CHAT.CONTROLLERS
         socket.emit("friends",{id:$scope.user.id});
         $scope.showFriendList = true;
         $scope.isShowImg =false;
-        if($stateParams.viewSource){
-          location.reload();
-        }
       };
       socket.on("friends:success",function(data){
          $scope.friends = data.friends;
@@ -62,16 +59,12 @@ CHAT.CONTROLLERS
       };
 
       $scope.removeFriend = function(friend){
-        if(friend.id=='111111'){
-           CommonMethods.showAlert("建议不要删除官方客服！");
-        }else{
           for(var i=0;i<$scope.friends.length;i++){
             if($scope.friends[i].id == friend.id){
               $scope.friends.splice(i,1);
             }
           }
           socket.emit("remove:friend",{friend:friend,userId:$scope.userId});
-        }
       };
   }]);
 
