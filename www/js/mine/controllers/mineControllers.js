@@ -2,8 +2,8 @@
  * Created by XJB11 on 2016/4/26 0026.
  */
 CHAT.CONTROLLERS
-  .controller('MineCtrl',['$scope','CommonMethods','Storage','$state','socket','$ionicPopup','$timeout',
-    function($scope,CommonMethods,Storage,$state,socket,$ionicPopup,$timeout){
+  .controller('MineCtrl',['$scope','CommonMethods','Storage','$state','socket','$ionicPopup','$timeout','Message',
+    function($scope,CommonMethods,Storage,$state,socket,$ionicPopup,$timeout,Message){
      $scope.goSetNickname = function(){
        $state.go("tab.mine-changeName",{nickname:$scope.userInfo.nickname});
      };
@@ -38,14 +38,79 @@ CHAT.CONTROLLERS
 
       $scope.logOut = function(){
         var userInfo = Storage.get("userInfo");
+        var userId = userInfo.id;
+        var allRecords = Storage.get("allRecords");
+        var records = Storage.get("records");
+        allRecords[userId] = records;
+        Storage.set("allRecords",allRecords);
         Storage.remove("userInfo");
+        Storage.remove("records");
+        Storage.remove("friendInfo");
         socket.emit("logout",{userInfo:userInfo});
         $state.go("tab.mine-login");
       };
 
+     socket.on("friendInfo:success",function(data){
+          var friendInfo = data.friendInfo;
+          Storage.set("friendInfo",friendInfo);
+     });
+
+      socket.on("getOfflineMsg:success",function(data){
+           var rows = data.rows;
+           var record = {};
+           var i = 0,
+               j = 0;
+           for(i=0;i<rows.length;i++){
+             record =  Message.getMessageById(rows[i].fromUser);
+              if(record!=null){
+                    record.messages.push(JSON.parse(rows[i].message));
+                    record.lastMessage = JSON.parse(rows[i].message);
+                    record.noReadMessages++;
+                    record.showHints = true;
+                    record.showMessage = true;
+                    Message.updateMessage(record);
+              }else{
+                $scope.createMessage(rows[i].message,$scope.findFriendById(rows[i].fromUser));
+              }
+          }
+      });
+
+      $scope.findFriendById = function(id){
+         var friendInfo = Storage.get("friendInfo");
+        for(var i=0;i<friendInfo.length;i++){
+          if(friendInfo[i].id == id){
+            return friendInfo[i];
+          }
+        }
+        return null;
+      };
+
+      $scope.createMessage = function(message,friend){
+        var messageStruct = {
+          "id": friend.id,
+          "backname": friend.backname,
+          "nickname": friend.nickname,
+          "img": friend.img,
+          "lastMessage": {},
+          "noReadMessages": 0,
+          "showHints": false,
+          "isTop": 0,
+          "showMessage":true,
+          "messages": []
+        };
+        messageStruct.messages.push(JSON.parse(message));
+        messageStruct.lastMessage = JSON.parse(message);
+        messageStruct.noReadMessages++;
+        messageStruct.showHints = true;
+        Message.updateMessage(messageStruct);
+      };
+
+
       $scope.$on("$ionicView.beforeEnter",function(){
         $scope.userInfo = Storage.get("userInfo");
         $scope.userInfo.img = "img/head/"+$scope.userInfo.img+".png";
+        socket.emit("friendInfo",{userId:$scope.userInfo.id});
+        socket.emit("getOfflineMsg",{userId:$scope.userInfo.id});
       });
   }])
   .controller('AccountCtrl',['$scope','CommonMethods','Storage','$state','$ionicPopup','$timeout','$ionicHistory','socket',
@@ -120,6 +185,10 @@ CHAT.CONTROLLERS
           $scope.changeImg();
         }
       };
+
+      $scope.goModifyPassword = function(){
+        $state.go('tab.mine-modifyPassword');
+      }
     }])
 
   .controller('AboutCtrl',['$scope','$http','$ionicPopup','$timeout','$ionicHistory',

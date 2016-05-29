@@ -4,15 +4,12 @@ CHAT.COMMON = angular.module('CHAT.common', []);
 CHAT.SERVICES = angular.module('CHAT.services', ['CHAT.common']);
 CHAT.CONTROLLERS = angular.module('CHAT.controllers', ['CHAT.services','CHAT.common']);
 CHAT.DIRECTIVES = angular.module('CHAT.directives',[]);
-
+var socket = io.connect("192.168.0.100:9000");
 
 
 angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.services','CHAT.directives'])
-  .run(['$ionicPlatform','SqliteOperationService',function($ionicPlatform,SqliteOperationService) {
+  .run(['$ionicPlatform',function($ionicPlatform) {
     $ionicPlatform.ready(function() {
-
-      SqliteOperationService.initDB();
-
      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
@@ -30,8 +27,10 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
       chat: {
         chat: ['tab.chat','#/tab/chat'],
         detail: ['tab.chat-detail','#/tab/chat/detail'],
-        friendInfo: ['tab.chat-info','#/tab/chat/info'],
-        modifyBack: ['tab.chat-modifyBack','#/tab/chat/modifyBack']
+        info: ['tab.chat-info','#/tab/chat/info'],
+        modifyBack: ['tab.chat-modifyBack','#/tab/chat/modifyBack'],
+        record: ['tab.chat-record','#/tab/chat/record'],
+        downloadRecord: ['tab.chat-downloadRecord','#/tab/chat/downloadRecord']
         },
       friends: {
         friends: ['tab.friends','#/tab/friends'],
@@ -40,9 +39,10 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         search: ['tab.friends-search','#/tab/friends/search'],
         searchResult: ['tab.friends-searchResult','#/tab/friends/searchResult'],
         addFriend: ['tab.friends-add','#/tab/friends/add'],
-        friendInfo: ['tab.friends-info','#/tab/friends/info'],
         modifyBack: ['tab.friends-modifyBack','#/tab/friends/modifyBack'],
-        userInfo: ['tab.friends-userInfo','#/tab/friends/userInfo']
+        userInfo: ['tab.friends-userInfo','#/tab/friends/userInfo'],
+        record: ['tab.friends-record','#/tab/friends/record'],
+        downloadRecord: ['tab.friends-downloadRecord','#/tab/friends/downloadRecord']
       },
       mine: {
         mine: ['tab.mine','#/tab/mine'],
@@ -52,7 +52,8 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         changeLocation: ['tab.mine-changeLocation','#/tab/mine/changeLocation'],
         about: ['tab.mine-about','#/tab/mine/about'],
         login: ['tab.mine-login','#/tab/mine/login'],
-        information: ['tab.mine-information','#/tab/mine/information']
+        information: ['tab.mine-information','#/tab/mine/information'],
+        modifyPassword: ['tab.mine-modifyPassword','#/tab/mine/modifyPassword']
       }
     };
 
@@ -79,7 +80,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
 
     .state('tab.chat-detail',{
       url: "/chat/detail",
-      params: {messageId: null},
+      params: {id: null},
       views: {
         'tab-chat': {
           templateUrl: 'templates/chat/chatDetail.html',
@@ -93,7 +94,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
 
     .state('tab.chat-info',{
       url: "/chat/info",
-      params: {friendId: null},
+      params: {friendId: null,viewSource:null},
       views: {
         'tab-chat': {
           templateUrl: 'templates/friends/info.html',
@@ -118,11 +119,38 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         forwardTo: tabsModuleStates.chat
       }
     })
+    .state('tab.chat-record',{
+      url: "/chat/record",
+      params: {friendId:null,img:null},
+      views: {
+        'tab-chat': {
+          templateUrl: 'templates/chat/record.html',
+          controller: 'RecordCtrl'
+        }
+      },
+      data:　{
+        forwardTo: tabsModuleStates.chat
+      }
+    })
+    .state('tab.chat-downloadRecord',{
+      url: "/chat/downloadRecord",
+      params: {friendId:null},
+      views: {
+        'tab-chat': {
+          templateUrl: 'templates/chat/downloadRecord.html',
+          controller: 'DownloadRecordCtrl'
+        }
+      },
+      data:　{
+        forwardTo: tabsModuleStates.chat
+      }
+    })
 
 
 
     .state('tab.friends',{
       url: "/friends",
+      params:{viewSource:null},
       views:{
         'tab-friends':{
           templateUrl: 'templates/friends/friendList.html',
@@ -135,7 +163,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
     })
     .state('tab.friends-info',{
       url: "/friends/info",
-      params: {friendId: null},
+      params: {friendId: null,viewSource:null},
       views: {
         'tab-friends': {
           templateUrl: 'templates/friends/info.html',
@@ -174,7 +202,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
     })
     .state('tab.friends-chatDetail',{
       url: "/friends/chatDetail",
-      params: {messageId: null,backname:null,nickname: null,img: null},
+      params: {id: null},
       views: {
         'tab-friends': {
           templateUrl: 'templates/chat/chatDetail.html',
@@ -212,7 +240,7 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
     })
     .state('tab.friends-add',{
       url: "/friends/add",
-      params: {friendId: null},
+      params: {friend: null},
       views: {
         'tab-friends': {
           templateUrl: 'templates/friends/addFriend.html',
@@ -220,6 +248,32 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         }
       },
       data: {
+        forwardTo: tabsModuleStates.friends
+      }
+    })
+    .state('tab.friends-record',{
+      url: "/friends/record",
+      params: {friendId:null,img:null},
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/chat/record.html',
+          controller: 'RecordCtrl'
+        }
+      },
+      data:　{
+        forwardTo: tabsModuleStates.friends
+      }
+    })
+    .state('tab.friends-downloadRecord',{
+      url: "/friends/downloadRecord",
+      params: {friendId:null},
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/chat/downloadRecord.html',
+          controller: 'DownloadRecordCtrl'
+        }
+      },
+      data:　{
         forwardTo: tabsModuleStates.friends
       }
     })
@@ -318,6 +372,19 @@ angular.module('CHAT', ['ionic', 'CHAT.common','CHAT.controllers', 'CHAT.service
         'tab-mine':{
           templateUrl: 'templates/login/information.html',
           controller: 'InformationCtrl'
+        }
+      },
+      data: {
+        forwardTo: tabsModuleStates.mine
+      }
+    })
+
+    .state('tab.mine-modifyPassword',{
+      url: "/mine/modifyPassword",
+      views: {
+        'tab-mine':{
+          templateUrl: 'templates/mine/modifyPassword.html',
+          controller: 'ModifyPwdCtrl'
         }
       },
       data: {

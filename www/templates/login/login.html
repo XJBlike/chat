@@ -17,7 +17,7 @@
           </ion-item>
           <div class="item item-input" style="padding-right: 10%;">
             <span style="font-size: 20px;" class="icon ion-person placeholder-icon"></span>
-            <input name="username" type="text" placeholder="doge号" required ng-model="user.userId" style="padding-top:4px;" maxlength="10">
+            <input name="username" type="text" placeholder="{{isRegister?'1-10位数字':'ID'}}" required ng-model="user.userId" style="padding-top:4px;" maxlength="10">
           </div>
           <div class="item item-input">
             <span style="font-size: 20px;" class="icon ion-locked placeholder-icon"></span>
@@ -34,7 +34,7 @@
           <div class="item item-input" ng-show="isRegister">
             <span style="font-size: 20px;" class="icon ion-locked placeholder-icon"></span>
             <!--明文显示-->
-            <input ng-if="(passType2 == 'text')" name="passwordConfirm" type="text" placeholder="确认密码" required
+            <input ng-if="(passType2 == 'text')" name="passwordConfirm" type="text" placeholder="确认密码"
                    ng-model="user.passwordConfirm" style="padding-top:4px;" maxlength="10">
             <span ng-if="(passType2 == 'text')" style="font-size: 20px;" class="icon ion-eye placeholder-icon login-icon-padding"
                   ng-click="modifyPassType(2)"></span>

@@ -45,7 +45,7 @@ CHAT.CONTROLLERS
 
     $scope.showLeftLength = function(){
       var location = user.location;
-      $scope.leftLength = 10 - location.length;
+      $scope.leftLength = 12 - location.length;
     };
     $scope.goBack =function(){
       $ionicHistory.goBack();
@@ -72,7 +72,7 @@ CHAT.CONTROLLERS
 
       $scope.showLeftLength = function(){
         var nickname = user.nickname;
-        $scope.leftLength = 10 - nickname.length;
+        $scope.leftLength = 12 - nickname.length;
       };
 
       $scope.goBack =function(){
