@@ -59,8 +59,8 @@ CHAT.CONTROLLERS
       };
 
       $scope.goMessageDetail = function(message){
-        message.noReadMessages = 0;
         message.showHints = false;
+        message.noReadMessages = 0;
         Message.updateMessage(message);
         $state.go('tab.chat-detail',{"id":message.id});
       };

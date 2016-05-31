@@ -20,11 +20,19 @@
 
     <ion-list class="account-list-margin">
       <ion-item>
+        <p style="font-size: 14px;color: #8e8e93;text-align: center;">开发者信息</p>
+      </ion-item>
+      <ion-item>
         <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">作者</span>
         <span style="font-size: 14px;float: right;" ng-bind="author"></span>
       </ion-item>
-      <ion-item ng-click="showContact()">
-        <p style="font-size: 14px;color: #8e8e93;text-align: center;">联系方式</p>
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">QQ</span>
+        <span style="font-size: 14px;float: right;" ng-bind="contact.QQ"></span>
+      </ion-item>
+      <ion-item>
+        <span style="font-size: 14px;color: #8e8e93;margin-right: 50px;">电话</span>
+        <span style="font-size: 14px;float: right;" ng-bind="contact.Tel"></span>
       </ion-item>
     </ion-list>
   </ion-content>
