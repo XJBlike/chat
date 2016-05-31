@@ -4,19 +4,17 @@
 CHAT.CONTROLLERS
   .controller('FriendsCtrl',['$scope','Storage','$state','CommonMethods','$stateParams','socket','$ionicPopup','$timeout',
     function($scope,Storage,$state,CommonMethods,$stateParams,socket,$ionicPopup,$timeout){
-         $scope.$on("$ionicView.loaded",function(){
+         $scope.$on("$ionicView.beforeEnter",function(){
            $scope.initScope();
          });
 
       $scope.initScope = function(){
         $scope.user = Storage.get("userInfo");
-        socket.emit("friends",{id:$scope.user.id});
+        $scope.friends = Storage.get("friendInfo");
         $scope.showFriendList = true;
         $scope.isShowImg =false;
       };
-      socket.on("friends:success",function(data){
-         $scope.friends = data.friends;
-      });
+
 
       $scope.goFriendInfo = function(friend){
            $state.go('tab.friends-info',{friendId:friend.id,viewSource:"friendList"});
@@ -59,12 +57,19 @@ CHAT.CONTROLLERS
       };
 
       $scope.removeFriend = function(friend){
+         var friendInfo = Storage.get("friendInfo");
           for(var i=0;i<$scope.friends.length;i++){
             if($scope.friends[i].id == friend.id){
               $scope.friends.splice(i,1);
             }
           }
-          socket.emit("remove:friend",{friend:friend,userId:$scope.userId});
+        for(var j=0;i<friendInfo.length;j++){
+          if(friendInfo[j].id == friend.id){
+            friendInfo.splice(j,1);
+            Storage.set("friendInfo",friendInfo);
+          }
+        }
+          socket.emit("remove:friend",{friend:friend,userId:$scope.user.id});
       };
   }]);
 
