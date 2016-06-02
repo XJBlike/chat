@@ -5,19 +5,19 @@
   <ion-nav-buttons side="right">
     <span style="font-size: 28px;margin-right: 10px;padding-top: 5px;" class="ion-ios-cloud-download-outline" ng-click="downloadRecord()"></span>
   </ion-nav-buttons>
-  <ion-content class="rj-stable-content" delegate-handle="recordScroll" id="record-content">
+  <ion-content class="xjb-stable-content" delegate-handle="recordScroll" id="record-content">
     <ion-refresher pulling-text="..." on-refresh="doRefresh()" pulling-icon=""></ion-refresher>
     <div ng-repeat="item in record.messages track by item.time">
       <p class="record-message-time" ng-bind="item.screenTime"></p>
-      <div class="rj-message-wrap" ng-if="!item.isFromMe">
-        <img ng-src="img/head/{{img}}.png" ng-click="goFriendInfo()" class="rj-head-pic">
-        <span class="rj-triangle-left"></span>
-        <p class="rj-message" ng-bind="item.content"></p>
+      <div class="xjb-message-wrap" ng-if="!item.isFromMe">
+        <img ng-src="img/head/{{img}}.png" ng-click="goFriendInfo()" class="xjb-head-pic">
+        <span class="xjb-triangle-left"></span>
+        <p class="xjb-message" ng-bind="item.content"></p>
       </div>
-      <div class="rj-message-wrap" ng-if="item.isFromMe">
-        <img ng-src="img/head/{{user.img}}.png" class="rj-head-pic-right">
-        <span class="rj-triangle-right"></span>
-        <p class="rj-message-right" ng-bind="item.content"></p>
+      <div class="xjb-message-wrap" ng-if="item.isFromMe">
+        <img ng-src="img/head/{{user.img}}.png" class="xjb-head-pic-right">
+        <span class="xjb-triangle-right"></span>
+        <p class="xjb-message-right" ng-bind="item.content"></p>
       </div>
     </div>
     <div style="width: 100%;" ng-show="!record.messages.length">
