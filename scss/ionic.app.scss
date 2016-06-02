@@ -636,7 +636,7 @@ $html_media_font_size: (375px, 375*10/320), (384px, 384*10/320), (480px, 480*10/
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 $tabs-striped-border-width: 0;
 $item-padding: 10px;
-.rj-push-right {
+.xjb-push-right {
   position: absolute;
   right: $item-padding;
   top: $item-padding;
@@ -646,7 +646,7 @@ $item-padding: 10px;
 
 $item-avatar-border-radius: 0;
 .item {
-  .rj-list-p {
+  .xjb-list-p {
     font-size: 13px;
     color: #6a6a6a;
   }
@@ -674,7 +674,7 @@ $popup-width: 85%;
   display: none;
 }
 
-.item > .rj-sm-red-icon {
+.item > .xjb-sm-red-icon {
   position: absolute;
   display: inline-block;
   width: 18px;
@@ -687,16 +687,16 @@ $popup-width: 85%;
   left: 40px;
 }
 
-.item > .rj-sm-red-icon > p {
+.item > .xjb-sm-red-icon > p {
   color: #FFF;
   font-size: 12px;
 }
 
-.rj-item-top {
+.xjb-item-top {
   background-color: #F1F1F1 !important;
 }
 
-.rj-stable-content {
+.xjb-stable-content {
   background-color: #EEE;
 }
 
@@ -716,72 +716,72 @@ $popup-width: 85%;
 }
 
 
-.rj-footer-btn {
+.xjb-footer-btn {
   position: absolute !important;
   bottom: -1px;
   right: 5px;
 }
 
-.rj-footer-input{
+.xjb-footer-input{
   width: 100%;
 }
 
-.rj-footer-btn-wrap {
+.xjb-footer-btn-wrap {
   position: relative;
   height: 100%;
   width: 50px;
   top: 2px;
 }
 
-.rj-footer-btn-left {
+.xjb-footer-btn-left {
   position: absolute !important;
   bottom: 0;
 
 }
 
-.rj-message-wrap{
+.xjb-message-wrap{
   padding: 7px;
   overflow: auto;
   position: relative;
 }
 
-.rj-message-wrap .rj-head-pic,
-.rj-message-wrap .rj-head-pic-right{
+.xjb-message-wrap .xjb-head-pic,
+.xjb-message-wrap .xjb-head-pic-right{
   max-height: 40px;
   max-width: 40px;
 }
-.rj-message-wrap .rj-head-pic{
+.xjb-message-wrap .xjb-head-pic{
   float: left;
 }
 
-.rj-message-wrap .rj-head-pic-right{
+.xjb-message-wrap .xjb-head-pic-right{
   float: right;
 }
 
 
-.rj-message-wrap .rj-message,
-.rj-message-wrap .rj-message-right{
+.xjb-message-wrap .xjb-message,
+.xjb-message-wrap .xjb-message-right{
   padding: 6px 8px;
   line-height: 26px;
   max-width: 190px;
   border-radius: 5px;
 
 }
-.rj-message-wrap .rj-message{
+.xjb-message-wrap .xjb-message{
   float: left;
   margin-left: 16px;
   background-color: #fff;
 
 }
 
-.rj-message-wrap .rj-message-right{
+.xjb-message-wrap .xjb-message-right{
   float: right;
   margin-right: 16px;
   background-color: #6BE00B;
 
 }
-.rj-message-wrap .rj-triangle-left,
-.rj-message-wrap .rj-triangle-right{
+.xjb-message-wrap .xjb-triangle-left,
+.xjb-message-wrap .xjb-triangle-right{
   display: inline-block;
   width: 0px;
   height: 0px;
@@ -791,17 +791,17 @@ $popup-width: 85%;
   top:17px;
 }
 
-.rj-message-wrap .rj-triangle-left{
+.xjb-message-wrap .xjb-triangle-left{
   left: 47px;
   border-color: transparent #FFF transparent transparent;
 }
 
-.rj-message-wrap .rj-triangle-right{
+.xjb-message-wrap .xjb-triangle-right{
   right: 47px;
   border-color: transparent transparent transparent #6BE00B;
 }
 
-.rj-message-time{
+.xjb-message-time{
   width: 42px;
   text-align: center;
   margin-bottom: 5px;
@@ -821,7 +821,7 @@ $popup-width: 85%;
   margin-left: auto;
   margin-right: auto;
 }
-.rj-footer-btn-wrap .rj-send-button{
+.xjb-footer-btn-wrap .xjb-send-button{
   background-color: #1BBB37;
   color: #FFF;
   height: 30px;
@@ -833,12 +833,12 @@ $popup-width: 85%;
   left: 4px;
 }
 
-.rj-list .list{
+.xjb-list .list{
   width: 100%;
   margin-top: -1px;
 }
 
-.rj-list .list .rj-item{
+.xjb-list .list .xjb-item{
   border-left:none;
   border-right:none;
   border-bottom: none;
@@ -849,11 +849,11 @@ $popup-width: 85%;
       border-bottom: 1px solid #ddd;
     }
 }
-.rj-contacts-item{
+.xjb-contacts-item{
   padding: 0px !important;
 }
 
-.rj-item .rj-contacts-pic{
+.xjb-item .xjb-contacts-pic{
   color:white;
   height:36px;
   width:36px;
@@ -862,17 +862,17 @@ $popup-width: 85%;
   font-size: 28px;
   text-align: center;
 }
-.rj-orange-bgc{
+.xjb-orange-bgc{
   background-color:orange;
 }
-.rj-green-bgc{
+.xjb-green-bgc{
   background-color: #63db2a;
 }
-.rj-blue-bgc{
+.xjb-blue-bgc{
   background-color: #2d31ca;
 }
 
-.rj-item h2{
+.xjb-item h2{
   padding-left: 10px;
   position: absolute;
   margin: auto !important;
@@ -883,12 +883,12 @@ $popup-width: 85%;
   line-height: 32px;
 }
 
-.rj-contacts-pic img{
+.xjb-contacts-pic img{
   width: 36px;
   height: 36px;
 }
 
-.rj-contacts-index-bar{
+.xjb-contacts-index-bar{
   background-color: $item-default-border;
   padding-left: 10px;
   height: 20px;
@@ -897,7 +897,7 @@ $popup-width: 85%;
   color: #545454;
 }
 
-.rj-contacts-right-bar{
+.xjb-contacts-right-bar{
   position: fixed;
   right: 0;
   // top: 44px;
@@ -908,10 +908,10 @@ $popup-width: 85%;
   font-size: 80%;
   color: #545454;
 }
-.rj-contacts-right-bar div{
+.xjb-contacts-right-bar div{
   height: 16px;
 }
-.rj-contacts-middle-bar{
+.xjb-contacts-middle-bar{
   position: fixed;
   margin: auto;
   left: 0;

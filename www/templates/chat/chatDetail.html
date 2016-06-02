@@ -10,39 +10,39 @@
   <ion-nav-buttons side="right">
     <span style="font-size: 28px;margin-right: 8px;padding-top: 5px;" class="ion-ios-person-outline" ng-click="goRecord()"></span>
   </ion-nav-buttons>
-  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" id="message-detail-content">
+  <ion-content class="xjb-stable-content" delegate-handle="messageDetailsScroll" id="message-detail-content">
   <ion-refresher pulling-text="..." on-refresh="doRefresh()" pulling-icon=""></ion-refresher>
   <div ng-repeat="item in message.messages track by item.time">
-    <p class="rj-message-time" ng-show="item.showTime" ng-bind="item.realTime"></p>
-    <div class="rj-message-wrap" ng-if="!item.isFromMe">
-      <img ng-src="img/head/{{message.img}}.png" ng-click="goFriendInfo()" class="rj-head-pic">
-      <span class="rj-triangle-left"></span>
-      <p class="rj-message" ng-bind="item.content"></p>
+    <p class="xjb-message-time" ng-show="item.showTime" ng-bind="item.realTime"></p>
+    <div class="xjb-message-wrap" ng-if="!item.isFromMe">
+      <img ng-src="img/head/{{message.img}}.png" ng-click="goFriendInfo()" class="xjb-head-pic">
+      <span class="xjb-triangle-left"></span>
+      <p class="xjb-message" ng-bind="item.content"></p>
     </div>
-    <div class="rj-message-wrap" ng-if="item.isFromMe">
-      <img ng-src="img/head/{{user.img}}.png" class="rj-head-pic-right">
-      <span class="rj-triangle-right"></span>
-      <p class="rj-message-right" ng-bind="item.content"></p>
+    <div class="xjb-message-wrap" ng-if="item.isFromMe">
+      <img ng-src="img/head/{{user.img}}.png" class="xjb-head-pic-right">
+      <span class="xjb-triangle-right"></span>
+      <p class="xjb-message-right" ng-bind="item.content"></p>
     </div>
   </div>
 </ion-content>
 <ion-footer-bar align-title="left" class="bar-light">
-  <div class="rj-footer-btn-wrap">
-    <button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left">
+  <div class="xjb-footer-btn-wrap">
+    <button class="button button-icon icon ion-ios-mic-outline xjb-footer-btn-left">
     </button>
   </div>
-  <label class="item item-input rj-footer-input">
+  <label class="item item-input xjb-footer-input">
     <textarea data-ng-model="currentMessage.content"></textarea>
     <div class="buttons">
-      <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
+      <button class="xjb-footer-btn button button-icon icon ion-happy-outline"></button>
     </div>
   </label>
-  <div class="rj-footer-btn-wrap">
+  <div class="xjb-footer-btn-wrap">
     <div class="buttons" ng-show="!currentMessage.content || currentMessage.content === ''">
-      <button class="button button-icon icon ion-ios-plus-outline rj-footer-btn-left">
+      <button class="button button-icon icon ion-ios-plus-outline xjb-footer-btn-left">
       </button>
     </div>
-    <div class="rj-send-button" ng-hide="!currentMessage.content || currentMessage.content === ''" ng-click="sendMessage()">
+    <div class="xjb-send-button" ng-hide="!currentMessage.content || currentMessage.content === ''" ng-click="sendMessage()">
       <p>发送</p>
     </div>
   </div>

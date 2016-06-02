@@ -1,12 +1,12 @@
 <ion-view view-title="最近会话">
   <ion-content on-swipe-left="onSwipeLeft()">
     <ion-list>
-      <ion-item class="item-avatar" ng-class="{'rj-item-top': message.isTop}" on-hold="popupMessageOpthins(message)" rj-hold-active ng-repeat="message in messages| orderBy:['isTop', 'lastMessage.time']:true" ng-click="goMessageDetail(message)" ng-show="message.showMessage">
+      <ion-item class="item-avatar" ng-class="{'xjb-item-top': message.isTop}" on-hold="popupMessageOpthins(message)"  ng-repeat="message in messages| orderBy:['isTop', 'lastMessage.time']:true" ng-click="goMessageDetail(message)" ng-show="message.showMessage">
         <img style="max-width: 40px;max-height: 40px;border-radius: 0;" ng-src="img/head/{{message.img}}.png">
-        <span class="rj-sm-red-icon" ng-show="message.showHints"><p ng-bind="message.noReadMessages"></p></span>
+        <span class="xjb-sm-red-icon" ng-show="message.showHints"><p ng-bind="message.noReadMessages"></p></span>
         <h2 ng-bind="message.backname"></h2>
-        <p class="rj-list-p" ng-bind="message.lastMessage.content"></p>
-        <span class="rj-push-right" ng-bind="message.lastMessage.realTime"></span>
+        <p class="xjb-list-p" ng-bind="message.lastMessage.content"></p>
+        <span class="xjb-push-right" ng-bind="message.lastMessage.realTime"></span>
       </ion-item>
     </ion-list>
     <p style="margin-top: 30%;text-align: center;" ng-show="!messages.length">暂无最近会话</p>

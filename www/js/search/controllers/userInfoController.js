@@ -13,6 +13,6 @@ CHAT.CONTROLLERS
             };
 
             $scope.addFriend = function(){
-              $state.go('tab.friends-add',{"friendId":$scope.user.id});
+              $state.go('tab.friends-add',{"friend":$scope.user});
             }
      }]);

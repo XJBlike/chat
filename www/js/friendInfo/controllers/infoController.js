@@ -35,8 +35,8 @@ CHAT.CONTROLLERS
        };
    }])
 
-.controller('ModifyBackCtrl',['$scope','$ionicHistory','socket','$state','$stateParams','Storage',
-  function($scope,$ionicHistory,socket,$state,$stateParams,Storage){
+.controller('ModifyBackCtrl',['$scope','$ionicHistory','socket','$state','$stateParams','Storage','CommonMethods',
+  function($scope,$ionicHistory,socket,$state,$stateParams,Storage,CommonMethods){
     $scope.$on("$ionicView.beforeEnter",function(){
       $scope.friend = $stateParams.friend;
       $scope.userId = $stateParams.userId;
@@ -47,9 +47,13 @@ CHAT.CONTROLLERS
     };
 
     $scope.saveChange = function(){
-      socket.emit("backnameChange",{friend:$scope.friend,userId:$scope.userId});
-      $scope.modifyBackname($scope.friend);
-      $ionicHistory.goBack();
+      if(!$scope.friend.backname.length){
+        CommonMethods.showAlert("备注不能为空！");
+      }else{
+        socket.emit("backnameChange",{friend:$scope.friend,userId:$scope.userId});
+        $scope.modifyBackname($scope.friend);
+        $ionicHistory.goBack();
+      }
     };
 
     $scope.showLeftLength = function(){
